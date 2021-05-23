@@ -79,7 +79,7 @@ CREATE TABLE IF NOT EXISTS `usergroups` (
 --
 
 CREATE TABLE IF NOT EXISTS `users` (
-  `userId` int(11) NOT NULL,
+  `userId` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(50) NOT NULL,
   `age` int(11) NOT NULL,
   `gender` varchar(1) NOT NULL,
@@ -87,6 +87,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `rating` int(11) NOT NULL,
   PRIMARY KEY (`userId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
