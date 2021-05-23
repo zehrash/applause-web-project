@@ -9,7 +9,7 @@ function registerUser($username, $age, $gender, $password)
     $db = new DB();
     $connection = $db->getConnection();
 
-    $addsql = "INSERT INTO `users` (username, age, gender, role, rating) VALUES (:username, :age, :gender, user, 0)"; //add them all as basic users for now
+    $addsql = "INSERT INTO `users` (username, age, gender, role, rating) VALUES (:username, :age, :gender, :role, 0)"; //add them all as basic users for now
     $insertStatement = $connection->prepare($addsql);
 
     //todo: hash password, add it to db as a field and then insert it;
@@ -18,11 +18,12 @@ function registerUser($username, $age, $gender, $password)
         echo `user with this username already exists`;
         return;
     }
-
+    $role = 'user';
     echo "username => $username, age => $age, gender => $gender";
     $insertStatement->bindValue(':username', $username);
     $insertStatement->bindValue(':age', $age);
     $insertStatement->bindValue(':gender', $gender);
+    $insertStatement->bindValue(':role', $role);
     $insertStatement->execute();
 }
 
@@ -42,6 +43,9 @@ function getUser($username)
         $user = new User($row["username"], $row["age"], $row["gender"], $row["role"], $row["rating"]);
     }
 
-    echo $user->username;
+    if ($user != null) {
+        echo `$user->username exists`;
+    }
+
     return $user;
 }

@@ -11,7 +11,7 @@
     <!-- jQuery Modal -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
-    <script src="index.js" defer></script>
+    <!--script src="index.js" defer></script-->
     <link rel="stylesheet" href="./style.css">
 </head>
 
@@ -21,12 +21,12 @@
     </header>
     <main>
         <section id="form-container">
-            <form class="register" action="entrypoint.php" method="post">
+            <form class="register" action="../../server/entrypoint.php" method="POST">
                 <p id="username-validator" class="error"></p>
-                <input type="text" id="username" placeholder="username" required>
-                <input type="text" id="age" placeholder="age" required>
+                <input type="text" id="username" placeholder="username" name="username" required>
+                <input type="text" id="age" placeholder="age" name="age" required>
                 <p id="pass-validator" class="error"></p>
-                <input type="password" id="password" placeholder="password" required>
+                <input type="password" id="password" placeholder="password" name="password" required>
                 <select name="gender" id="gender">
                     <option value="f">Жена</option>
                     <option value="m">Мъж</option>

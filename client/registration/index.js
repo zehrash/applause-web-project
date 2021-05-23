@@ -45,7 +45,8 @@ function validate(input, regex, warningDivId) {
 
 function callApi() {
    // console.log('calling api')
-     var jqxhr = $.post("../../server/entrypoint.php", (data) => {
+     var jqxhr = $.post("../../server/entrypoint.php",
+       (data) => {
            console.log(data);
         if ($('#already-exists').css("display") == "block") {
             $('#already-exists').css("display", "none");
