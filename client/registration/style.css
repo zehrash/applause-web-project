@@ -1,0 +1,84 @@
+body {
+    background: #ffffff;
+}
+
+#form-container {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+}
+
+form {
+    margin-top: 30px;
+    margin-left: 30px;
+    margin-right: 10px;
+    margin-bottom: 30px;
+    position: relative;
+    height: 100%;
+}
+
+input, select {
+    text-align: left;
+    position: relative;
+    display: block;
+    width: 362px;
+    height: 38px;
+    margin-top: 13px;
+    border: 2px solid;
+    border-color: #9ea1a1;
+    font-size: 12pt;
+}
+
+select {
+    text-align: left;
+    position: relative;
+    display: block;
+    width: 370px;
+    height: 40px;
+    margin-top: 13px;
+    border: 2px solid;
+    border-color: #c3cdc0;
+}
+
+select:focus {
+    outline: 1px solid #79a06b;
+    border: 1px solid #79a06b;
+}
+
+input:focus {
+    outline: 1px solid #79a06b;
+    border: 1px solid #79a06b;
+}
+
+.error {
+    background-color: #b0706d;
+    text-align: inherit;
+    color: white;
+    position: relative;
+    display: none;
+    width: 365px;
+    height: 38px;
+    margin-top: 13px;
+    border: 2px solid;
+    border-color: #b0706d;
+}
+
+#register-btn {
+    background-color: #c6cfca;
+    color: #000000;
+    text-align: center;
+    position: relative;
+    display: block;
+    width: 370px;
+    height: 40px;
+    margin-top: 3%;
+    outline: none;
+    border: 2px solid;
+    border-color: #969795;
+}
+
+#register-btn :hover {
+    background-color: #8d8f8c;
+    color: #c7e0ba;
+}
