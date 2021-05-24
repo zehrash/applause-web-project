@@ -13,18 +13,28 @@ function registerUser($username, $age, $gender, $password)
     $insertStatement = $connection->prepare($addsql);
 
     //todo: hash password, add it to db as a field and then insert it;
+    $hash_options = [
+        'cost' =>12,
+    ];
+    
+    $hashedPass = password_hash($password, PASSWORD_BCRYPT, $hash_options);
+
     $user = getUser($username);
-    if ($user != null) {
-        echo `user with this username already exists`;
-        return;
+    if ($user !== null) {
+       // echo "user with this username already exists\n";
+       echo json_encode("user with username $username already exists");
+       return; 
     }
+
     $role = 'user';
-    echo "username => $username, age => $age, gender => $gender";
+   // echo "username => $username, age => $age, gender => $gender";
     $insertStatement->bindValue(':username', $username);
     $insertStatement->bindValue(':age', $age);
     $insertStatement->bindValue(':gender', $gender);
     $insertStatement->bindValue(':role', $role);
     $insertStatement->execute();
+
+    echo getUser($username);
 }
 
 //retrieve user data
@@ -43,9 +53,9 @@ function getUser($username)
         $user = new User($row["username"], $row["age"], $row["gender"], $row["role"], $row["rating"]);
     }
 
-    if ($user != null) {
-        echo `$user->username exists`;
+    if ($user === null) {
+        return null;
     }
 
-    return $user;
+    return json_encode($user); 
 }

@@ -64,7 +64,7 @@ input:focus {
     border-color: #b0706d;
 }
 
-#register-btn {
+#register-btn, #login-btn {
     background-color: #c6cfca;
     color: #000000;
     text-align: center;
@@ -78,7 +78,20 @@ input:focus {
     border-color: #969795;
 }
 
-#register-btn :hover {
+#register-btn:hover {
     background-color: #8d8f8c;
     color: #c7e0ba;
+}
+
+#login-btn:hover {
+    background-color: #8d8f8c;
+    color: #c7e0ba;
+}
+
+#login-form {
+    display: none;
+}
+
+#register-link{
+    display: none;
 }

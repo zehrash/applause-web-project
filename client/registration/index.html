@@ -5,13 +5,11 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Register</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
-
-    <!-- jQuery Modal -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
-    <!--script src="index.js" defer></script-->
+    <title>Applause generator</title>
+    <script src="./helpers/beforeLogin.js" defer></script>
+    <script src="./helpers/postData.js" defer></script>
+    <script src="./helpers/validate.js" defer></script>
+    <script src="index.js" defer></script>
     <link rel="stylesheet" href="./style.css">
 </head>
 
@@ -21,7 +19,7 @@
     </header>
     <main>
         <section id="form-container">
-            <form class="register" action="../../server/entrypoint.php" method="POST">
+            <form class="register" id="register-form">
                 <p id="username-validator" class="error"></p>
                 <input type="text" id="username" placeholder="username" name="username" required>
                 <input type="text" id="age" placeholder="age" name="age" required>
@@ -34,16 +32,22 @@
                 </select>
                 <input type="submit" name="register" id="register-btn" value="Регистрирай ме"> 
             </form>
+            <form class="login" id="login-form">
+                <p id="username-validator" class="error"></p>
+                <input type="text" id="username-log" placeholder="username" name="username" required>
+                <input type="password" id="password-log" placeholder="password" name="password" required>
+                <input type="submit" name="login" id="login-btn" value="Влез"> 
+            </form>
+            <p id="login-link">Already have a registration? <a href="#" id="redirect-to-login">Login</a></p>
+            <p id="register-link">Dont have an account yet? <a href="#" id="redirect-to-register">Register</a></p>
             <p id="success" style="display: block; margin: auto;
             position:inherit;
            "></p>
             <p id="already-exists" class="error"></p>
         </section>
+        <div id="demo">
 
-        <section id="success" class="modal">
-            <p>You registered!</p>
-            <a href="#" rel="modal:close">Close</a>
-        </section>
+        </div>
     </main>
     <footer>
 
