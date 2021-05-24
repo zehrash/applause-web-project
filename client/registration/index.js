@@ -21,11 +21,11 @@ document.getElementById('register-btn').addEventListener('click', (event) => {
 
         postData('../../server/entrypoint.php', formData).then(data => data.json()).then(dataText => {
             document.getElementById('form-container').innerHTML = '';
+            console.log(dataText);
             document.getElementById("demo").innerHTML = `<h1> Welcome, ${dataText.username} aged ${dataText.age} </h1>`;
         });
     }
 });
-
 
 const userNameInputLog = document.getElementById('username-log');
 const passInputLog = document.getElementById('password-log');
@@ -36,8 +36,10 @@ document.getElementById('login-btn').addEventListener('click', (event) => {
     formData.append('username', userNameInputLog.value);
     formData.append('password', passInputLog.value);
     console.log('in');
+    
     postData('../../server/entrypoint.php', formData).then(data => data.json()).then(dataText => {
         document.getElementById('form-container').innerHTML = '';
+        console.log(dataText);
         document.getElementById("demo").innerHTML = `<h1> Welcome, ${dataText.username} aged ${dataText.age} </h1>`;
     });
 });

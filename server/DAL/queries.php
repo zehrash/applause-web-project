@@ -9,36 +9,29 @@ function registerUser($username, $age, $gender, $password)
     $db = new DB();
     $connection = $db->getConnection();
 
-    $addsql = "INSERT INTO `users` (username, age, gender, role, rating) VALUES (:username, :age, :gender, :role, 0)"; //add them all as basic users for now
+    $addsql = "INSERT INTO `users` (username, age, gender, role, rating, password) VALUES (:username, :age, :gender, :role, 0, :password)"; //add them all as basic users for now
     $insertStatement = $connection->prepare($addsql);
 
-    //todo: hash password, add it to db as a field and then insert it;
-    $hash_options = [
-        'cost' =>12,
-    ];
-    
-    $hashedPass = password_hash($password, PASSWORD_BCRYPT, $hash_options);
-
-    $user = getUser($username);
+    $user = getUser($username, $password);
     if ($user !== null) {
-       // echo "user with this username already exists\n";
        echo json_encode("user with username $username already exists");
        return; 
     }
-
+    $hashedPass = hashPass($password);
     $role = 'user';
    // echo "username => $username, age => $age, gender => $gender";
     $insertStatement->bindValue(':username', $username);
     $insertStatement->bindValue(':age', $age);
     $insertStatement->bindValue(':gender', $gender);
     $insertStatement->bindValue(':role', $role);
+    $insertStatement->bindValue(':password', $hashedPass);
     $insertStatement->execute();
 
-    echo getUser($username);
+    echo getUser($username, $password);
 }
 
 //retrieve user data
-function getUser($username)
+function getUser($username, $password)
 {
     $db = new DB();
     $connection = $db->getConnection();
@@ -50,12 +43,23 @@ function getUser($username)
     $user = null;
 
     while ($row = $selectStatement->fetch(PDO::FETCH_ASSOC)) {
-        $user = new User($row["username"], $row["age"], $row["gender"], $row["role"], $row["rating"]);
+        $user = new User($row["username"], $row["age"], $row["gender"], $row["role"], $row["rating"], $row["password"]);
     }
 
     if ($user === null) {
         return null;
+    } else if(!password_verify($password, $user->password)) {
+        return json_encode("user password doesn't match");
     }
 
     return json_encode($user); 
+}
+
+
+function hashPass($password){
+    $hash_options = [
+        'cost' =>12,
+    ];
+    
+    return password_hash($password, PASSWORD_BCRYPT, $hash_options);
 }

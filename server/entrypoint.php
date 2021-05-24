@@ -8,6 +8,6 @@ if ($_SERVER['REQUEST_METHOD'] === "POST" && isset($_POST["age"])) {
     //$_SESSION['password'] = $registered['password'];  
     return $registered;
 } else if ($_SERVER['REQUEST_METHOD'] === "POST") {
-    $loggedIn = getUser($_POST["username"]);
+    $loggedIn = getUser($_POST["username"], $_POST["password"]);
     echo $loggedIn;
 }
