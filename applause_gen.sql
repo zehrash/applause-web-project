@@ -85,6 +85,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `gender` varchar(1) NOT NULL,
   `role` varchar(50) NOT NULL,
   `rating` int(11) NOT NULL,
+  `password` varchar(100) NOT NULL
   PRIMARY KEY (`userId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
