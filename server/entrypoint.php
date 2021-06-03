@@ -4,10 +4,18 @@ include './DAL/queries.php';
 session_start();
 if ($_SERVER['REQUEST_METHOD'] === "POST" && isset($_POST["age"])) {
     $registered = registerUser($_POST["username"], $_POST["age"], $_POST["gender"], $_POST["password"]);
-    // $_SESSION['username'] = $registered['username'];  
-    //$_SESSION['password'] = $registered['password'];  
-    return $registered;
+
+    $_SESSION['username'] = $registered->username;
+    $_SESSION['password'] = $registered->password;
 } else if ($_SERVER['REQUEST_METHOD'] === "POST") {
     $loggedIn = getUser($_POST["username"], $_POST["password"]);
-    echo $loggedIn;
+    if($loggedIn) {
+        $_SESSION['username'] = $loggedIn->username;
+        $_SESSION['password'] = $loggedIn->password;
+        $_SESSION['age'] = $loggedIn->age;
+        echo json_encode("logged in successfuly");
+    } else {
+        echo json_encode('tried to log in but it didnt work');//todo: add error handling
+    }
 }
+?>

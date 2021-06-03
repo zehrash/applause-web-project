@@ -1,0 +1,48 @@
+.command-viewer {
+    display: block;
+    width: 60vh;
+    height: 20vh;
+    background-color: gray;
+    margin: auto;
+    position: relative;
+}
+
+.command-header {
+    text-align: center;
+    margin: auto;
+}
+
+.command-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+.sounds {
+    display: block;
+    width: 80vh;
+    height: 15vh;
+    margin: auto;
+    padding-top: 2vh;
+}
+
+.sounds-button {
+    display: inline-block;
+    width: 10vh;
+    height: 10vh;
+    background-color: rgb(57, 127, 148);
+    margin: auto;
+}
+
+.sounds-button:hover {
+    background-color: rgb(101, 147, 161);
+}
+
+#player {
+    display: block;
+    margin: auto;
+}
+
+h3 {
+    text-align: center;
+}

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./home.css">
+    <script src="../helpers/getData.js" defer></script>
+    <script src="./home.js" defer></script>
+</head>
+
+<body>
+    <!--iframe id="player" type="text/html" width="640" height="390"
+  src="https://www.youtube.com/embed/M7lc1UVf-VE?enablejsapi=1&origin=http://example.com"
+  frameborder="0"></iframe-->
+    <h2 id="welcome-text"></h2>
+    <h1 class="command-header">Next command in <span id="timer">. </span>seconds</h1>
+    <div class="command-viewer">
+        <h2 class="command-text">Applaud</h2>
+    </div>
+    <section class="sounds">
+        <div id="applause" class="sounds-button">
+            <h3>applaud</h3>
+        </div>
+        <div id="boo" class="sounds-button">
+            <h3>boo</h3>
+        </div>
+        <div id="cheer" class="sounds-button">
+            <h3>cheer</h3>
+        </div>
+        <div id="effect4" class="sounds-button">
+            <h3>clap slow</h3>
+        </div>
+        <div id="effect5" class="sounds-button">
+            <h3>idk</h3>
+        </div>
+        <div id="effect6" class="sounds-button">
+            <h3>idk 2.0</h3>
+        </div>
+        <div id="effect7" class="sounds-button">
+            <h3>idk 3.0</h3>
+        </div>
+    </section>
+    <section class="random-reaction"><!--play random sound-->
+        <h5>Just press your emotion</h5>
+        <div id="happy">:)</div>
+        <div id="neutral">:|</div>
+        <div id="sad">:(</div>
+    </section>
+</body>
+
+</html>
