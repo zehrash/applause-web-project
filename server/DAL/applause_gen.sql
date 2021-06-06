@@ -20,7 +20,7 @@ SET time_zone = "+00:00";
 --
 -- Database: `applause_gen`
 --
-CREATE DATABASE IF NOT EXISTS `applause_gen` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+--CREATE DATABASE IF NOT EXISTS `applause_gen` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `applause_gen`;
 
 -- --------------------------------------------------------

@@ -6,13 +6,21 @@ const passInput = document.getElementById('password');
 const ageInput = document.getElementById('age');
 const genderInput = document.getElementById('gender');
 
+window.addEventListener('load', (event) => {
+    console.log('page is fully loaded');
+
+    fetch('../../server/DAL/createDb.php')
+        .then(response => response.json())
+        .then(data => console.log(data));
+});
+
 document.getElementById('register-btn').addEventListener('click', (event) => {
     event.preventDefault();
     validate(userNameInput, userNameRegex, 'username-validator');
     validate(passInput, passRegex, 'pass-validator');
 
-    if (validate(userNameInput, userNameRegex, 'username-validator')
-        && validate(passInput, passRegex, 'pass-validator')) {
+    if (validate(userNameInput, userNameRegex, 'username-validator') &&
+        validate(passInput, passRegex, 'pass-validator')) {
         var formData = new FormData();
         formData.append('username', userNameInput.value);
         formData.append('age', ageInput.value);
@@ -36,7 +44,7 @@ document.getElementById('login-btn').addEventListener('click', (event) => {
     formData.append('username', userNameInputLog.value);
     formData.append('password', passInputLog.value);
     console.log('in');
-    
+
     postData('../../server/entrypoint.php', formData).then(data => data.json()).then(dataText => {
         document.getElementById('form-container').innerHTML = '';
         console.log(dataText);
@@ -47,4 +55,3 @@ document.getElementById('login-btn').addEventListener('click', (event) => {
 });
 
 chooseEntranceType();
-
