@@ -23,4 +23,5 @@ class User {
         $this->rating += $rating;
     }
 
+
 }

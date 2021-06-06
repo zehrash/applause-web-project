@@ -1,7 +1,10 @@
 <?php
 set_include_path(getcwd()); //D:\install\xampp\htdocs\web_final_project\applause-web-project\server
 include './DAL/queries.php';
+include './DAL/createDb.php';
 session_start();
+createDb();
+
 if ($_SERVER['REQUEST_METHOD'] === "POST" && isset($_POST["age"])) {
     $registered = registerUser($_POST["username"], $_POST["age"], $_POST["gender"], $_POST["password"]);
 

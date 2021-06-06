@@ -33,6 +33,7 @@ function registerUser($username, $age, $gender, $password)
 //retrieve user data
 function getUser($username, $password)
 {
+    //todo: try catch
     $db = new DB();
     $connection = $db->getConnection();
     $selectsql = "SELECT * FROM users WHERE username = :username";
@@ -49,7 +50,7 @@ function getUser($username, $password)
     if ($user === null) {
         return null;
     } else if(!password_verify($password, $user->password)) {
-        return json_encode("user password doesn't match");
+        return json_encode(["status" => "ERROR", "message" => "user password doesn't match"]); 
     }
 
     return $user; 
