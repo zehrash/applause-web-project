@@ -2,29 +2,26 @@
 function createDb()
 {
 
-     //set_include_path(getcwd());
-     $mysql_host = "localhost";
-     $mysql_database = "applause_gen.sql";
-     $mysql_user = "root";
-     $mysql_password = "";
-     # MySQL with PDO_MYSQL  \
-     echo 'in';
-     $db = new PDO("mysql:host=$mysql_host", $mysql_user, $mysql_password);
-     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-     $create_query = "CREATE DATABASE IF NOT EXISTS `applause_gen` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci";
-     $db->exec($create_query);
+    $mysql_host = "localhost";
+    $mysql_database = "applause_gen";
+    $mysql_user = "root";
+    $mysql_password = "";
 
-     echo "Database created successfully with the name newDB";
+    $db = new PDO("mysql:host=$mysql_host", $mysql_user, $mysql_password);
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $create_query = "CREATE DATABASE IF NOT EXISTS `applause_gen` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci";
+    $db->exec($create_query);
 
-// change path name according to local machine 
-     $query = file_get_contents("D:\\xampp\\htdocs\\applause-web-project\\server\\DAL\\applause_gen.sql");
+   // echo "Database created successfully with the name $mysql_database";
 
-     $stmt = $db->prepare($query);
+    $query = file_get_contents("./applause_gen.sql", FILE_USE_INCLUDE_PATH);
 
-     if ($stmt->execute())
-          echo "Success";
-     else
-          echo "Fail";
+    $stmt = $db->prepare($query);
 
+    if ($stmt->execute())
+        echo "Success";
+    else
+        echo "Fail";
 }
+
 createDb();

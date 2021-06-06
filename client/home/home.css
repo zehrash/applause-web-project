@@ -1,6 +1,6 @@
 .command-viewer {
     display: block;
-    width: 60vh;
+    width: 80vh;
     height: 20vh;
     background-color: gray;
     margin: auto;
@@ -14,8 +14,9 @@
 
 .command-text {
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: 5%;
+    left: 34%;
+    font-size: 46pt;
 }
 
 .sounds {
@@ -24,6 +25,7 @@
     height: 15vh;
     margin: auto;
     padding-top: 2vh;
+    transform: translateX(5%);
 }
 
 .sounds-button {
@@ -45,4 +47,82 @@
 
 h3 {
     text-align: center;
+}
+
+.random-reaction {
+    left: 38rem;
+    position: absolute;
+    align-items: center;
+    margin: auto;
+    display:block;
+}
+
+/*emojis*/
+.emoji {
+    display: inline-block;
+    --emoji-size: 200px;
+    margin: 1rem;
+    width: var(--emoji-size);
+    height: var(--emoji-size);
+}
+
+.head:hover{
+    background-color: #f8c238;
+}
+
+.head {
+    border-radius: 50%;
+    height: 100%;
+    width: 100%;
+    background-color: #FFC83D;
+    overflow: hidden;
+    position: relative;
+}
+
+.eyes {
+    position: absolute;
+    top: calc(var(--emoji-size)* .25);
+    left: calc(var(--emoji-size)* .5);
+}
+
+.eye {
+    position: absolute;
+    width: calc(var(--emoji-size)* .075);
+    height: calc(var(--emoji-size)* .15);
+    background-color: black;
+    border-radius: 50%;
+}
+
+.eye-left{
+    left: calc(var(--emoji-size)* -.2);
+}
+
+.eye-right {
+    right: calc(var(--emoji-size)* -.2);
+}
+.mouth {
+    position: absolute;
+    bottom: calc(var(--emoji-size) * .15);
+    left: calc(var(--emoji-size) * .5);
+    transform: translateX(-50%);
+    background-color: black;
+}
+.mouth-happy {
+    --mouth-height: calc(var(--emoji-size) * .3);
+    width: calc(var(--emoji-size) * .6);
+    height: var(--mouth-height) ;
+    border-radius: 5% 5% var(--mouth-height) var(--mouth-height);
+}
+
+.mouth-o {
+    width: calc(var(--emoji-size) * .25);
+    height: calc(var(--emoji-size) * .3);
+    border-radius: 50%;
+}
+
+.mouth-sad {
+    --mouth-height: calc(var(--emoji-size) * .3);
+    width: calc(var(--emoji-size) * .4);
+    height: var(--mouth-height) ;
+    border-radius: var(--mouth-height) var(--mouth-height) 5% 5% ;
 }
