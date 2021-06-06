@@ -1,7 +1,7 @@
 <?php
 
 include "./DAL/db.php";
-include "./DAL/user.php";
+include "./models/user.php";
 
 //adduser
 function registerUser($username, $age, $gender, $password)
@@ -27,7 +27,7 @@ function registerUser($username, $age, $gender, $password)
     $insertStatement->bindValue(':password', $hashedPass);
     $insertStatement->execute();
 
-    echo getUser($username, $password);
+    return getUser($username, $password);
 }
 
 //retrieve user data
@@ -52,7 +52,7 @@ function getUser($username, $password)
         return json_encode("user password doesn't match");
     }
 
-    return json_encode($user); 
+    return $user; 
 }
 
 
