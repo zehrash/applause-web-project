@@ -1,5 +1,6 @@
-const userNameRegex = /^[a-z]{3,10}$/;
-const passRegex = /^[a-z]{6,10}$/;
+const userNameRegex = /^[a-zA-Z0-9]{3,10}$/;
+const passRegex = /^[a-zA-Z0-9]{6,10}$/;
+const ageRegex=/^[1-9][0-9]?$|^100$/;
 
 const userNameInput = document.getElementById('username');
 const passInput = document.getElementById('password');
@@ -18,9 +19,10 @@ document.getElementById('register-btn').addEventListener('click', (event) => {
     event.preventDefault();
     validate(userNameInput, userNameRegex, 'username-validator');
     validate(passInput, passRegex, 'pass-validator');
+    validate(ageInput, ageRegex, 'age-validator');
 
     if (validate(userNameInput, userNameRegex, 'username-validator') &&
-        validate(passInput, passRegex, 'pass-validator')) {
+        validate(passInput, passRegex, 'pass-validator') && validate(ageInput, ageRegex, 'age-validator')) {
         var formData = new FormData();
         formData.append('username', userNameInput.value);
         formData.append('age', ageInput.value);

@@ -56,6 +56,29 @@ function getUser($username, $password)
     return $user; 
 }
 
+function userInitialData(){
+    $db=new DB();
+    $connection = $db->getConnection();
+
+    $insertsql= "INSERT INTO `users` (username, age, gender, role, rating, password) VALUES (?, ?, ?, ?, ?, ?)"; //add them all as basic users for now
+    $insertStatement = $connection->prepare($insertStatement);
+    
+    $users = [
+        ['Ivan1', '25', 'm', 'user', 0, 'myPass'],
+        ['Bret', '20', 'm', 'user', 0, 'password'],
+        ['Antonette', '20', 'f', 'user', 0, 'anto12345'],
+         ['User1', '15', 'm', 'user', 0, 'asdasdasdasd'],
+        ['User2', '35', 'f', 'user', 0, 'hjkffhfj']
+    ];
+
+    $connection->beginTransaction();
+
+    foreach($users as $user){
+        $insertStatement->execute($user);
+    }
+
+    connection->commit();
+}
 
 function hashPass($password){
     $hash_options = [
