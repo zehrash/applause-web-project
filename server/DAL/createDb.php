@@ -22,3 +22,4 @@ function createDb()
         echo "Fail";
 }
 createDb();
+?>

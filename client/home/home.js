@@ -20,14 +20,14 @@ fetch('../../server/userpanel.php', {
         //console.error('yok');
     });
 
-//document.getElementById("demo").innerHTML = `<h1> Welcome, ${dataText.username} aged ${dataText.age} </h1>`;
+//USE THIS FOR SOUNDS
+//https://developers.google.com/assistant/tools/sound-library
+
+addSound('applause', "https://www.free-stock-music.com/music/sound-effects-library-applauding.mp3");
+addSound('cheer', "https://actions.google.com/sounds/v1/crowds/team_cheer.ogg");
+addSound('boo', "https://www.fesliyanstudios.com/play-mp3/4220");
+addSound('slow-clap',"https://assets.mixkit.co/sfx/preview/mixkit-clapping-slowly-479.mp3" );
+addSound('applause', );
 
 
-document.getElementById('applause').addEventListener('click', (event) => {
-    //https://developer.mozilla.org/en-US/docs/Web/API/BaseAudioContext/createChannelMerger
-    //
-    //const audio = new Audio("https://audio-previews.elements.envatousercontent.com/files/293983985/preview.mp3");
-    //https://www.sitepoint.com/php-authorization-jwt-json-web-tokens/
-    //audio.play();
-    console.log('applauding');
-});
+

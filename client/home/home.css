@@ -32,12 +32,12 @@
     display: inline-block;
     width: 10vh;
     height: 10vh;
-    background-color: rgb(57, 127, 148);
+    background-color: rgb(139, 199, 218);
     margin: auto;
 }
 
 .sounds-button:hover {
-    background-color: rgb(101, 147, 161);
+    background-color: rgb(78, 201, 238);
 }
 
 #player {
@@ -50,7 +50,7 @@ h3 {
 }
 
 .random-reaction {
-    left: 38rem;
+    left: 30%;
     position: absolute;
     align-items: center;
     margin: auto;
@@ -107,6 +107,7 @@ h3 {
     transform: translateX(-50%);
     background-color: black;
 }
+
 .mouth-happy {
     --mouth-height: calc(var(--emoji-size) * .3);
     width: calc(var(--emoji-size) * .6);
