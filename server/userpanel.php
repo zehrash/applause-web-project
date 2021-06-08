@@ -16,3 +16,4 @@ if (isset($_SESSION['username'])) {
     ]);
     echo $response;
 }
+?>
