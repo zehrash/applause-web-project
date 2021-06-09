@@ -1,8 +1,18 @@
+body {
+    background: url(./18.png) no-repeat;
+	background-attachment: fixed; 
+	background-size: cover;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+	font-family:Times New Roman;
+}
+
 .command-viewer {
     display: block;
     width: 80vh;
     height: 20vh;
-    background-color: gray;
+    background-color: rgb(255, 232, 206);
     margin: auto;
     position: relative;
 }
@@ -21,7 +31,7 @@
 
 .sounds {
     display: block;
-    width: 80vh;
+    width: 102vh;
     height: 15vh;
     margin: auto;
     padding-top: 2vh;
@@ -29,15 +39,19 @@
 }
 
 .sounds-button {
-    display: inline-block;
-    width: 10vh;
+   display:inline-block;
+   text-align: center;
+    width: 12vh;
     height: 10vh;
-    background-color: rgb(139, 199, 218);
+    background-color: rgb(255, 232, 206);
+    border: 3px solid rgb(187, 227, 220);
+    border-radius: 12px;
     margin: auto;
 }
 
 .sounds-button:hover {
-    background-color: rgb(78, 201, 238);
+    background-color: rgb(187, 227, 220);
+    font-size: 130%;    
 }
 
 #player {
@@ -55,6 +69,10 @@ h3 {
     align-items: center;
     margin: auto;
     display:block;
+}
+
+h5{
+    font-size: 150%;
 }
 
 /*emojis*/

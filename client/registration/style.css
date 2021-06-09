@@ -1,20 +1,32 @@
 body {
-    background: #ffffff;
+    background: url(./img3.jpg) no-repeat;
+	background-attachment: fixed; 
+	background-size: cover;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+	font-family:Times New Roman;
+}
+
+section{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+   
 }
 
 #form-container {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 40%;
+    text-align: center;
+
 }
 
 form {
-    margin-top: 30px;
-    margin-left: 30px;
-    margin-right: 10px;
-    margin-bottom: 30px;
-    position: relative;
+    width: 300px;
+    margin: 0 auto;
     height: 100%;
 }
 
@@ -52,7 +64,7 @@ input:focus {
 }
 
 .error {
-    background-color: #b0706d;
+    background-color: rgb(255, 128,128);
     text-align: inherit;
     color: white;
     position: relative;
@@ -61,7 +73,7 @@ input:focus {
     height: 38px;
     margin-top: 13px;
     border: 2px solid;
-    border-color: #b0706d;
+    border-color: rgb(255, 128, 128);
 }
 
 #register-btn, #login-btn {
@@ -79,19 +91,36 @@ input:focus {
 }
 
 #register-btn:hover {
-    background-color: #8d8f8c;
-    color: #c7e0ba;
+    background-color: rgb(107, 190, 182);
+    color: rgb(212, 236, 236);
+    font-size: 18px;
 }
 
 #login-btn:hover {
-    background-color: #8d8f8c;
-    color: #c7e0ba;
+    background-color: rgb(107, 190, 182);
+    color: rgb(212, 236, 236);
 }
 
 #login-form {
-    display: none;
+    visibility: hidden;
 }
 
 #register-link{
-    display: none;
+    visibility: hidden;
+}
+
+img:hover{
+    height: 230px;
+    width: auto;
+}
+
+a{
+    color: rgb(84, 172, 165);
+}
+
+
+.logo-img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
