@@ -17,16 +17,9 @@ fetch('../../server/userpanel.php', {
     })
     .catch(error => {
         console.log(error)
-        //console.error('yok');
     });
 
-//USE THIS FOR SOUNDS
-//https://developers.google.com/assistant/tools/sound-library
-
-addSound('applause', "https://www.free-stock-music.com/music/sound-effects-library-applauding.mp3");
-addSound('cheer', "https://actions.google.com/sounds/v1/crowds/team_cheer.ogg");
-addSound('boo', "https://www.fesliyanstudios.com/play-mp3/4220");
-addSound('slow-clap', "https://assets.mixkit.co/sfx/preview/mixkit-clapping-slowly-479.mp3");
+addDefaultSounds();
 
 const record = document.getElementById('record');
 const stop = document.getElementById('stop');
@@ -69,8 +62,7 @@ if (navigator.mediaDevices.getUserMedia) {
             console.log("data available after MediaRecorder.stop() called.");
 
             const clipName = prompt('Enter a name for your sound clip?', 'My unnamed clip');
-
-            const clipContainer = document.createElement('article');
+            const clipContainer = document.createElement('li');
             const clipLabel = document.createElement('p');
             const audio = document.createElement('audio');
 
@@ -96,9 +88,9 @@ if (navigator.mediaDevices.getUserMedia) {
 
             const formData = new FormData();
             formData.append('userFile', blob, clipName);
-        
+
             postData("../../server/saveaudio.php", formData).then(data => data.json()).then(text => console.log(text));
-        
+
             clipLabel.onclick = function () {
                 const existingName = clipLabel.textContent;
                 const newClipName = prompt('Enter a new name for your sound clip?');
@@ -138,11 +130,6 @@ const handleFiles = (event) => {
     document.getElementById("audio").load();
 }
 
-//document.getElementById("upload").addEventListener("change", handleFiles, false);
-addSound('slow-clap',"https://assets.mixkit.co/sfx/preview/mixkit-clapping-slowly-479.mp3" );
-addSound('haha', "https://www.shockwave-sound.com/sound-effects/laugh-sounds/cannedlaugh.mp3" );
-addSound('wow', "https://www.soundsnap.com/murmursurprise_largecrwd");
-addSound('yawn', "https://www.fesliyanstudios.com/play-mp3/4052");
 
 
 
