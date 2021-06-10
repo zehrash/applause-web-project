@@ -1,5 +1,5 @@
 body {
-    background: url(./img3.jpg) no-repeat;
+    background: url(../assets/img3.jpg) no-repeat;
 	background-attachment: fixed; 
 	background-size: cover;
 	align-items: center;
