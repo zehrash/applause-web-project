@@ -66,6 +66,7 @@ if (navigator.mediaDevices.getUserMedia) {
             const clipLabel = document.createElement('p');
             const audio = document.createElement('audio');
 
+            audio.setAttribute('class', "sounds-button");
             clipContainer.classList.add('clip');
             audio.setAttribute('controls', '');
 
