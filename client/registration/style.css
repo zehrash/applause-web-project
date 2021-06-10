@@ -102,11 +102,11 @@ input:focus {
 }
 
 #login-form {
-    visibility: hidden;
+    display: none;
 }
 
 #register-link{
-    visibility: hidden;
+    display: none;
 }
 
 img:hover{

@@ -8,14 +8,12 @@
     <title>Document</title>
     <link rel="stylesheet" href="./home.css">
     <script src="../helpers/getData.js" defer></script>
+    <script src="../helpers/postData.js" defer></script>
     <script src="../helpers/playsSound.js" defer></script>
     <script src="./home.js" defer></script>
 </head>
 
 <body>
-    <!--iframe id="player" type="text/html" width="640" height="390"
-  src="https://www.youtube.com/embed/M7lc1UVf-VE?enablejsapi=1&origin=http://example.com"
-  frameborder="0"></iframe-->
     <h2 id="welcome-text"></h2>
     <h1 class="command-header">Next command in <span id="timer">. </span>seconds</h1>
     <div class="command-viewer">
@@ -44,8 +42,8 @@
             <h3>yawn</h3>
         </div>
     </section>
-    <br/>
-    <section class="random-reaction"><!--play random sound-->
+    <section class="random-reaction">
+        <!--play random sound-->
         <h5>Just press your emotion</h5>
         <div id="happy" class="emoji">
             <div class="head">
@@ -65,7 +63,7 @@
                 <div class="mouth-o mouth"></div>
             </div>
         </div>
-        <div id="sad"class="emoji">
+        <div id="sad" class="emoji">
             <div class="head">
                 <div class="eyes">
                     <div class="eye eye-left"></div>
@@ -75,6 +73,17 @@
             </div>
         </div>
     </section>
+    <!--section id="file-upload">
+        <input type="file" id="upload" name="upload" />
+        <audio id="audio" controls>
+            <source src="" id="src" />
+        </audio>
+    </section-->
+    <section>
+        <button id="record">Record urself</button>
+        <button id="stop">Stop recording</button>
+        <div id="sound-clips"></div>
+  </section>
 </body>
 
 </html>
