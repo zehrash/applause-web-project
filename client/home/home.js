@@ -139,6 +139,10 @@ const handleFiles = (event) => {
 }
 
 //document.getElementById("upload").addEventListener("change", handleFiles, false);
+addSound('slow-clap',"https://assets.mixkit.co/sfx/preview/mixkit-clapping-slowly-479.mp3" );
+addSound('haha', "https://www.shockwave-sound.com/sound-effects/laugh-sounds/cannedlaugh.mp3" );
+addSound('wow', "https://www.soundsnap.com/murmursurprise_largecrwd");
+addSound('yawn', "https://www.fesliyanstudios.com/play-mp3/4052");
 
 
 
