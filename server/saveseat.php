@@ -5,7 +5,7 @@ include './DAL/queries.php';
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] === "POST" && isset($_POST["seatId"])) {
-    $savedseatId = saveSeat(3, 1, $_POST["seatId"]);
+    $savedseatId = saveSeat($_SESSION["eventId"], 1, $_POST["seatId"]);
 
     $_SESSION['seatId'] = $savedseatId;
    echo json_encode(["message" => "seat save successfully"]);
