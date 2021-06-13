@@ -7,25 +7,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="../helpers/postData.js" defer></script>
+    <script src="../helpers/copyText.js" defer></script>
+    <script src="../helpers/populators.js" defer></script>
     <script src="./admin.js" defer></script>
     <link rel="stylesheet" href="admin.css">
 </head>
 
 <body>
     <main>
-        <section id="create-event">
+        <section class="create-event-left">
+            <h1>Create a new event</h1>
             <form class="create-event">
-                <label for="event-name">event name:</label><br />
-                <input type="text" name="eventName" id="eventName" required><br />
-                <label for="event-date">event date:</label><br />
-                <input type="datetime-local" name="event-date" id="eventDate" required><br />
+                <input type="text" name="eventName" id="eventName" required placeholder="event name"><br /><br />
+                <input type="date" name="event-date" id="eventDate" required placeholder="event date"><br /><br />
                 <input type="submit" class="submit" id="event-submit" value="create event">
             </form>
+        </section>
+        <section class="view-events-center" id="view-events-center">
+            <h1>View your events</h1>
+            <ul id="event-list">
+            </ul>
+        </section>
+        <section class="view-users-right">
+            <h1>Invite user to last created event!</h1>
+            <ul id="user-list">
+
+            </ul>
         </section>
         <section id="myModal" class="modal">
             <div class="modal-content">
                 <span class="close">&times;</span>
-                <p>You created the <span id="created-event-name"></span> event!</p>
+                <h3>You created the <span id="created-event-name"></span> event!</h3>
                 <p>Send this link to your watchers to join! </p>
                 <input type="text" id="created-event-link"></p>
                 <div class="tooltip">
@@ -36,7 +48,8 @@
 
         </section>
         <br />
-        <button>view statistics</button>
+        <br />
+        <button id="statistics">view statistics</button>
     </main>
 </body>
 

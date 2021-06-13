@@ -13,10 +13,12 @@
 
 .modal-content {
     background-color: #fefefe;
-    margin: 15% auto;
+    margin: auto;
+    margin-top: 5%;
     padding: 20px;
     border: 1px solid #888;
-    width: 80%;
+    width: 40%;
+    height: 60%;
 }
 
 .close {
@@ -70,7 +72,103 @@
     opacity: 1;
   }
 
-  #copy-link {
-      padding:0;
-      float: inline-end;
+ 
+
+  .create-event-left, .view-events-center, .view-users-right {
+    display: inline-block;
+    box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+    width:25%;
+    display: block;
+    margin-top:5%;
+    margin-left: 5%;
+    margin-right: 50%;
+    text-align: center;
+    padding-bottom: 5%;
+    padding-top: 3%;
   }
+  input, textarea, h1 {
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: inherit;
+  }
+
+  input[type=text], input[type=date] {
+    padding:10px;
+    width: 70%;
+    border:0;
+    box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+  }
+
+  input[type=submit] {
+
+    /* remove default behavior */
+    appearance:none;
+    -webkit-appearance:none;
+  
+    padding:10px;
+    border:none;
+    background-color:#3F51B5;
+    color:#fff;
+    font-weight:600;
+    border-radius:5px;
+    width:70%;
+  }
+
+  button {
+
+    appearance:none;
+    -webkit-appearance:none;
+  
+    padding:10px;
+    border:none;
+    background-color:#3F51B5;
+    color:#fff;
+    font-weight:600;
+    border-radius:5px;
+    width: 20rem;
+    height: 3rem;
+  }
+
+
+  input[type=submit]:hover {
+    background-color:rgb(105, 120, 204);
+  } 
+
+  #statistics {
+    margin: auto;
+    transform: translateX(40%);
+  }
+
+  #copy-link {
+    padding:0;
+    float: inline-end;
+    margin-top: 30%;
+    margin-left: 55%;
+}
+
+section {
+  overflow:hidden; 
+}
+.view-events-center{
+  position: absolute;
+  top:1%;
+  margin-left: 35%;
+  padding-left:3%;
+  text-align: left;
+}
+
+.view-users-right{
+  position: absolute;
+  top:1%;
+  margin-left: 65%;
+  padding-left:3%;
+  text-align: left;
+}
+
+.invite {
+  display: inline-flex;
+
+}
+
+.invite:hover{
+  background-color:rgb(105, 120, 204);
+}

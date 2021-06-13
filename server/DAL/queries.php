@@ -17,7 +17,7 @@ function registerUser($username, $age, $gender, $password)
         $user = getUser($username, $password);
         if ($user !== null) {
             http_response_code(409);
-            echo json_encode(["message" =>"user with username $username already exists"]);
+            echo json_encode(["message" => "user with username $username already exists"]);
             return;
         }
         $hashedPass = hashPass($password);
@@ -64,6 +64,30 @@ function getUser($username, $password)
     }
 }
 
+function getAllUsers()
+{
+    try {
+        $db = new DB();
+        $connection = $db->getConnection();
+        $selectsql = "SELECT * FROM users";
+        $selectStatement = $connection->prepare($selectsql);
+
+        $selectStatement->execute();
+        $users = [];
+
+        while ($row = $selectStatement->fetch(PDO::FETCH_ASSOC)) {
+            array_push($users, new User($row["userId"], $row["username"], $row["age"], $row["gender"], $row["role"], $row["rating"], $row["password"]));
+        }
+
+        if (count($users) == 0) {
+            return null;
+            exit();
+        }
+        return $users;
+    } catch (PDOException $e) {
+        return null;
+    }
+}
 
 function hashPass($password)
 {

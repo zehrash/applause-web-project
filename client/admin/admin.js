@@ -1,6 +1,44 @@
 const eventNameInput = document.getElementById('eventName');
 const eventDateInput = document.getElementById('eventDate');
 
+
+window.addEventListener('load', (event) => {
+  console.log('page is fully loaded');
+
+  fetch('../../server/populateAdminPanel.php')
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Error loading events.');
+    }
+    return response.json();
+  })
+  .then(data => {
+    console.log(data)
+      populateEvents(data, 'event-list')
+  })
+  .catch(error => {
+    console.log(error.message);
+    console.error('Грешка при зареждане на евентите.');
+  });
+
+  
+  fetch('../../server/populateWithUsers.php')
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Error loading users.');
+    }
+    return response.json();
+  })
+  .then(data => {
+    console.log(data)
+    populateUsers(data, 'user-list');
+    attachInvites();
+  })
+  .catch(error => {
+    console.log(error.message);
+  });
+});
+
 document.getElementById('event-submit').addEventListener('click', (event) => {
   event.preventDefault();
   var formData = new FormData();
@@ -39,18 +77,14 @@ function createEventLink(parent, eventId) {
 }
 
 document.getElementById("copy-link").addEventListener('click', event => displayCopied());
-document.getElementById("copy-link").addEventListener('mouseout', event => outFunc());
-function displayCopied() {
-  var copyText = document.getElementById("created-event-link");
+document.getElementById("copy-link").addEventListener('mouseout', event => removeDisplayCopied());
 
-  copyText.select();
-  copyText.setSelectionRange(0, 99999); /* For mobile devices */
-  document.execCommand("copy");
-  
-  let tooltip = document.getElementById("copyTooltip");
-  tooltip.innerHTML = "Copied: " + copyText.value;
-}
-function outFunc() {
-  var tooltip = document.getElementById("copyTooltip");
-  tooltip.innerHTML = "Copy to clipboard";
+function attachInvites(){
+  const inviteButtons = document.getElementsByClassName('invite');
+  Array.from(inviteButtons).forEach(btn => {
+    btn.addEventListener('click', event =>{
+      const userId = btn.parentNode.id;
+      console.log(`sending invite to this dude with id: ${userId}`);
+    })
+  });
 }

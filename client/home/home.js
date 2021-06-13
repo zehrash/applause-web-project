@@ -129,8 +129,4 @@ const handleFiles = (event) => {
     postData("../../server/saveaudio.php", formData).then(data => data.json()).then(text => console.log(text));
 
     document.getElementById("audio").load();
-}
-
-
-
-
+}   
