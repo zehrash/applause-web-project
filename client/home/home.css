@@ -189,3 +189,7 @@ h5 {
 .btn-group button:hover {
     background-color: #1785b1;
 }
+
+#audioSounds{
+    display: none;
+}
