@@ -14,7 +14,8 @@ function createEvent($eventname, $eventdate)
 
     $event = getEvent($eventname);
     if ($event !== null) {
-       echo json_encode("event with name $eventname already exists");
+       http_response_code(409);//mn fancy tuka
+       echo json_encode(["message" => "event with name $eventname already exists"]);
        return; 
     }
     $insertStatement->bindValue(':eventName', $eventname);

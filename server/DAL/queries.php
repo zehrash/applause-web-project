@@ -16,7 +16,8 @@ function registerUser($username, $age, $gender, $password)
 
         $user = getUser($username, $password);
         if ($user !== null) {
-            echo json_encode("user with username $username already exists");
+            http_response_code(409);
+            echo json_encode(["message" =>"user with username $username already exists"]);
             return;
         }
         $hashedPass = hashPass($password);

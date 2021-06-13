@@ -1,26 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="./admin.js"></script>
+    <script src="../helpers/postData.js" defer></script>
+    <script src="./admin.js" defer></script>
     <link rel="stylesheet" href="admin.css">
 </head>
+
 <body>
     <main>
         <section id="create-event">
             <form class="create-event">
-                <label for="event-name">event name:</label><br/>
-                <input type="text" name="eventName" id="eventName" required><br/>
-                <label for="event-date">event date:</label><br/>
-                <input type="datetime-local" name="event-date" id="eventDate" required><br/>
+                <label for="event-name">event name:</label><br />
+                <input type="text" name="eventName" id="eventName" required><br />
+                <label for="event-date">event date:</label><br />
+                <input type="datetime-local" name="event-date" id="eventDate" required><br />
                 <input type="submit" class="submit" id="event-submit" value="create event">
             </form>
         </section>
-        <br/>
+        <section id="myModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <p>You created the <span id="created-event-name"></span> event!</p>
+                <p>Send this link to your watchers to join! </p>
+                <input type="text" id="created-event-link"></p>
+                <div class="tooltip">
+                    <span class="tooltiptext" id="copyTooltip">Copy to clipboard</span>
+                    <button id="copy-link">Copy text</button>
+                </div>
+            </div>
+
+        </section>
+        <br />
         <button>view statistics</button>
     </main>
 </body>
+
 </html>

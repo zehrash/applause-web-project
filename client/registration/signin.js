@@ -34,6 +34,7 @@ window.addEventListener('load', (event) => {
             formData.append('password', passInput.value);
 
             postData('../../server/entrypoint.php', formData).then(data => data.json()).then(dataText => {
+                
                 document.getElementById('form-container').innerHTML = '';
                 console.log(dataText);
                 location.replace("../home/home.html");
