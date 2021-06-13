@@ -72,8 +72,6 @@
     opacity: 1;
   }
 
- 
-
   .create-event-left, .view-events-center, .view-users-right {
     display: inline-block;
     box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
@@ -138,11 +136,24 @@
     transform: translateX(40%);
   }
 
-  #copy-link {
+  #copy-link, #go-to-event {
     padding:0;
     float: inline-end;
     margin-top: 30%;
     margin-left: 55%;
+}
+
+#go-to-event {
+  margin-top: 1%;
+  left:50%;
+}
+
+#copy-link:hover{
+  background-color:rgb(105, 120, 204);
+}
+
+#go-to-event:hover{
+  background-color:rgb(105, 120, 204);
 }
 
 section {
