@@ -2,8 +2,7 @@
 function createDb()
 {
 
-    $mysql_host = "127.0.0.1";
-    $mysql_database = "applause_gen";
+    $mysql_host = "localhost";
     $mysql_user = "root";
     $mysql_password = "";
 
@@ -17,9 +16,8 @@ function createDb()
     $stmt = $db->prepare($query);
 
     if ($stmt->execute())
-        echo "Success";
+        echo json_encode(["message" =>"Success"]);
     else
-        echo "Fail";
+        echo json_encode(["message" =>"Fail"]);
 }
 createDb();
-?>
