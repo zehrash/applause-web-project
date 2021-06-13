@@ -63,7 +63,7 @@ function getAllEvents()
     while ($row = $selectStatement->fetch(PDO::FETCH_ASSOC)) {
         array_push($events,new Event($row["eventId"], $row["eventName"], $row["date"]));
     }
-    if ($events === null) {
+    if (count($events) == 0) {
         return null;
     } 
 
