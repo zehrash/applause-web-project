@@ -8,43 +8,72 @@
     <title>Document</title>
     <link rel="stylesheet" href="./home.css">
     <script src="../helpers/getData.js" defer></script>
+    <script src="../helpers/postData.js" defer></script>
     <script src="../helpers/playsSound.js" defer></script>
     <script src="./home.js" defer></script>
 </head>
 
 <body>
-    <!--iframe id="player" type="text/html" width="640" height="390"
-  src="https://www.youtube.com/embed/M7lc1UVf-VE?enablejsapi=1&origin=http://example.com"
-  frameborder="0"></iframe-->
     <h2 id="welcome-text"></h2>
     <h1 class="command-header">Next command in <span id="timer">. </span>seconds</h1>
     <div class="command-viewer">
         <h2 class="command-text">Applaud</h2>
     </div>
     <section class="sounds">
-        <div id="applause" class="sounds-button">
-            <h3>applaud</h3>
-        </div>
-        <div id="boo" class="sounds-button">
-            <h3>boo</h3>
-        </div>
-        <div id="cheer" class="sounds-button">
-            <h3>cheer</h3>
-        </div>
-        <div id="slow-clap" class="sounds-button">
-            <h3>clap slow</h3>
-        </div>
-        <div id="effect5" class="sounds-button">
-            <h3>idk</h3>
-        </div>
-        <div id="effect6" class="sounds-button">
-            <h3>idk 2.0</h3>
-        </div>
-        <div id="effect7" class="sounds-button">
-            <h3>idk 3.0</h3>
-        </div>
+        <h2>Default sounds available</h2><br/>
+        <ul class="soundsList">
+            <li>
+                <audio src="https://www.free-stock-music.com/music/sound-effects-library-applauding.mp3" controls class="sounds-button"></audio>
+            </li>
+            <li>
+                <audio src="https://actions.google.com/sounds/v1/crowds/team_cheer.ogg" controls class="sounds-button"></audio>
+            </li>
+            <li>
+                <audio src="https://www.fesliyanstudios.com/play-mp3/4220" controls class="sounds-button"></audio>
+            </li>
+            <li>
+                <audio src="https://assets.mixkit.co/sfx/preview/mixkit-clapping-slowly-479.mp3" controls class="sounds-button"></audio>
+            </li>
+            <li>
+                <audio src="https://www.shockwave-sound.com/sound-effects/laugh-sounds/cannedlaugh.mp3" controls class="sounds-button"></audio>
+            </li>
+            <li>
+                <audio src="https://www.soundsnap.com/murmursurprise_largecrwd" controls class="sounds-button"></audio>
+            </li>
+            <li>
+                <audio src="https://www.fesliyanstudios.com/play-mp3/4052" controls class="sounds-button"></audio>
+            </li>
+            <li id="applause" class="sounds-button">
+                <h3>applaud</h3>
+            </li>
+            <li id="boo" class="sounds-button">
+                <h3>boo</h3>
+            </li>
+            <li id="cheer" class="sounds-button">
+                <h3>cheer</h3>
+            </li>
+            <li id="slow-clap" class="sounds-button">
+                <h3>clap slow</h3>
+            </li>
+            <li id="haha" class="sounds-button">
+                <h3>laugh</h3>
+            </li>
+            <li id="wow" class="sounds-button">
+                <h3>surprise</h3>
+            </li>
+            <li id="yawn" class="sounds-button">
+                <h3>yawn</h3>
+            </li>
+        </ul>
+        <h2>Your custom sounds</h2>
+        <ul id="sound-clips">
+
+        </ul>
     </section>
-    <section class="random-reaction"><!--play random sound-->
+    <section class="random-reaction">
+        <!--play random sound-->
+        <br/>
+        <br/>
         <h5>Just press your emotion</h5>
         <div id="happy" class="emoji">
             <div class="head">
@@ -64,7 +93,7 @@
                 <div class="mouth-o mouth"></div>
             </div>
         </div>
-        <div id="sad"class="emoji">
+        <div id="sad" class="emoji">
             <div class="head">
                 <div class="eyes">
                     <div class="eye eye-left"></div>
@@ -73,6 +102,17 @@
                 <div class="mouth-sad mouth"></div>
             </div>
         </div>
+    </section>
+    <!--section id="file-upload">
+        <input type="file" id="upload" name="upload" />
+        <audio id="audio" controls>
+            <source src="" id="src" />
+        </audio>
+    </section-->
+    <section class="btn-group">
+        <button id="record">Record urself</button>
+        <button id="stop">Stop recording</button>
+      
     </section>
 </body>
 

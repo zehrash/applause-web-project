@@ -9,8 +9,8 @@
     <script src="../helpers/beforeLogin.js" defer></script>
     <script src="../helpers/postData.js" defer></script>
     <script src="../helpers/validate.js" defer></script>
-    <script src="index.js" defer></script>
-    <link rel="stylesheet" href="./style.css">
+    <script src="./signin.js" defer></script>
+    <link rel="stylesheet" href="./signin.css">
 </head>
 
 <body>
@@ -18,10 +18,12 @@
 
     </header>
     <main>
+        <img src="../assets/logo-applause.png" width="200" height=auto class="logo-img">
         <section id="form-container">
             <form class="register" id="register-form">
                 <p id="username-validator" class="error"></p>
                 <input type="text" id="username" placeholder="username" name="username" required>
+                <p id="age-validator" class="error"></p>
                 <input type="text" id="age" placeholder="age" name="age" required>
                 <p id="pass-validator" class="error"></p>
                 <input type="password" id="password" placeholder="password" name="password" required>
@@ -40,9 +42,6 @@
             </form>
             <p id="login-link">Already have a registration? <a href="#" id="redirect-to-login">Login</a></p>
             <p id="register-link">Dont have an account yet? <a href="#" id="redirect-to-register">Register</a></p>
-            <p id="success" style="display: block; margin: auto;
-            position:inherit;
-           "></p>
             <p id="already-exists" class="error"></p>
         </section>
         <div id="demo">
