@@ -1,42 +1,48 @@
 const eventNameInput = document.getElementById('eventName');
 const eventDateInput = document.getElementById('eventDate');
 
+function populateWithEvents() {
+  fetch('../../server/populateAdminPanel.php')
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Error loading events.');
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log(data)
+      populateEvents(data, 'event-list')
+    })
+    .catch(error => {
+      console.log(error.message);
+      console.error('Грешка при зареждане на евентите.');
+    });
+}
 
+function populateWithUsers() {
+
+  fetch('../../server/populateWithUsers.php')
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Error loading users.');
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log(data)
+      populateUsers(data, 'user-list');
+      attachInvites();
+    })
+    .catch(error => {
+      console.log(error.message);
+    });
+}
 window.addEventListener('load', (event) => {
   console.log('page is fully loaded');
 
-  fetch('../../server/populateAdminPanel.php')
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Error loading events.');
-    }
-    return response.json();
-  })
-  .then(data => {
-    console.log(data)
-      populateEvents(data, 'event-list')
-  })
-  .catch(error => {
-    console.log(error.message);
-    console.error('Грешка при зареждане на евентите.');
-  });
+  populateWithEvents();
+  populateWithUsers();
 
-  
-  fetch('../../server/populateWithUsers.php')
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Error loading users.');
-    }
-    return response.json();
-  })
-  .then(data => {
-    console.log(data)
-    populateUsers(data, 'user-list');
-    attachInvites();
-  })
-  .catch(error => {
-    console.log(error.message);
-  });
 });
 
 document.getElementById('event-submit').addEventListener('click', (event) => {
@@ -60,11 +66,16 @@ const modal = document.getElementById("myModal");
 const span = document.getElementsByClassName("close")[0];
 span.onclick = function () {
   modal.style.display = "none";
+  document.getElementById('event-list').innerHTML = '';
+  populateWithEvents();
+
 }
 
 window.onclick = (event) => {
   if (event.target == modal) {
     modal.style.display = "none";
+    document.getElementById('event-list').innerHTML = '';
+    populateWithEvents();
   }
 }
 
@@ -79,10 +90,10 @@ function createEventLink(parent, eventId) {
 document.getElementById("copy-link").addEventListener('click', event => displayCopied());
 document.getElementById("copy-link").addEventListener('mouseout', event => removeDisplayCopied());
 
-function attachInvites(){
+function attachInvites() {
   const inviteButtons = document.getElementsByClassName('invite');
   Array.from(inviteButtons).forEach(btn => {
-    btn.addEventListener('click', event =>{
+    btn.addEventListener('click', event => {
       const userId = btn.parentNode.id;
       console.log(`sending invite to this dude with id: ${userId}`);
     })
