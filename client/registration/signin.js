@@ -36,7 +36,7 @@ window.addEventListener('load', (event) => {
             postData('../../server/entrypoint.php', formData).then(data => data.json()).then(dataText => {
                 document.getElementById('form-container').innerHTML = '';
                 console.log(dataText);
-                document.getElementById("demo").innerHTML = `<h1> Welcome, ${dataText.username} aged ${dataText.age} </h1>`;
+                location.replace("../home/home.html");
             });
         }
     });

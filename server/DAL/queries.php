@@ -48,7 +48,7 @@ function getUser($username, $password)
         $user = null;
 
         while ($row = $selectStatement->fetch(PDO::FETCH_ASSOC)) {
-            $user = new User($row["username"], $row["age"], $row["gender"], $row["role"], $row["rating"], $row["password"]);
+            $user = new User($row["userId"], $row["username"], $row["age"], $row["gender"], $row["role"], $row["rating"], $row["password"]);
         }
 
         if ($user === null) {
