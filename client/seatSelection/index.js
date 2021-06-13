@@ -42,6 +42,7 @@ function updateReservedSeats() {
             if (!response.ok) {
                 throw new Error('Error getting saved seats.');
             }
+            console.log(response);
             return response.json();
         })
         .then(response => {
@@ -57,7 +58,7 @@ function updateReservedSeats() {
             }
         })
         .catch(error => {
-            console.log(error)
+            console.log(error.message)
         });
 }
 
@@ -80,7 +81,7 @@ document.getElementById('book-btn').addEventListener('click', (event) => {
 
     postData('../../server/saveseat.php', formData).then(data => data.json()).then(dataText => {
         console.log(dataText);
-    });
+    }).catch(error => console.log(JSON.stringify(error)));
 
     location.replace("../home/home.html");
 

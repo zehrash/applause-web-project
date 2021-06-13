@@ -20,6 +20,7 @@ CREATE TABLE IF NOT EXISTS `groups` (
 CREATE TABLE IF NOT EXISTS `userevents` (
   `eventId` int(11) NOT NULL,
   `userId` int(11) NOT NULL,
+  `reservedSeatId` varchar(50) NOT NULL,
   PRIMARY KEY (`eventId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 

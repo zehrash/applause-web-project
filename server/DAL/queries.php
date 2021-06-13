@@ -103,12 +103,12 @@ function saveSeat($eventId, $userId, $seatId)
     $db = new DB();
     $connection = $db->getConnection();
 
-    $addsql = "INSERT INTO `userevents` (eventId, userId, seatId) VALUES (:eventId, :userId, :seatId)";
+    $addsql = "INSERT INTO `userevents` (eventId, userId, reservedSeatId) VALUES (:eventId, :userId, :reservedSeatId)";
     $insertStatement = $connection->prepare($addsql);
 
     $insertStatement->bindValue(':userId', $userId);
     $insertStatement->bindValue(':eventId', $eventId);
-    $insertStatement->bindValue(':seatId', $seatId);
+    $insertStatement->bindValue(':reservedSeatId', $seatId);
     $insertStatement->execute();
 
     return $seatId;
@@ -125,13 +125,14 @@ function getSavedSeats($eventId)
         $selectStatement->bindValue(':eventId', $eventId);
         $selectStatement->execute();
 
+        $seats = [];
         while ($row = $selectStatement->fetch(PDO::FETCH_ASSOC)) {
             array_push($seats, $row["reservedSeatId"]);
         }
         if (count($seats) == 0) {
+          
             return null;
         }
-
         return $seats;
     } catch (PDOException $e) {
         return $e->getMessage();
