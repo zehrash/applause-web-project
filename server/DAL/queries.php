@@ -14,12 +14,12 @@ function registerUser($username, $age, $gender, $password)
 
     $user = getUser($username, $password);
     if ($user !== null) {
-       echo json_encode("user with username $username already exists");
-       return; 
+        echo json_encode("user with username $username already exists");
+        return;
     }
     $hashedPass = hashPass($password);
     $role = 'user';
-   // echo "username => $username, age => $age, gender => $gender";
+    // echo "username => $username, age => $age, gender => $gender";
     $insertStatement->bindValue(':username', $username);
     $insertStatement->bindValue(':age', $age);
     $insertStatement->bindValue(':gender', $gender);
@@ -49,19 +49,59 @@ function getUser($username, $password)
 
     if ($user === null) {
         return null;
-    } else if(!password_verify($password, $user->password)) {
-        return json_encode(["status" => "ERROR", "message" => "user password doesn't match"]); 
+    } else if (!password_verify($password, $user->password)) {
+        return json_encode(["status" => "ERROR", "message" => "user password doesn't match"]);
     }
 
-    return $user; 
+    return $user;
 }
 
-
-function hashPass($password){
+function hashPass($password)
+{
     $hash_options = [
-        'cost' =>12,
+        'cost' => 12,
     ];
-    
+
     return password_hash($password, PASSWORD_BCRYPT, $hash_options);
 }
-?>
+
+
+function saveSeat($eventId, $userId, $seatId)
+{
+    $db = new DB();
+    $connection = $db->getConnection();
+
+    $addsql = "INSERT INTO `userevents` (eventId, userId, seatId) VALUES (:eventId, :userId, :seatId)";
+    $insertStatement = $connection->prepare($addsql);
+
+    $insertStatement->bindValue(':userId', $userId);
+    $insertStatement->bindValue(':eventId', $eventId);
+    $insertStatement->bindValue(':seatId', $seatId);
+    $insertStatement->execute();
+
+    return $seatId;
+}
+
+function getSavedSeats($eventId)
+{
+    try {
+        $db = new DB();
+        $connection = $db->getConnection();
+        $selectsql = "SELECT reservedSeatId FROM userevents WHERE eventId = :eventId";
+        $selectStatement = $connection->prepare($selectsql);
+
+        $selectStatement->bindValue(':eventId', $eventId);
+        $selectStatement->execute();
+
+        while ($row = $selectStatement->fetch(PDO::FETCH_ASSOC)) {
+            array_push($seats, $row["reservedSeatId"]);
+        }
+        if (count($seats) == 0) {
+            return null;
+        }
+
+        return $seats;
+    } catch (PDOException $e) {
+        return $e->getMessage();
+    }
+}
