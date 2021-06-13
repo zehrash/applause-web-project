@@ -10,7 +10,9 @@ class User {
     public $rating;
     public $password;
 
-    function __construct($username, $age, $gender, $role, $rating=0, $password) {
+    function __construct($userId, $username, $age, $gender, $role, $rating=0, $password) {
+
+        $this->userId = $userId;
         $this->username = $username;
         $this->age = $age;
         $this->gender = $gender;
