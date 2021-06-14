@@ -90,6 +90,7 @@ function createEventLink(parent, eventId) {
 document.getElementById("copy-link").addEventListener('click', event => displayCopied());
 document.getElementById("copy-link").addEventListener('mouseout', event => removeDisplayCopied());
 
+
 function attachInvites() {
   const inviteButtons = document.getElementsByClassName('invite');
   Array.from(inviteButtons).forEach(btn => {
@@ -99,3 +100,21 @@ function attachInvites() {
     })
   });
 }
+
+function attachHosting() {
+  const inviteButtons = document.getElementsByClassName('admin');
+  Array.from(inviteButtons).forEach(btn => {
+    btn.addEventListener('click', event => {
+      const userId = btn.parentNode.id;
+      let formData = new FormData();
+      formData.append('userId', userId);
+      formData.append('role', 'host');
+      postData('../../server/updateUser.php', formData).then(data => data.json()).then(dataText => {
+        console.log(dataText["message"])
+      });
+      console.log(`make this dude with id: ${userId} a host`);
+    })
+  });
+}
+
+

@@ -175,11 +175,24 @@ section {
   text-align: left;
 }
 
-.invite {
-  display: inline-flex;
+.invite, .admin {
+  appearance:none;
+  -webkit-appearance:none;
 
+  font-weight:400;
+  border-radius:5px;
+  width: 5.5rem;
+  height: 2rem;
+  display: inline-flex;
 }
 
 .invite:hover{
   background-color:rgb(105, 120, 204);
+}
+
+.list {
+  box-shadow:0 0 5px 1px rgba(0,0,0,0.06);
+  position: relative;
+  margin: auto;
+  padding-top: 2%;
 }
