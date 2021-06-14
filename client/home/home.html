@@ -15,33 +15,50 @@
 
 <body>
     <h2 id="welcome-text"></h2>
+    <p id="logout-link"><a href="#" id="redirect-to-login">Logout</a></p>
     <h1 class="command-header">Next command in <span id="timer">. </span>seconds</h1>
-    <div class="command-viewer">
+    <p id="space"></p>
+
+    
+    <section class="command-viewer">
         <h2 class="command-text">Applaud</h2>
-    </div>
+    </section>
+
+    <section class="btn-group">
+            <button id="record">Record yourself</button>
+            <button id="stop">Stop recording</button>
+    </section>
+    
     <section class="sounds">
-        <h2>Default sounds available</h2><br/>
-        <ul class="soundsList">
+        <h2 id="defaultSounds">Default sounds available</h2><br/>
+        <ul class="soundsList" style="list-style: none;">
         <section id="audioSounds">
             <li>
-                <audio src="https://www.free-stock-music.com/music/sound-effects-library-applauding.mp3" controls class="sounds-button" id="applause"></audio>
+                <label class="sound-name">Applause</label>
+                <audio src="https://www.free-stock-music.com/music/sound-effects-library-applauding.mp3" controls class="sounds-button" id="applause">Applause</audio>
             </li>
             <li>
+                <label class="sound-name">Cheer</label>
                 <audio src="https://actions.google.com/sounds/v1/crowds/team_cheer.ogg" controls class="sounds-button"></audio>
             </li>
             <li>
+                <label class="sound-name">Boo</label>
                 <audio src="https://www.fesliyanstudios.com/play-mp3/4220" controls class="sounds-button"></audio>
             </li>
             <li>
+                <label class="sound-name">Slow-clap</label>
                 <audio src="https://assets.mixkit.co/sfx/preview/mixkit-clapping-slowly-479.mp3" controls class="sounds-button"></audio>
             </li>
             <li>
+                <label class="sound-name">Laugh</label>
                 <audio src="https://www.shockwave-sound.com/sound-effects/laugh-sounds/cannedlaugh.mp3" controls class="sounds-button"></audio>
             </li>
             <li>
-                <audio src="https://www.soundsnap.com/murmursurprise_largecrwd" controls class="sounds-button"></audio>
+                <label class="sound-name">Shh</label>
+                <audio src="https://www.fesliyanstudios.com/play-mp3/7050" controls class="sounds-button"></audio>
             </li>
             <li>
+                <label class="sound-name">Yawn</label>
                 <audio src="https://www.fesliyanstudios.com/play-mp3/4052" controls class="sounds-button"></audio>
             </li>
             </section>
@@ -69,8 +86,9 @@
             </li>
         </section>
         </ul>
-        <h2>Your custom sounds</h2>
-        <ul id="sound-clips">
+        <p></p>
+        <h2 id="custom-sounds">Your custom sounds</h2>
+        <ul id="sound-clips" style="list-style: none;">
 
         </ul>
     </section>
@@ -78,39 +96,36 @@
         <!--play random sound-->
         <br/>
         <br/>
-        <h5>Just press your emotion</h5>
-        <div id="happy" class="emoji">
-            <div class="head">
-                <div class="eyes">
-                    <div class="eye eye-left"></div>
-                    <div class="eye eye-right"></div>
-                </div>
-                <div class="mouth-happy mouth"></div>
-            </div>
-        </div>
-        <div id="neutral" class="emoji">
-            <div class="head">
-                <div class="eyes">
-                    <div class="eye eye-left"></div>
-                    <div class="eye eye-right"></div>
-                </div>
-                <div class="mouth-o mouth"></div>
-            </div>
-        </div>
-        <div id="sad" class="emoji">
-            <div class="head">
-                <div class="eyes">
-                    <div class="eye eye-left"></div>
-                    <div class="eye eye-right"></div>
-                </div>
-                <div class="mouth-sad mouth"></div>
-            </div>
-        </div>
+        <h5 class="blinking">Just press your emotion</h5>
+        <nav id="happy" class="emoji">
+            <nav class="head">
+                <nav class="eyes">
+                    <nav class="eye eye-left"></nav>
+                    <nav class="eye eye-right"></nav>
+                </nav>
+                <nav class="mouth-happy mouth"></nav>
+            </nav>
+        </nav>
+        <nav id="neutral" class="emoji">
+            <nav class="head">
+                <nav class="eyes">
+                    <nav class="eye eye-left"></nav>
+                    <nav class="eye eye-right"></nav>
+                </nav>
+                <nav class="mouth-o mouth"></nav>
+            </nav>
+        </nav>
+        <nav id="sad" class="emoji">
+            <nav class="head">
+                <nav class="eyes">
+                    <nav class="eye eye-left"></nav>
+                    <nav class="eye eye-right"></nav>
+                </nav>
+                <nav class="mouth-sad mouth"></nav>
+            </nav>
+        </nav>
     </section>
-    <section class="btn-group">
-        <button id="record">Record urself</button>
-        <button id="stop">Stop recording</button>
-    </section>
+    
 </body>
 
 </html>

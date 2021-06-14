@@ -5,7 +5,7 @@ if (isset($_SESSION['username'])) {
     $response = json_encode([
         'success' => true,
         'message' => "User credentials send",
-        'value' => "Welcome " . $_SESSION['username'] ." aged " . $_SESSION["age"]
+        'value' => "Welcome " . $_SESSION['username'].' !'
     ]);
     echo $response;
 } else{
