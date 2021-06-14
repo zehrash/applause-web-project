@@ -97,7 +97,8 @@ function hashPass($password)
     return password_hash($password, PASSWORD_BCRYPT, $hash_options);
 }
 
-function updateUserRole($userId, $newRole) {
+function updateUserRole($userId, $newRole)
+{
     try {
         $db = new DB();
         $connection = $db->getConnection();
@@ -117,20 +118,42 @@ function updateUserRole($userId, $newRole) {
     }
 }
 
+
+function sendEventToUser($eventId, $userId)
+{
+    try {
+        $db = new DB();
+        $connection = $db->getConnection();
+
+        $addsql = "INSERT INTO `userevents` (eventId, userId, reservedSeatId) VALUES (:eventId, :userId, 0)";
+        $insertStatement = $connection->prepare($addsql);
+
+        $insertStatement->bindValue(':userId', $userId);
+        $insertStatement->bindValue(':eventId', $eventId);
+        $insertStatement->execute();
+    } catch (PDOException $e) {
+       echo json_encode(["text"=> $e->getMessage()]);
+    }
+}
+
 function saveSeat($eventId, $userId, $seatId)
 {
-    $db = new DB();
-    $connection = $db->getConnection();
+    try {
+        $db = new DB();
+        $connection = $db->getConnection();
 
-    $addsql = "INSERT INTO `userevents` (eventId, userId, reservedSeatId) VALUES (:eventId, :userId, :reservedSeatId)";
-    $insertStatement = $connection->prepare($addsql);
+        $addsql = "UPDATE `userevents` SET reservedSeatId = :reservedSeatId WHERE eventId=:eventId AND userId = :userId";
+        $insertStatement = $connection->prepare($addsql);
 
-    $insertStatement->bindValue(':userId', $userId);
-    $insertStatement->bindValue(':eventId', $eventId);
-    $insertStatement->bindValue(':reservedSeatId', $seatId);
-    $insertStatement->execute();
+        $insertStatement->bindValue(':userId', $userId);
+        $insertStatement->bindValue(':eventId', $eventId);
+        $insertStatement->bindValue(':reservedSeatId', $seatId);
+        $insertStatement->execute();
 
-    return $seatId;
+        return $seatId;
+    } catch (PDOException $e) {
+        return null;
+    }
 }
 
 function getSavedSeats($eventId)
@@ -149,7 +172,7 @@ function getSavedSeats($eventId)
             array_push($seats, $row["reservedSeatId"]);
         }
         if (count($seats) == 0) {
-          
+
             return null;
         }
         return $seats;

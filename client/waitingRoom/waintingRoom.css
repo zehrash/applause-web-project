@@ -1,0 +1,39 @@
+
+ul {
+    list-style: none;
+    position: relative;
+    right:5%;
+}
+
+.events{
+    display: inline-block;
+    position: absolute;
+    left:35%;
+    top:10%;
+    box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+    width:25%;
+    display: block;
+    text-align: center;
+    padding-bottom: 5%;
+    padding-top: 3%;
+}
+
+#reserve {
+    appearance:none;
+    -webkit-appearance:none;
+  
+    padding:10px;
+    border:none;
+    background-color:#3F51B5;
+    color:#fff;
+    font-weight:600;
+    border-radius:5px;
+    width:70%;
+}
+
+input[type=text] {
+    padding:10px;
+    width: 70%;
+    border:0;
+    box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+  }

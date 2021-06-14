@@ -73,10 +73,9 @@
   }
 
   .create-event-left, .view-events-center, .view-users-right {
-    display: inline-block;
     box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+    position: absolute;
     width:25%;
-    display: block;
     margin-top:5%;
     margin-left: 5%;
     margin-right: 50%;
@@ -126,14 +125,23 @@
     height: 3rem;
   }
 
+  
+ul {
+  list-style: none;
+  position: relative;
+  right:8%;
+}
+
 
   input[type=submit]:hover {
     background-color:rgb(105, 120, 204);
   } 
 
   #statistics {
+    position: absolute;
+    top:70%;
+    left: 8%;
     margin: auto;
-    transform: translateX(40%);
   }
 
   #copy-link, #go-to-event {

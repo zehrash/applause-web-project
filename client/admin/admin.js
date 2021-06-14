@@ -82,6 +82,7 @@ window.onclick = (event) => {
 function createEventLink(parent, eventId) {
   let link = document.createElement('a');
   link.setAttribute('href', `../../home/home/${eventId}`);
+  sessionStorage.setItem('lastAddedEvent', eventId);
   link.setAttribute('target', "_blank");
   parent.value = link;
   console.log(parent.value);
@@ -95,7 +96,14 @@ function attachInvites() {
   const inviteButtons = document.getElementsByClassName('invite');
   Array.from(inviteButtons).forEach(btn => {
     btn.addEventListener('click', event => {
-      const userId = btn.parentNode.id;
+       const userId = btn.parentNode.id;
+      let formData = new FormData();
+      formData.append('userId', userId);
+      formData.append('lastAddedEvent', sessionStorage.getItem('lastAddedEvent'));
+      postData('../../server/sendInvite.php', formData).then(data => data.json()).then(dataText => {
+        console.log(dataText["message"])
+       btn.disabled = true;
+      });
       console.log(`sending invite to this dude with id: ${userId}`);
     })
   });
