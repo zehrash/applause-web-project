@@ -1,6 +1,50 @@
 const eventNameInput = document.getElementById('eventName');
 const eventDateInput = document.getElementById('eventDate');
 
+function populateWithEvents() {
+  fetch('../../server/populateAdminPanel.php')
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Error loading events.');
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log(data)
+      populateEvents(data, 'event-list')
+    })
+    .catch(error => {
+      console.log(error.message);
+      console.error('Грешка при зареждане на евентите.');
+    });
+}
+
+function populateWithUsers() {
+
+  fetch('../../server/populateWithUsers.php')
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Error loading users.');
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log(data)
+      populateUsers(data, 'user-list');
+      attachInvites();
+    })
+    .catch(error => {
+      console.log(error.message);
+    });
+}
+window.addEventListener('load', (event) => {
+  console.log('page is fully loaded');
+
+  populateWithEvents();
+  populateWithUsers();
+
+});
+
 document.getElementById('event-submit').addEventListener('click', (event) => {
   event.preventDefault();
   var formData = new FormData();
@@ -22,11 +66,16 @@ const modal = document.getElementById("myModal");
 const span = document.getElementsByClassName("close")[0];
 span.onclick = function () {
   modal.style.display = "none";
+  document.getElementById('event-list').innerHTML = '';
+  populateWithEvents();
+
 }
 
 window.onclick = (event) => {
   if (event.target == modal) {
     modal.style.display = "none";
+    document.getElementById('event-list').innerHTML = '';
+    populateWithEvents();
   }
 }
 
@@ -39,18 +88,33 @@ function createEventLink(parent, eventId) {
 }
 
 document.getElementById("copy-link").addEventListener('click', event => displayCopied());
-document.getElementById("copy-link").addEventListener('mouseout', event => outFunc());
-function displayCopied() {
-  var copyText = document.getElementById("created-event-link");
+document.getElementById("copy-link").addEventListener('mouseout', event => removeDisplayCopied());
 
-  copyText.select();
-  copyText.setSelectionRange(0, 99999); /* For mobile devices */
-  document.execCommand("copy");
-  
-  let tooltip = document.getElementById("copyTooltip");
-  tooltip.innerHTML = "Copied: " + copyText.value;
+
+function attachInvites() {
+  const inviteButtons = document.getElementsByClassName('invite');
+  Array.from(inviteButtons).forEach(btn => {
+    btn.addEventListener('click', event => {
+      const userId = btn.parentNode.id;
+      console.log(`sending invite to this dude with id: ${userId}`);
+    })
+  });
 }
-function outFunc() {
-  var tooltip = document.getElementById("copyTooltip");
-  tooltip.innerHTML = "Copy to clipboard";
+
+function attachHosting() {
+  const inviteButtons = document.getElementsByClassName('admin');
+  Array.from(inviteButtons).forEach(btn => {
+    btn.addEventListener('click', event => {
+      const userId = btn.parentNode.id;
+      let formData = new FormData();
+      formData.append('userId', userId);
+      formData.append('role', 'host');
+      postData('../../server/updateUser.php', formData).then(data => data.json()).then(dataText => {
+        console.log(dataText["message"])
+      });
+      console.log(`make this dude with id: ${userId} a host`);
+    })
+  });
 }
+
+

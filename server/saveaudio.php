@@ -6,7 +6,6 @@ if (isset($_FILES['userFile']['name'])) {
 
     $fileTmpName = $_FILES['userFile']['tmp_name'];
     $fileName = $_FILES['userFile']['name'];
-
     
     $fileContent = file_get_contents($_FILES['userFile']['tmp_name']);
 

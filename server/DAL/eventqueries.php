@@ -49,4 +49,28 @@ function getEvent($eventname)
     }
 }
 
+function getAllEvents()
+{
+    try{
+        $db = new DB();
+        $connection = $db->getConnection();
+        $selectsql = "SELECT * FROM events";
+        $selectStatement = $connection->prepare($selectsql);
+        $selectStatement->execute();
+
+        $events = [];
+
+    while ($row = $selectStatement->fetch(PDO::FETCH_ASSOC)) {
+        array_push($events,new Event($row["eventId"], $row["eventName"], $row["date"]));
+    }
+    if (count($events) == 0) {
+        return null;
+    } 
+
+    return $events; 
+    } catch(PDOException $e) {
+        return $e->getMessage();
+    }
+}
+
 ?>
