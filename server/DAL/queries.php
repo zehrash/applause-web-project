@@ -97,6 +97,25 @@ function hashPass($password)
     return password_hash($password, PASSWORD_BCRYPT, $hash_options);
 }
 
+function updateUserRole($userId, $newRole) {
+    try {
+        $db = new DB();
+        $connection = $db->getConnection();
+        $updatesql =  'UPDATE users
+        SET role= = :role
+        WHERE userId=:userId';
+        $updateStatement = $connection->prepare($updatesql);
+
+        $updateStatement->bindValue(':userId', $userId);
+        $updateStatement->bindValue(':role', $newRole);
+        $updateStatement->execute();
+        $user = null;
+
+        return $user;
+    } catch (PDOException $e) {
+        return null;
+    }
+}
 
 function saveSeat($eventId, $userId, $seatId)
 {
