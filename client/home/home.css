@@ -1,7 +1,10 @@
 body {
-    background: url(../assets/fon3.jpg) no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
+    background: url(../assets/aaa.jpg) no-repeat;
+	background-attachment: fixed; 
+	background-size: cover;
+
+
+  /* background-color: rgb(0, 150, 253); */
     align-items: center;
     justify-content: center;
     height: 100vh;
@@ -21,14 +24,21 @@ h1{
     height: 20vh;
     background-color: rgb(255, 255, 255);
     margin: auto;
-    color: #1785b1;
+    color: rgb(16, 122, 235);
+    margin-left: 33%;
+    border: 3px solid rgb(255, 168, 255);
+    border-radius: 13px;
     
 }
 
+.session{
+    display: block;
+}
+
 #welcome-text{
+    color: rgb(107, 120, 251);
     font-style: italic;
     font-size: 24px;
-    padding-bottom: 20px;
 }
 
 .command-header {
@@ -72,15 +82,15 @@ h1{
     text-align: center;
     width: 45vh;
     height: 8vh;
-    background-color: rgb(145, 208, 191);
+    background-color: rgb(107, 120, 251);
     color:white;
-    border: 3px solid rgb(187, 227, 220);
+    border: 1px solid rgb(107, 120, 240);
     border-radius: 1px;
     margin-left:60%;
 }
 
 .sounds-button:hover {
-    background-color: #1785b1;
+    background-color: rgb(255, 168, 255);
     font-size: 130%;
 }
 
@@ -96,7 +106,7 @@ h1{
 
 }
 .sound-name:hover{
-    color: #1785b1;
+    color: rgb(255, 168, 255);
 }
 
 #player {
@@ -203,18 +213,28 @@ h5 {
 
 .btn-group {
     display: block;
-    background-color: rgb(255, 255, 255);
     margin: auto;
     color: #040faa;
     position: relative;
-
     width: 20%;
 }
 
 .btn-group button {
-    background-color: rgb(161, 215, 201);
-    border: 1px solid black;
-    color: black;
+  /*  box-shadow: 0px 10px 14px -7px #766aff;
+	
+	
+	/*display:inline-block; 
+	
+	font-family:Arial;
+	font-weight:bold;*/
+	/*padding:6px 12px; 
+	text-decoration:none;
+	text-shadow:0px 1px 0px #766aff;*/
+
+    background:linear-gradient(to bottom, #766aff 5%, #ff87db 100%);
+	background-color:#766aff;
+    border-radius:4px;
+	border:1px solid #766aff;
     padding: 10px 24px;
     margin-top: 5%;
     cursor: pointer;
@@ -230,7 +250,7 @@ h5 {
 }
 
 .btn-group button:hover {
-    background-color: #1785b1;
+    font-size: 19px;
 }
 
 #audioButtons{
@@ -244,10 +264,10 @@ h5 {
 }
 @keyframes blinkingText{
     0%{     color: #000;    }
-    49%{    color: #000; }
+    49%{    color: rgb(107, 120, 240); }
     60%{    color: transparent; }
     99%{    color:transparent;  }
-    100%{   color: #000;    }
+    100%{   color:rgb(107, 120, 240);    }
 }
 
 #defaultSounds{
@@ -260,12 +280,23 @@ h5 {
 }
 #logout-link{
     margin-left: 90%;
-    font-size: 25px;
+    font-size: 20px;
 
 }
 
+table.session td.redirect-to-login {
+    text-align: right;
+  }
+
+#redirect-to-login{
+    right: 1500px;
+}
+
+
 a{
-    color: #147ea8;
+    right: 250px;
+    color: rgb(107, 120, 251);
+    text-align: right;
 }
 a:hover{
     font-weight: bold;
