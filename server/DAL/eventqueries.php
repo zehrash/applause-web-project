@@ -6,28 +6,33 @@ include "./models/event.php";
 //addEvent
 function createEvent($eventname, $eventdate)
 {
-    $db = new DB();
-    $connection = $db->getConnection();
+    try {
 
-    $addsql = "INSERT INTO `events` (eventName, date) VALUES (:eventName, :eventdate)"; 
-    $insertStatement = $connection->prepare($addsql);
+        $db = new DB();
+        $connection = $db->getConnection();
 
-    $event = getEvent($eventname);
-    if ($event !== null) {
-       http_response_code(409);//mn fancy tuka
-       echo json_encode(["message" => "event with name $eventname already exists"]);
-       return; 
+        $addsql = "INSERT INTO `events` (eventName, date) VALUES (:eventName, :eventdate)";
+        $insertStatement = $connection->prepare($addsql);
+
+        $event = getEvent($eventname);
+        if ($event !== null) {
+            http_response_code(409); //mn fancy tuka
+            echo json_encode(["message" => "event with name $eventname already exists"]);
+            return;
+        }
+        $insertStatement->bindValue(':eventName', $eventname);
+        $insertStatement->bindValue(':eventdate', $eventdate);
+        $insertStatement->execute();
+
+        return getEvent($eventname);
+    } catch (PDOException $e) {
+        return $e->getMessage();
     }
-    $insertStatement->bindValue(':eventName', $eventname);
-    $insertStatement->bindValue(':eventdate', $eventdate);
-    $insertStatement->execute();
-
-    return getEvent($eventname);
 }
 
 function getEvent($eventname)
 {
-    try{
+    try {
         $db = new DB();
         $connection = $db->getConnection();
         $selectsql = "SELECT * FROM events WHERE eventName = ?";
@@ -36,22 +41,22 @@ function getEvent($eventname)
 
         $event = null;
 
-    while ($row = $selectStatement->fetch(PDO::FETCH_ASSOC)) {
-        $event = new Event($row["eventId"], $row["eventName"], $row["date"]);
-    }
-    if ($event === null) {
-        return null;
-    } 
+        while ($row = $selectStatement->fetch(PDO::FETCH_ASSOC)) {
+            $event = new Event($row["eventId"], $row["eventName"], $row["date"]);
+        }
+        if ($event === null) {
+            return null;
+        }
 
-    return $event; 
-    } catch(PDOException $e) {
+        return $event;
+    } catch (PDOException $e) {
         return $e->getMessage();
     }
 }
 
 function getAllEvents()
 {
-    try{
+    try {
         $db = new DB();
         $connection = $db->getConnection();
         $selectsql = "SELECT * FROM events";
@@ -60,17 +65,15 @@ function getAllEvents()
 
         $events = [];
 
-    while ($row = $selectStatement->fetch(PDO::FETCH_ASSOC)) {
-        array_push($events,new Event($row["eventId"], $row["eventName"], $row["date"]));
-    }
-    if (count($events) == 0) {
-        return null;
-    } 
+        while ($row = $selectStatement->fetch(PDO::FETCH_ASSOC)) {
+            array_push($events, new Event($row["eventId"], $row["eventName"], $row["date"]));
+        }
+        if (count($events) == 0) {
+            return null;
+        }
 
-    return $events; 
-    } catch(PDOException $e) {
+        return $events;
+    } catch (PDOException $e) {
         return $e->getMessage();
     }
 }
-
-?>

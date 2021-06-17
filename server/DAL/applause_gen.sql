@@ -23,7 +23,6 @@ CREATE TABLE IF NOT EXISTS `userevents` (
   `reservedSeatId` varchar(50) NOT NULL,
   PRIMARY KEY (`eventId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
---TODO: REMOVE THIS PRIMARY KEY AND PUT ANOTHER.
 
 CREATE TABLE IF NOT EXISTS `usergroups` (
   `userId` int(11) NOT NULL,
@@ -40,6 +39,14 @@ CREATE TABLE IF NOT EXISTS `users` (
   `rating` int(11) NOT NULL,
   `password` varchar(100) NOT NULL,
   PRIMARY KEY (`userId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE `commands` (
+  `commandId` int(11) NOT NULL AUTO_INCREMENT,
+  `eventId` int(11) NOT NULL,
+  `text` varchar(100) NOT NULL,
+  `execution` datetime NOT NULL,
+  PRIMARY KEY (`commandId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 COMMIT;

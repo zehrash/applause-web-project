@@ -81,7 +81,7 @@ window.onclick = (event) => {
 
 function createEventLink(parent, eventId) {
   let link = document.createElement('a');
-  link.setAttribute('href', `../../home/home/${eventId}`);
+  link.setAttribute('href', `../../home/home?eventId=${eventId}`);
   sessionStorage.setItem('lastAddedEvent', eventId);
   link.setAttribute('target', "_blank");
   parent.value = link;
