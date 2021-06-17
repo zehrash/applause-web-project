@@ -33,6 +33,13 @@ function getLastCommand($eventId)
         $selectStatement->bindValue(':eventId', $eventId);
 
         $selectStatement->execute();
+        $command = null;
+        while ($row = $selectStatement->fetch(PDO::FETCH_ASSOC)) {
+            $command = $row["text"];
+        }
+
+        return $command;
+
     } catch (PDOException $e) {
         return $e->getMessage();
     }

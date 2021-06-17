@@ -189,3 +189,12 @@ h5 {
 .btn-group button:hover {
     background-color: #1785b1;
 }
+
+
+.base-timer {
+    position: absolute;
+    top:20%;
+    left:40%;
+    height: 200px;
+    width: 200px;
+}
