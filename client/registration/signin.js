@@ -32,12 +32,13 @@ window.addEventListener('load', (event) => {
             formData.append('age', ageInput.value);
             formData.append('gender', genderInput.value);
             formData.append('password', passInput.value);
-
+                
+            console.log(formData);
             postData('../../server/entrypoint.php', formData).then(data => data.json()).then(dataText => {
                 
                 document.getElementById('form-container').innerHTML = '';
                 console.log(dataText);
-                location.replace("../home/home.html");
+                location.replace("../waitingRoom");
             });
         }
     });
@@ -55,7 +56,7 @@ window.addEventListener('load', (event) => {
         postData('../../server/entrypoint.php', formData).then(data => data.json()).then(dataText => {
             document.getElementById('form-container').innerHTML = '';
             console.log(dataText);
-            location.replace("../home/home.html");
+            location.replace("../waitingRoom");
             //todo: add user jwt token to cookie
             //
         });

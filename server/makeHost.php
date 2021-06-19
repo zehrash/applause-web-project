@@ -4,7 +4,7 @@ include './DAL/queries.php';
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] === "POST" && isset($_POST["userId"])) {
-    updateUserRole($_POST["eventId"], 1, $_POST["seatId"]);
+    updateUserRole($_POST["userId"], 1, $_POST["seatId"]);
 
     $_SESSION['seatId'] = $savedseatId;
    echo json_encode(["message" => "seat save successfully"]);

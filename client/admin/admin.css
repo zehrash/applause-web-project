@@ -198,6 +198,10 @@ section {
   background-color:rgb(105, 120, 204);
 }
 
+.admin:hover{
+  background-color:rgb(105, 120, 204);
+}
+
 .list {
   box-shadow:0 0 5px 1px rgba(0,0,0,0.06);
   position: relative;
