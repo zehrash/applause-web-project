@@ -29,22 +29,35 @@ let timePassed = 0;
 let timeLeft = TIME_LIMIT;
 let timerInterval = null;
 let formData = null;
-function startTimer() {
-  
+const startTimer = () => {
+
     timerInterval = setInterval(() => {
         timePassed = timePassed += 1;
         timeLeft = TIME_LIMIT - timePassed;
 
         document.getElementById("base-timer-label").innerHTML = formatTimeLeft(timeLeft);
-        if(timeLeft === 0){
+        if (timeLeft === 0) {
             clearInterval(timerInterval);
+            timePassed = 0;
+            timeLeft = TIME_LIMIT;
+            timerInterval = null;
+            formData = null;
+            fetchCommand();
         }
     }, 1000);
 }
 
 document.getElementById('base-timer-label').innerHTML = formatTimeLeft(timeLeft);
-
 startTimer();
+
+
+const closeTimerCycle = () => {
+    console.log('called')
+
+    startTimer();
+}
+
+setInterval(closeTimerCycle, 10000);
 //main block for doing the audio recording
 
 if (navigator.mediaDevices.getUserMedia) {
@@ -55,7 +68,7 @@ if (navigator.mediaDevices.getUserMedia) {
 
     let onSuccess = function (stream) {
         const mediaRecorder = new MediaRecorder(stream);
-      
+
         record.onclick = function () {
             mediaRecorder.start();
             console.log(mediaRecorder.state);
@@ -158,14 +171,14 @@ document.getElementById('redirect-to-login').addEventListener('click', (event) =
     fetch('../helpers/logout.php', {
         method: 'GET'
     })
-    .then(response =>
-        response.json())
-    .then(data => console.log(data));
+        .then(response =>
+            response.json())
+        .then(data => console.log(data));
 
     location.replace("../registration");
 });
 
-const fetchCommand = () =>{
+const fetchCommand = () => {
     fetch('../../server/getCommand.php', {
         method: 'GET'
     })
@@ -180,9 +193,10 @@ const fetchCommand = () =>{
                 document.getElementById('command-text').innerText = response.value;
                 console.log(response.value);
             }
-        })  
-        .catch(error => {
-            console.log(error)
-        });
-    
+        })
+    /*
+     .catch(error => {
+         console.log(error)
+     });*/
+
 }
