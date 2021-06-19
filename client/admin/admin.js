@@ -122,7 +122,7 @@ function attachHosting() {
       let formData = new FormData();
       formData.append('userId', userId);
       formData.append('role', 'host');
-      postData('../../server/updateUser.php', formData).then(data => data.json()).then(dataText => {
+      postData('../../server/makeHost.php', formData).then(data => data.json()).then(dataText => {
         console.log(dataText["message"])
         btn.disabled = true;
       });
