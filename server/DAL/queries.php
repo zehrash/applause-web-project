@@ -102,7 +102,7 @@ function updateUserRole($userId, $newRole)
     try {
         $db = new DB();
         $connection = $db->getConnection();
-        $updatesql =  'UPDATE users
+        $updatesql =  'UPDATE events
         SET role= = :role
         WHERE userId=:userId';
         $updateStatement = $connection->prepare($updatesql);

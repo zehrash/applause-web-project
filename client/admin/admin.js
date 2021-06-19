@@ -33,6 +33,7 @@ function populateWithUsers() {
       console.log(data)
       populateUsers(data, 'user-list');
       attachInvites();
+      attachHosting();
     })
     .catch(error => {
       console.log(error.message);
@@ -92,7 +93,7 @@ function createEventLink(parent, eventId) {
 document.getElementById("copy-link").addEventListener('click', event => displayCopied());
 document.getElementById("copy-link").addEventListener('mouseout', event => removeDisplayCopied());
 document.getElementById('go-to-event').addEventListener('click', event => {
-    location.replace( `../home?eventId=${sessionStorage.getItem('eventId')}`);
+    location.replace( `../host?eventId=${sessionStorage.getItem('eventId')}`);
 });
 
 function attachInvites() {
@@ -102,7 +103,7 @@ function attachInvites() {
       const userId = btn.parentNode.id;
       let formData = new FormData();
       formData.append('userId', userId);
-      formData.append('lastAddedEvent', sessionStorage.getItem('lastAddedEvent'));
+      formData.append('lastAddedEvent', sessionStorage.getItem('eventId'));
       postData('../../server/sendInvite.php', formData).then(data => data.json()).then(dataText => {
         console.log(dataText["message"])
         btn.disabled = true;
@@ -114,6 +115,7 @@ function attachInvites() {
 
 function attachHosting() {
   const inviteButtons = document.getElementsByClassName('admin');
+  console.log('attaching hosting')
   Array.from(inviteButtons).forEach(btn => {
     btn.addEventListener('click', event => {
       const userId = btn.parentNode.id;
@@ -122,6 +124,7 @@ function attachHosting() {
       formData.append('role', 'host');
       postData('../../server/updateUser.php', formData).then(data => data.json()).then(dataText => {
         console.log(dataText["message"])
+        btn.disabled = true;
       });
       console.log(`make this dude with id: ${userId} a host`);
     })

@@ -11,7 +11,7 @@ function populateUsers(users, containerId) {
     const element = document.getElementById(containerId);
     users.forEach((user) => {
         if (element) {
-            element.innerHTML += `<li id="${user.userId}" class="list">${user.username}, rating: ${user.rating}  <button class='invite'> Invite!</button> <button class='admin'> Make host!</button></li>`;
+            element.innerHTML += `<li id="${user.userId}" class="list">${user.username}, rating: ${user.rating}  <button class='invite'> Invite!</button> <button class='admin' id='admin'> Make host!</button></li>`;
         }
     });
 }
