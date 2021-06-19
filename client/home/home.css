@@ -1,144 +1,8 @@
-body {
-    background: url(../assets/aaa.jpg) no-repeat;
-	background-attachment: fixed; 
-	background-size: cover;
-
-
-  /* background-color: rgb(0, 150, 253); */
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    font-family: Times New Roman;
+body{
+    background: rgb(163,238,237);
+    background: linear-gradient(90deg, rgba(163,238,237,1) 0%, rgba(251,251,251,1) 59%, rgba(249,213,255,1) 100%);
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
-
-h1{
-    padding-bottom: 5px;
-}
-
-#space{
-    padding-bottom: 20px;
-}
-.command-viewer {
-    display: inline-block;
-    width: 70vh;
-    height: 20vh;
-    background-color: rgb(255, 255, 255);
-    margin: auto;
-    color: rgb(16, 122, 235);
-    margin-left: 33%;
-    border: 3px solid rgb(255, 168, 255);
-    border-radius: 13px;
-    
-}
-
-.session{
-    display: block;
-}
-
-#welcome-text{
-    color: rgb(107, 120, 251);
-    font-style: italic;
-    font-size: 24px;
-}
-
-.command-header {
-    text-align: center;
-    
-}
-
-.command-text {
-    font-size: 50px;
-    text-align: center;
-    justify-content: center;
-}
-
-
-
-.sounds, .sound-clips {
-    display: block;
-    width: 102vh;
-    height: 15vh;
-    margin: auto;
-    margin-left: 40%;
-    margin-top: 0;
-    padding-top: 0;
-    transform: translateX(5%);
-}
-
-.sounds{
-    position: absolute;
-    top:18%;
-}
-
-.sounds h2 {
-    position: absolute;
-    padding-top: 0;
-    margin-top:0;
-    right:30px; 
-}
-
-.sounds-button {
-    display: block;
-    text-align: center;
-    width: 45vh;
-    height: 8vh;
-    background-color: rgb(107, 120, 251);
-    color:white;
-    border: 1px solid rgb(107, 120, 240);
-    border-radius: 1px;
-    margin-left:60%;
-}
-
-.sounds-button:hover {
-    background-color: rgb(255, 168, 255);
-    font-size: 130%;
-}
-
-.sound-name{
-
-    display: block;
-    
-    margin-left: 60%;
-    font-size: 20px;
-    padding-bottom: 0%;
-    padding-top: 25px;
-    font-weight: bold;
-
-}
-.sound-name:hover{
-    color: rgb(255, 168, 255);
-}
-
-#player {
-    display: block;
-    margin: auto;
-}
-
-h3 {
-    text-align: center;
-}
-
-.random-reaction {
-    left: 30%;
-    position: absolute;
-    align-items: center;
-    margin: auto;
-    display: block;
-}
-
-h5 {
-    font-size: 150%;
-    text-align: center;
-    padding-top: 10%;
-}
-
-#custom-sounds{
-    text-decoration: underline;
-    margin-top: 23px;
-
-}
-
-/*emojis*/
 
 .emoji {
     display: inline-block;
@@ -211,103 +75,154 @@ h5 {
     border-radius: var(--mouth-height) var(--mouth-height) 5% 5%;
 }
 
-.btn-group {
+.command-header{
+    position: absolute;
+    top:9%;
+    left: 40%;
+    font-size: 40px;
+    
+}
+
+.command-viewer{
+    box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+    position: absolute;
+    left:25%;
+    width:35%;
+    height:20%;
+    margin-top:5%;
+    margin-left: 5%;
+    margin-right: 50%;
+    text-align: center;
+    padding-bottom: 5%;
+    padding-top: 3%;
+    background-color: white;
+    border-radius: 3px;
+    font-size: 40px;
+}
+
+.recording-buttons{
+    position: absolute;
+    top:60%;
+    left:30.5%;
+
+}
+
+button{
+    appearance:none;
+    -webkit-appearance:none;
+  
+    padding:10px;
+    border:none;
+    background-color:#3F51B5;
+    color:#fff;
+    font-weight:600;
+    border-radius:5px;
+    width: 18rem;
+    height: 3rem;
+}
+
+button:hover{
+    background-color:rgb(105, 120, 204);
+}
+
+
+ul{
+    position: absolute;
+    top:10%;
+    left: 66%;
+}
+
+li{
+    text-align: left;
+}
+audio{
+    width: 300%;
+}
+.sound-name{
     display: block;
-    margin: auto;
-    color: #040faa;
-    position: relative;
-    width: 20%;
+    text-align: center;
+    line-height: 150%;
+    font-size: .85em;
+
 }
 
-.btn-group button {
-  /*  box-shadow: 0px 10px 14px -7px #766aff;
-	
-	
-	/*display:inline-block; 
-	
-	font-family:Arial;
-	font-weight:bold;*/
-	/*padding:6px 12px; 
-	text-decoration:none;
-	text-shadow:0px 1px 0px #766aff;*/
-
-    background:linear-gradient(to bottom, #766aff 5%, #ff87db 100%);
-	background-color:#766aff;
-    border-radius:4px;
-	border:1px solid #766aff;
-    padding: 10px 24px;
-    margin-top: 5%;
-    cursor: pointer;
-    width: 100%;
-    height: 80%;
-    display: block;
-    font-size: 17px;
-}  
-
-.btn-group button:not(:last-child) {
-    border-bottom: none;
-    /* Prevent double borders */
+#default-sounds {
+    position: absolute;
+    left:66%;
+    top:5%;
+    font-size: 20px
 }
 
-.btn-group button:hover {
-    background-color: #1785b1;
+#custom-sounds {
+    position: absolute;
+    display: none;
+    left:84%;
+    top:5%;
+    font-size: 20px
 }
 
+#sound-clips{
+    left:80%;
+}
+/*TODO: ADD SIMILIAR GRADIENT BACKGROUNDS TO THE OTHER PAGES*/
+/*TODO: STYLE THE CUSTOM AUDIO SO THAT IT SHOWS THE SAME WAY AS THE OTHER ONE, BUT TO THE LEFT,*/
+/*TODO: ADD CHECK IF THERE ARE CUSTOM SOUNDS AND DISPLAY THE HEADING CUSTOMSOUNDS ONLY THEN*/
+/*TODO: ADD RANDOM SOUND GETTING PLAYED ON THE EMOJIS*/
+/*todo: 
+--advanced! 
+
+make a query in the js to get all the users in this event, and display them in a list form to the left. Display them with a button send points. 
+(for reference, see admin panel, send invite link.)
+1. get users and display them
+2. add the button send points
+3. bind the button to a fetch, post data with the points in the js
+4. add an endpoint file in the server base dir
+5. add a query in the Data Access Layer(DAL) that Updates the user rating in the table users in the database
+for reference see saveSeat.php + the corresponding query method that is called
+*/
+
+.random-reaction{
+    position: absolute;
+    top:65%;
+    left:30%;
+    font-size: 18px;
+    text-align: center;
+}
 
 .base-timer {
     position: absolute;
-    top:20%;
-    left:40%;
-    height: 200px;
-    width: 200px;
-    font-size: 19px;
+    top:1%;
+    left:46%;
+    height: 100px;
+    width: 100px;
 }
 
-#audioButtons{
-    display: none;
+.base-timer__label {
+    width: 100px;
+    height: 100px;
 }
 
-/* https://html-online.com/articles/blinking-text-css-animation/ */
-.blinking{
-    font-size: 30px;
-    animation:blinkingText 4s infinite;
-}
-@keyframes blinkingText{
-    0%{     color: #000;    }
-    49%{    color: rgb(107, 120, 240); }
-    60%{    color: transparent; }
-    99%{    color:transparent;  }
-    100%{   color:rgb(107, 120, 240);    }
-}
 
-#defaultSounds{
-    text-decoration: underline;
-}
-#sound-clips{
-    margin-top: 10%;
-    padding-top: 0;
-    transform: translateX(0%);
-}
-#logout-link{
-    margin-left: 90%;
+.blinking {
     font-size: 20px;
-
+    animation: blinkingText 4s infinite;
 }
 
-table.session td.redirect-to-login {
-    text-align: right;
-  }
-
-#redirect-to-login{
-    right: 1500px;
+@keyframes blinkingText {
+    0% {
+        color: #000;
+    }
+    49% {
+        color: rgb(107, 120, 240);
+    }
+    60% {
+        color: transparent;
+    }
+    99% {
+        color: transparent;
+    }
+    100% {
+        color: rgb(107, 120, 240);
+    }
 }
 
-
-a{
-    right: 250px;
-    color: rgb(107, 120, 251);
-    text-align: right;
-}
-a:hover{
-    font-weight: bold;
-}

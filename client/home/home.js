@@ -1,5 +1,4 @@
-console.log('opa');
-
+//todo for lusi: get event id from the query string
 fetch('../../server/userpanel.php', {
     method: 'GET'
 })
@@ -19,13 +18,33 @@ fetch('../../server/userpanel.php', {
         console.log(error)
     });
 
-addDefaultSounds();
 
 const record = document.getElementById('record');
 const stop = document.getElementById('stop');
 const soundClips = document.getElementById('sound-clips');
 let audioCtx;
+const TIME_LIMIT = 10;
 
+let timePassed = 0;
+let timeLeft = TIME_LIMIT;
+let timerInterval = null;
+let formData = null;
+function startTimer() {
+  
+    timerInterval = setInterval(() => {
+        timePassed = timePassed += 1;
+        timeLeft = TIME_LIMIT - timePassed;
+
+        document.getElementById("base-timer-label").innerHTML = formatTimeLeft(timeLeft);
+        if(timeLeft === 0){
+            clearInterval(timerInterval);
+        }
+    }, 1000);
+}
+
+document.getElementById('base-timer-label').innerHTML = formatTimeLeft(timeLeft);
+
+startTimer();
 //main block for doing the audio recording
 
 if (navigator.mediaDevices.getUserMedia) {
@@ -36,7 +55,7 @@ if (navigator.mediaDevices.getUserMedia) {
 
     let onSuccess = function (stream) {
         const mediaRecorder = new MediaRecorder(stream);
-
+      
         record.onclick = function () {
             mediaRecorder.start();
             console.log(mediaRecorder.state);
@@ -76,8 +95,8 @@ if (navigator.mediaDevices.getUserMedia) {
                 clipLabel.textContent = clipName;
             }
 
-            clipContainer.appendChild(audio);
             clipContainer.appendChild(clipLabel);
+            clipContainer.appendChild(audio);
             soundClips.appendChild(clipContainer);
 
             audio.controls = true;
@@ -144,11 +163,26 @@ document.getElementById('redirect-to-login').addEventListener('click', (event) =
     .then(data => console.log(data));
 
     location.replace("../registration");
-
-   /* var formData = new FormData();
-    formData.append('username', userNameInputLog.value);
-    formData.append('password', passInputLog.value);
-    console.log('in'); */
 });
 
-
+const fetchCommand = () =>{
+    fetch('../../server/getCommand.php', {
+        method: 'GET'
+    })
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error('Error getting command.');
+            }
+            return response.json();
+        })
+        .then(response => {
+            if (response.success) {
+                document.getElementById('command-text').innerText = response.value;
+                console.log(response.value);
+            }
+        })  
+        .catch(error => {
+            console.log(error)
+        });
+    
+}
