@@ -129,4 +129,26 @@ const handleFiles = (event) => {
     postData("../../server/saveaudio.php", formData).then(data => data.json()).then(text => console.log(text));
 
     document.getElementById("audio").load();
-}   
+}
+
+document.getElementById('redirect-to-login').addEventListener('click', (event) => {
+
+    event.preventDefault();
+
+
+    fetch('../helpers/logout.php', {
+        method: 'GET'
+    })
+    .then(response =>
+        response.json())
+    .then(data => console.log(data));
+
+    location.replace("../registration");
+
+   /* var formData = new FormData();
+    formData.append('username', userNameInputLog.value);
+    formData.append('password', passInputLog.value);
+    console.log('in'); */
+});
+
+

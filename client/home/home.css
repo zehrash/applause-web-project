@@ -1,44 +1,73 @@
 body {
-    background: url(../assets/18.png) no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
+    background: url(../assets/aaa.jpg) no-repeat;
+	background-attachment: fixed; 
+	background-size: cover;
+
+
+  /* background-color: rgb(0, 150, 253); */
     align-items: center;
     justify-content: center;
     height: 100vh;
     font-family: Times New Roman;
 }
 
+h1{
+    padding-bottom: 5px;
+}
+
+#space{
+    padding-bottom: 20px;
+}
 .command-viewer {
-    display: block;
-    width: 80vh;
+    display: inline-block;
+    width: 70vh;
     height: 20vh;
     background-color: rgb(255, 255, 255);
     margin: auto;
-    color: #040faa;
-    position: relative;
+    color: rgb(16, 122, 235);
+    margin-left: 33%;
+    border: 3px solid rgb(255, 168, 255);
+    border-radius: 13px;
+    
+}
+
+.session{
+    display: block;
+}
+
+#welcome-text{
+    color: rgb(107, 120, 251);
+    font-style: italic;
+    font-size: 24px;
 }
 
 .command-header {
     text-align: center;
-    margin: auto;
+    
 }
 
 .command-text {
-    position: absolute;
-    top: 5%;
-    left: 34%;
-    font-size: 46pt;
+    font-size: 50px;
+    text-align: center;
+    justify-content: center;
 }
+
+
 
 .sounds, .sound-clips {
     display: block;
     width: 102vh;
     height: 15vh;
     margin: auto;
-    margin-left: 50%;
+    margin-left: 40%;
     margin-top: 0;
     padding-top: 0;
     transform: translateX(5%);
+}
+
+.sounds{
+    position: absolute;
+    top:18%;
 }
 
 .sounds h2 {
@@ -51,18 +80,33 @@ body {
 .sounds-button {
     display: block;
     text-align: center;
-    width: 25vh;
+    width: 45vh;
     height: 8vh;
-    background-color:#040faa;
+    background-color: rgb(107, 120, 251);
     color:white;
-    border: 3px solid rgb(187, 227, 220);
+    border: 1px solid rgb(107, 120, 240);
     border-radius: 1px;
     margin-left:60%;
 }
 
 .sounds-button:hover {
-    background-color: #1785b1;
+    background-color: rgb(255, 168, 255);
     font-size: 130%;
+}
+
+.sound-name{
+
+    display: block;
+    
+    margin-left: 60%;
+    font-size: 20px;
+    padding-bottom: 0%;
+    padding-top: 25px;
+    font-weight: bold;
+
+}
+.sound-name:hover{
+    color: rgb(255, 168, 255);
 }
 
 #player {
@@ -84,6 +128,14 @@ h3 {
 
 h5 {
     font-size: 150%;
+    text-align: center;
+    padding-top: 10%;
+}
+
+#custom-sounds{
+    text-decoration: underline;
+    margin-top: 23px;
+
 }
 
 /*emojis*/
@@ -161,25 +213,36 @@ h5 {
 
 .btn-group {
     display: block;
-    position: absolute;
-    left:40%;
-    top:30%;
-    background-color: white;
-    padding: 1% 1% 2% 2%;
+    margin: auto;
+    color: #040faa;
+    position: relative;
     width: 20%;
 }
 
 .btn-group button {
-    background-color: #040faa;
-    border: 1px solid rgb(2, 0, 128);
-    color: white;
+  /*  box-shadow: 0px 10px 14px -7px #766aff;
+	
+	
+	/*display:inline-block; 
+	
+	font-family:Arial;
+	font-weight:bold;*/
+	/*padding:6px 12px; 
+	text-decoration:none;
+	text-shadow:0px 1px 0px #766aff;*/
+
+    background:linear-gradient(to bottom, #766aff 5%, #ff87db 100%);
+	background-color:#766aff;
+    border-radius:4px;
+	border:1px solid #766aff;
     padding: 10px 24px;
     margin-top: 5%;
     cursor: pointer;
     width: 100%;
     height: 80%;
     display: block;
-}
+    font-size: 17px;
+}  
 
 .btn-group button:not(:last-child) {
     border-bottom: none;
@@ -197,4 +260,54 @@ h5 {
     left:40%;
     height: 200px;
     width: 200px;
+    font-size: 19px;
+}
+
+#audioButtons{
+    display: none;
+}
+
+/* https://html-online.com/articles/blinking-text-css-animation/ */
+.blinking{
+    font-size: 30px;
+    animation:blinkingText 4s infinite;
+}
+@keyframes blinkingText{
+    0%{     color: #000;    }
+    49%{    color: rgb(107, 120, 240); }
+    60%{    color: transparent; }
+    99%{    color:transparent;  }
+    100%{   color:rgb(107, 120, 240);    }
+}
+
+#defaultSounds{
+    text-decoration: underline;
+}
+#sound-clips{
+    margin-top: 10%;
+    padding-top: 0;
+    transform: translateX(0%);
+}
+#logout-link{
+    margin-left: 90%;
+    font-size: 20px;
+
+}
+
+table.session td.redirect-to-login {
+    text-align: right;
+  }
+
+#redirect-to-login{
+    right: 1500px;
+}
+
+
+a{
+    right: 250px;
+    color: rgb(107, 120, 251);
+    text-align: right;
+}
+a:hover{
+    font-weight: bold;
 }
