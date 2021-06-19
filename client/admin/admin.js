@@ -1,8 +1,7 @@
 const eventNameInput = document.getElementById('eventName');
 const eventDateInput = document.getElementById('eventDate');
-//lusi todo: fix event link getting displayed
 
-function populateWithEvents() {
+const populateWithEvents = () => {
   fetch('../../server/populateAdminPanel.php')
     .then(response => {
       if (!response.ok) {
@@ -20,7 +19,7 @@ function populateWithEvents() {
     });
 }
 
-function populateWithUsers() {
+const populateWithUsers = () => {
 
   fetch('../../server/populateWithUsers.php')
     .then(response => {
@@ -81,7 +80,7 @@ window.onclick = (event) => {
   }
 }
 
-function createEventLink(parent, eventId) {
+const createEventLink = (parent, eventId) => {
   let link = document.createElement('a');
   link.setAttribute('href', `../home?eventId=${eventId}`);
   sessionStorage.setItem('eventId', eventId);
@@ -96,7 +95,7 @@ document.getElementById('go-to-event').addEventListener('click', event => {
     location.replace( `../host?eventId=${sessionStorage.getItem('eventId')}`);
 });
 
-function attachInvites() {
+const attachInvites = () => {
   const inviteButtons = document.getElementsByClassName('invite');
   Array.from(inviteButtons).forEach(btn => {
     btn.addEventListener('click', event => {
@@ -113,7 +112,7 @@ function attachInvites() {
   });
 }
 
-function attachHosting() {
+const attachHosting = () => {
   const inviteButtons = document.getElementsByClassName('admin');
   console.log('attaching hosting')
   Array.from(inviteButtons).forEach(btn => {

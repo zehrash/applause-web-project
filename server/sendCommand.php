@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST" && isset($_POST["eventId"])) {
 
    echo json_encode(["message" => "command sent successfully"]);
 } else{
-    echo json_encode(["message" =>'tried to sent command but it didnt work']);//todo: add error handling   
+    echo json_encode(["message" =>'tried to sent command but it didnt work']);
 }
 
 ?>

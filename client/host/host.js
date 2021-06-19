@@ -16,6 +16,7 @@ window.addEventListener('load', event => {
         sessionStorage.setItem('eventId', params.get('eventId'));
     }
 })
+
 const startTimer = () => {
   
     timerInterval = setInterval(() => {

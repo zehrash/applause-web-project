@@ -1,4 +1,3 @@
-//todo for lusi: get event id from the query string
 fetch('../../server/userpanel.php', {
     method: 'GET'
 })
@@ -168,7 +167,7 @@ document.getElementById('redirect-to-login').addEventListener('click', (event) =
     event.preventDefault();
 
 
-    fetch('../helpers/logout.php', {
+    fetch('../../server/logout.php', {
         method: 'GET'
     })
         .then(response =>
