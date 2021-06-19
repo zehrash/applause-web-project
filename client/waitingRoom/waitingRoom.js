@@ -22,13 +22,14 @@ function refreshLinks() {
 
 
 function constructEventLink(container, eventId) {
-    container.innerHTML += `<li><a href="../../home/home?eventId=${eventId}" target="_blank">link to event number ${eventId}</a> </li>`
+    container.innerHTML += `<li><a href="../home?eventId=${eventId}" target="_blank">link to event number ${eventId}</a> </li>`
 }
 
 document.getElementById('reserve').addEventListener('click', event => {
     const eventId = document.getElementById('event-code').value;
     let formData = new FormData();
     formData.append('eventId', eventId);
+    sessionStorage.setItem('eventId', eventId);
     postData('../../server/setEventId.php', formData).then(data => data.json()).then(dataText => {
         console.log(dataText["message"]);
         location.replace("../seatSelection/seatSelection.html");

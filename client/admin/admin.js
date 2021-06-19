@@ -1,6 +1,7 @@
 const eventNameInput = document.getElementById('eventName');
 const eventDateInput = document.getElementById('eventDate');
 //lusi todo: fix event link getting displayed
+
 function populateWithEvents() {
   fetch('../../server/populateAdminPanel.php')
     .then(response => {
@@ -82,7 +83,7 @@ window.onclick = (event) => {
 function createEventLink(parent, eventId) {
   let link = document.createElement('a');
   link.setAttribute('href', `../home?eventId=${eventId}`);
-  sessionStorage.setItem('lastAddedEvent', eventId);
+  sessionStorage.setItem('eventId', eventId);
   link.setAttribute('target', "_blank");
   parent.value = link;
   console.log(parent.value);
@@ -91,7 +92,7 @@ function createEventLink(parent, eventId) {
 document.getElementById("copy-link").addEventListener('click', event => displayCopied());
 document.getElementById("copy-link").addEventListener('mouseout', event => removeDisplayCopied());
 document.getElementById('go-to-event').addEventListener('click', event => {
-
+    location.replace( `../home?eventId=${sessionStorage.getItem('eventId')}`);
 });
 
 function attachInvites() {

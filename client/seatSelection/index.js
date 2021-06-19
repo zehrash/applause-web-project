@@ -83,7 +83,7 @@ document.getElementById('book-btn').addEventListener('click', (event) => {
         console.log(dataText);
     }).catch(error => console.log(JSON.stringify(error)));
 
-    location.replace("../home/home.html");
+    location.replace(`../home?eventId=${sessionStorage.eventId}`);
 
     //TODO: check if postData is successful or not 
 
