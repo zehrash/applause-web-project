@@ -28,6 +28,7 @@ let timePassed = 0;
 let timeLeft = TIME_LIMIT;
 let timerInterval = null;
 let formData = null;
+let  fetched = false;
 const startTimer = () => {
 
     timerInterval = setInterval(() => {
@@ -56,6 +57,7 @@ const closeTimerCycle = () => {
     startTimer();
 }
 
+
 setInterval(closeTimerCycle, 10000);
 //main block for doing the audio recording
 
@@ -65,10 +67,11 @@ if (navigator.mediaDevices.getUserMedia) {
     const constraints = { audio: true };
     let chunks = [];
 
-    let onSuccess = function (stream) {
+    let onSuccess = async function (stream) {
         const mediaRecorder = new MediaRecorder(stream);
 
         record.onclick = function () {
+            //todo: wait here for timer to runout
             mediaRecorder.start();
             console.log(mediaRecorder.state);
             console.log("recorder started");
@@ -106,7 +109,8 @@ if (navigator.mediaDevices.getUserMedia) {
             } else {
                 clipLabel.textContent = clipName;
             }
-
+            clipLabel.setAttribute('class', 'sound-name');
+            audio.setAttribute('class', 'custom-sound');
             clipContainer.appendChild(clipLabel);
             clipContainer.appendChild(audio);
             soundClips.appendChild(clipContainer);
@@ -117,7 +121,7 @@ if (navigator.mediaDevices.getUserMedia) {
             const audioURL = window.URL.createObjectURL(blob);
             audio.src = audioURL;
             console.log("recorder stopped");
-
+            document.getElementById('custom-sounds').style.display = 'inline-block';
             const formData = new FormData();
             formData.append('userFile', blob, clipName);
 
@@ -191,6 +195,7 @@ const fetchCommand = () => {
             if (response.success) {
                 document.getElementById('command-text').innerText = response.value;
                 console.log(response.value);
+                fetched = true;
             }
         })
     /*
