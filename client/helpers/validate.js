@@ -1,4 +1,4 @@
-function validate(input, regex, warningDivId) {
+const validate = (input, regex, warningDivId) => {
     if (regex.test(input.value)) {
         document.getElementById(warningDivId).style.display = 'none';
         document.getElementById(warningDivId).innerHTML = '';
@@ -11,8 +11,8 @@ function validate(input, regex, warningDivId) {
                 document.getElementById(warningDivId).innerHTML = 'Невалидно потребителско име'; break;
             case 'pass-validator':
                 document.getElementById(warningDivId).innerHTML = 'Невалидна парола'; break;
-             case 'age-validator':
-                document.getElementById(warningDivId).innerHTML='Невалидни години'; break;
+            case 'age-validator':
+                document.getElementById(warningDivId).innerHTML = 'Невалидни години'; break;
             default: break;
         }
 

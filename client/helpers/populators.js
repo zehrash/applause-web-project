@@ -1,4 +1,4 @@
-function populateEvents(events, containerId) {
+const populateEvents = (events, containerId) => {
     const element = document.getElementById(containerId);
     events.forEach((event) => {
         if (element) {
@@ -7,7 +7,7 @@ function populateEvents(events, containerId) {
     });
 }
 
-function populateUsers(users, containerId) {
+const populateUsers = (users, containerId) => {
     const element = document.getElementById(containerId);
     users.forEach((user) => {
         if (element) {

@@ -1,4 +1,4 @@
-function chooseEntranceType() {
+const chooseEntranceType = () => {
     document.getElementById('redirect-to-login').addEventListener('click', (event) => {
         event.preventDefault();
         document.getElementById('login-form').style.display = 'block';

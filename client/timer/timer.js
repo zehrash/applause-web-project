@@ -1,4 +1,4 @@
-function formatTimeLeft(time) {
+const formatTimeLeft = (time) => {
     const minutes = Math.floor(time / 60);
     
     let seconds = time % 60;

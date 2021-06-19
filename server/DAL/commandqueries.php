@@ -27,12 +27,10 @@ function getLastCommand($eventId)
         $db = new DB();
         $connection = $db->getConnection();
 
-        $selectsql = "SELECT * FROM `commands` WHERE eventId=:eventId ORDER BY date DESC LIMIT 1";
+        $selectsql = "SELECT * FROM `commands` WHERE eventId= ? ORDER BY execution DESC LIMIT 1";
         $selectStatement = $connection->prepare($selectsql);
 
-        $selectStatement->bindValue(':eventId', $eventId);
-
-        $selectStatement->execute();
+        $selectStatement->execute([$eventId]);
         $command = null;
         while ($row = $selectStatement->fetch(PDO::FETCH_ASSOC)) {
             $command = $row["text"];
