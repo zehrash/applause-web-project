@@ -28,6 +28,7 @@ let timePassed = 0;
 let timeLeft = TIME_LIMIT;
 let timerInterval = null;
 let formData = null;
+let  fetched = false;
 const startTimer = () => {
 
     timerInterval = setInterval(() => {
@@ -42,6 +43,13 @@ const startTimer = () => {
             timerInterval = null;
             formData = null;
             fetchCommand();
+           
+            /*const aud = document.getElementById('loadedSound');
+            console.log('playing')
+            console.log(aud);
+            aud.play();
+            aud.id='';*/
+            
         }
     }, 1000);
 }
@@ -51,13 +59,46 @@ startTimer();
 
 
 const closeTimerCycle = () => {
-    console.log('called')
-
     startTimer();
 }
 
+
 setInterval(closeTimerCycle, 10000);
 //main block for doing the audio recording
+
+const audios = document.getElementsByTagName('audio');
+let flag = false;
+
+
+//im sorry.
+const waitForTimerToFinish = (event) => {
+    
+    if(!flag) {
+        event.target.id = 'loadedSound';
+        document.getElementById('loadedSound').pause();
+        console.log('pausing')
+        let interval = setInterval(() =>{
+            console.log(timeLeft);
+            if(timeLeft == 1)
+            {
+                let aud = document.getElementById('loadedSound');
+                aud.play();
+                flag = true;
+                clearInterval(interval);
+                aud.id = '';
+            }
+        }, 1000);
+    }  
+   else {
+        flag = false;
+   }
+};
+
+
+Array.from(audios).forEach(au => {
+    au.addEventListener('play', waitForTimerToFinish);
+})
+
 
 if (navigator.mediaDevices.getUserMedia) {
     console.log('getUserMedia supported.');
@@ -65,7 +106,7 @@ if (navigator.mediaDevices.getUserMedia) {
     const constraints = { audio: true };
     let chunks = [];
 
-    let onSuccess = function (stream) {
+    let onSuccess = async function (stream) {
         const mediaRecorder = new MediaRecorder(stream);
 
         record.onclick = function () {
@@ -106,7 +147,8 @@ if (navigator.mediaDevices.getUserMedia) {
             } else {
                 clipLabel.textContent = clipName;
             }
-
+            clipLabel.setAttribute('class', 'sound-name');
+            audio.setAttribute('class', 'custom-sound');
             clipContainer.appendChild(clipLabel);
             clipContainer.appendChild(audio);
             soundClips.appendChild(clipContainer);
@@ -117,7 +159,7 @@ if (navigator.mediaDevices.getUserMedia) {
             const audioURL = window.URL.createObjectURL(blob);
             audio.src = audioURL;
             console.log("recorder stopped");
-
+            document.getElementById('custom-sounds').style.display = 'inline-block';
             const formData = new FormData();
             formData.append('userFile', blob, clipName);
 
@@ -191,6 +233,7 @@ const fetchCommand = () => {
             if (response.success) {
                 document.getElementById('command-text').innerText = response.value;
                 console.log(response.value);
+                fetched = true;
             }
         })
     /*
