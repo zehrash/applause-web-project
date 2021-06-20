@@ -79,7 +79,7 @@ background: linear-gradient(90deg, rgba(237,182,227,1) 0%, rgba(252,249,255,1) 5
   }
 
   .create-event-left, .view-events-center, .view-users-right {
-    box-shadow:0 0 15px 4px rgba(202, 27, 27, 0.06);
+    box-shadow:0 0 15px 4px rgba(0, 0, 0, 0.06);
     position: absolute;
     width:25%;
     margin-top:5%;

@@ -4,7 +4,20 @@ let timePassed = 0;
 let timeLeft = TIME_LIMIT;
 let timerInterval = null;
 let formData = null;
-function startTimer() {
+
+
+const params = new URLSearchParams(window.location.search);//to get the query string params
+
+window.addEventListener('load', event => {
+    console.log(params);
+    if(sessionStorage.getItem('eventId') == null){
+        console.log('opa');
+        if(params.has('eventId'))
+        sessionStorage.setItem('eventId', params.get('eventId'));
+    }
+})
+
+const startTimer = () => {
   
     timerInterval = setInterval(() => {
         timePassed = timePassed += 1;
@@ -28,7 +41,7 @@ function startTimer() {
 
 document.getElementById('base-timer-label').innerHTML = formatTimeLeft(timeLeft);
 
-startTimer();
+setInterval(startTimer(), 10000);
 document.getElementById('send-command').addEventListener('click', event => {
     const commandText = document.getElementById("command").value;
     formData = new FormData();

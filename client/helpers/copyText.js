@@ -1,4 +1,4 @@
-function displayCopied() {
+const displayCopied = () => {
     var copyText = document.getElementById("created-event-link");
   
     copyText.select();

@@ -1,4 +1,3 @@
-//todo for lusi: get event id from the query string
 fetch('../../server/userpanel.php', {
     method: 'GET'
 })
@@ -29,23 +28,77 @@ let timePassed = 0;
 let timeLeft = TIME_LIMIT;
 let timerInterval = null;
 let formData = null;
-function startTimer() {
-  
+let  fetched = false;
+const startTimer = () => {
+
     timerInterval = setInterval(() => {
         timePassed = timePassed += 1;
         timeLeft = TIME_LIMIT - timePassed;
 
         document.getElementById("base-timer-label").innerHTML = formatTimeLeft(timeLeft);
-        if(timeLeft === 0){
+        if (timeLeft === 0) {
             clearInterval(timerInterval);
+            timePassed = 0;
+            timeLeft = TIME_LIMIT;
+            timerInterval = null;
+            formData = null;
+            fetchCommand();
+           
+            /*const aud = document.getElementById('loadedSound');
+            console.log('playing')
+            console.log(aud);
+            aud.play();
+            aud.id='';*/
+            
         }
     }, 1000);
 }
 
 document.getElementById('base-timer-label').innerHTML = formatTimeLeft(timeLeft);
-
 startTimer();
+
+
+const closeTimerCycle = () => {
+    startTimer();
+}
+
+
+setInterval(closeTimerCycle, 10000);
 //main block for doing the audio recording
+
+const audios = document.getElementsByTagName('audio');
+let flag = false;
+
+
+//im sorry.
+const waitForTimerToFinish = (event) => {
+    
+    if(!flag) {
+        event.target.id = 'loadedSound';
+        document.getElementById('loadedSound').pause();
+        console.log('pausing')
+        let interval = setInterval(() =>{
+            console.log(timeLeft);
+            if(timeLeft == 1)
+            {
+                let aud = document.getElementById('loadedSound');
+                aud.play();
+                flag = true;
+                clearInterval(interval);
+                aud.id = '';
+            }
+        }, 1000);
+    }  
+   else {
+        flag = false;
+   }
+};
+
+
+Array.from(audios).forEach(au => {
+    au.addEventListener('play', waitForTimerToFinish);
+})
+
 
 if (navigator.mediaDevices.getUserMedia) {
     console.log('getUserMedia supported.');
@@ -53,9 +106,9 @@ if (navigator.mediaDevices.getUserMedia) {
     const constraints = { audio: true };
     let chunks = [];
 
-    let onSuccess = function (stream) {
+    let onSuccess = async function (stream) {
         const mediaRecorder = new MediaRecorder(stream);
-      
+
         record.onclick = function () {
             mediaRecorder.start();
             console.log(mediaRecorder.state);
@@ -97,6 +150,8 @@ if (navigator.mediaDevices.getUserMedia) {
             }
     
 
+            clipLabel.setAttribute('class', 'sound-name');
+            audio.setAttribute('class', 'custom-sound');
             clipContainer.appendChild(clipLabel);
             clipContainer.appendChild(audio);
             clipContainer.style.paddingBottom="5px";
@@ -108,7 +163,7 @@ if (navigator.mediaDevices.getUserMedia) {
             const audioURL = window.URL.createObjectURL(blob);
             audio.src = audioURL;
             console.log("recorder stopped");
-
+            document.getElementById('custom-sounds').style.display = 'inline-block';
             const formData = new FormData();
             formData.append('userFile', blob, clipName);
 
@@ -158,17 +213,17 @@ document.getElementById('redirect-to-login').addEventListener('click', (event) =
     event.preventDefault();
 
 
-    fetch('../helpers/logout.php', {
+    fetch('../../server/logout.php', {
         method: 'GET'
     })
-    .then(response =>
-        response.json())
-    .then(data => console.log(data));
+        .then(response =>
+            response.json())
+        .then(data => console.log(data));
 
     location.replace("../registration");
 });
 
-const fetchCommand = () =>{
+const fetchCommand = () => {
     fetch('../../server/getCommand.php', {
         method: 'GET'
     })
@@ -182,12 +237,14 @@ const fetchCommand = () =>{
             if (response.success) {
                 document.getElementById('command-text').innerText = response.value;
                 console.log(response.value);
+                fetched = true;
             }
-        })  
-        .catch(error => {
-            console.log(error)
-        });
-    
+        })
+    /*
+     .catch(error => {
+         console.log(error)
+     });*/
+
 }
 
 /*
