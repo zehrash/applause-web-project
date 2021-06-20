@@ -1,6 +1,6 @@
 const container = document.querySelector(".container");
 let seatId;
-
+attachLogout();
 updateReservedSeats();
 
 const seats = document.querySelectorAll(".row .seat:not(.sold)");
@@ -31,13 +31,11 @@ function updateReservedSeats() {
         })
         .then(response => {
             if (response.success) {
-                //get all saved seats, loop through them and toggle 'sold' class for each
                 let savedSeats = response.value;
 
                 for (let i in savedSeats) {
                     document.getElementById(savedSeats).classList.toggle('sold');
                 }
-                console.log(response.value);
             }
         })
         .catch(error => {
@@ -68,5 +66,3 @@ document.getElementById('book-btn').addEventListener('click', (event) => {
 
     location.replace(`../home?eventId=${sessionStorage.eventId}`);
 });
-
-attachLogout();

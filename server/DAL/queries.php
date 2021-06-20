@@ -4,14 +4,14 @@ include "./DAL/db.php";
 include "./models/user.php";
 
 //adduser
-function registerUser($username, $age, $gender, $password)
+function registerUser($username, $age, $gender, $role, $password)
 {
     try {
 
         $db = new DB();
         $connection = $db->getConnection();
 
-        $addsql = "INSERT INTO users (username, age, gender, role, rating, password) VALUES (:username, :age, :gender, :role, 0, :password)"; //add them all as basic users for now
+        $addsql = "INSERT INTO users (username, age, gender, role, rating, password) VALUES (:username, :age, :gender, :role, 0, :password)";
         $insertStatement = $connection->prepare($addsql);
 
         $user = getUser($username, $password);
@@ -21,7 +21,7 @@ function registerUser($username, $age, $gender, $password)
             return;
         }
         $hashedPass = hashPass($password);
-        $role = 'user';
+
         // echo "username => $username, age => $age, gender => $gender";
         $insertStatement->bindValue(':username', $username);
         $insertStatement->bindValue(':age', $age);
@@ -33,6 +33,29 @@ function registerUser($username, $age, $gender, $password)
         return null;
     }
     return getUser($username, $password);
+}
+
+function retrieveUser($username)
+{
+
+    try {
+        $db = new DB();
+        $connection = $db->getConnection();
+        $selectsql = "SELECT * FROM users WHERE username = :username";
+        $selectStatement = $connection->prepare($selectsql);
+
+        $selectStatement->bindValue(':username', $username);
+        $selectStatement->execute();
+        $user = null;
+
+        while ($row = $selectStatement->fetch(PDO::FETCH_ASSOC)) {
+            $user = new User($row["userId"], $row["username"], $row["age"], $row["gender"], $row["role"], $row["rating"], $row["password"]);
+        }
+
+        return $user;
+    } catch (PDOException $e) {
+        return null;
+    }
 }
 
 //retrieve user data
@@ -68,7 +91,7 @@ function getAllUsers()
     try {
         $db = new DB();
         $connection = $db->getConnection();
-        $selectsql = "SELECT * FROM users";
+        $selectsql = "SELECT * FROM users WHERE role = 'user'";
         $selectStatement = $connection->prepare($selectsql);
 
         $selectStatement->execute();
@@ -208,6 +231,29 @@ function getSavedSeats($eventId)
             return null;
         }
         return $seats;
+    } catch (PDOException $e) {
+        return $e->getMessage();
+    }
+}
+
+function getSavedSeatByUser($eventId, $userId)
+{
+    try {
+        $db = new DB();
+        $connection = $db->getConnection();
+        $selectsql = "SELECT reservedSeatId FROM userevents WHERE eventId = :eventId AND userId= :userId";
+        $selectStatement = $connection->prepare($selectsql);
+
+        $selectStatement->bindValue(':eventId', $eventId);
+        $selectStatement->bindValue(':userID', $userId);
+        $selectStatement->execute();
+
+        $seat = null;
+        while ($row = $selectStatement->fetch(PDO::FETCH_ASSOC)) {
+            $seat =$row['reservedSeatId'];
+        }
+
+        return $seat;
     } catch (PDOException $e) {
         return $e->getMessage();
     }
