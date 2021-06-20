@@ -10,16 +10,16 @@ button {
     width: 70%;
 }
 
-button:hover{
-    background-color:rgb(105, 120, 204);
+button:hover {
+    background-color: rgb(105, 120, 204);
 }
 
-textarea  {
+textarea {
     padding: 10px;
     width: 70%;
     height: 200px;
     border: 0;
-    font-size: 32px; 
+    font-size: 32px;
     box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
 }
 
@@ -31,7 +31,7 @@ textarea  {
     margin-left: 25%;
     margin-right: 10%;
     position: absolute;
-    top:1%;
+    top: 1%;
     text-align: center;
     padding-bottom: 5%;
     padding-top: 3%;

@@ -47,14 +47,12 @@ function updateReservedSeats() {
         })
         .then(response => {
             if (response.success) {
-                //get all saved seats, loop through them and toggle 'sold' class for each
 
                 let savedSeats = response.value;
 
                 for (let i in savedSeats) {
                     document.getElementById(savedSeats).classList.toggle('sold');
                 }
-                console.log(response.value);
             }
         })
         .catch(error => {
@@ -84,7 +82,5 @@ document.getElementById('book-btn').addEventListener('click', (event) => {
     }).catch(error => console.log(JSON.stringify(error)));
 
     location.replace(`../home?eventId=${sessionStorage.eventId}`);
-
-    //TODO: check if postData is successful or not 
 
 });

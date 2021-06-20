@@ -4,20 +4,27 @@ let timePassed = 0;
 let timeLeft = TIME_LIMIT;
 let timerInterval = null;
 let formData = null;
+const groups = document.getElementById('groups');
+const rows = document.getElementById('rows');
+
 function startTimer() {
-  
+
     timerInterval = setInterval(() => {
         timePassed = timePassed += 1;
         timeLeft = TIME_LIMIT - timePassed;
 
         document.getElementById("base-timer-label").innerHTML = formatTimeLeft(timeLeft);
-        if(timeLeft === 0){
+        if (timeLeft === 0) {
             clearInterval(timerInterval);
-            if(formData!=null){
+            if (formData != null) {
+
+                formData.append('group', groups.value);
+                formData.append('row', rows.value);
+
                 postData('../../server/sendCommand.php', formData).then(data => data.json()).then(dataText => {
                     console.log(dataText["message"]);
                     formData = null;
-                    timePassed=0;
+                    timePassed = 0;
                     timeLeft = TIME_LIMIT;
                     startTimer();
                 });

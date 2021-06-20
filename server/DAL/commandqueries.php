@@ -1,6 +1,9 @@
 <?php
 include "./DAL/db.php";
+include "./DAL/queries.php";
 
+
+//send command params -> eventID, text, group and row
 function sendCommand($eventId, $text)
 {
     try {
@@ -20,17 +23,33 @@ function sendCommand($eventId, $text)
     }
 }
 
-function getLastCommand($eventId)
+function getLastCommand($eventId, $username, $userId)
 {
     try {
 
         $db = new DB();
         $connection = $db->getConnection();
 
-        $selectsql = "SELECT * FROM `commands` WHERE eventId=:eventId ORDER BY date DESC LIMIT 1";
+        $user = retrieveUser($username);
+        $gender = $user->gender;
+
+        $seatID = getSavedSeatByUser($eventId, $userId);
+        $firstChar=$seatID[0];
+
+        //$selectsql = "SELECT * FROM `commands` WHERE eventId=:eventId ORDER BY date DESC LIMIT 1";
+
+        $selectsql = "SELECT *FROM commands WHERE eventId=:eventId 
+			AND (group = :gender
+			OR group = 'o')
+			OR row like ':seat%'
+            ORDER BY date DESC LIMIT 1";
+
+
         $selectStatement = $connection->prepare($selectsql);
 
         $selectStatement->bindValue(':eventId', $eventId);
+        $selectStatement->bindValue(':gender', $gender);
+        $selectStatement->bindValue(':seat', $firstChar);
 
         $selectStatement->execute();
         $command = null;
@@ -39,7 +58,6 @@ function getLastCommand($eventId)
         }
 
         return $command;
-
     } catch (PDOException $e) {
         return $e->getMessage();
     }
