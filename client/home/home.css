@@ -126,7 +126,7 @@ button:hover{
 }
 
 
-ul{
+.soundsList{
     position: absolute;
     top:10%;
     left: 66%;
@@ -135,9 +135,11 @@ ul{
 li{
     text-align: left;
 }
-audio{
+
+.sounds-button{
     width: 300%;
 }
+
 .sound-name{
     display: block;
     text-align: center;
@@ -161,9 +163,32 @@ audio{
     font-size: 20px
 }
 
-#sound-clips{
-    left:80%;
+.send-points{
+    width: 100px;
+    float: right;
+    margin-right: 10px;
 }
+
+.user-el{
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.users-in-event {
+    box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
+    position: absolute;
+    width: 20%;
+    position: absolute;
+    top:15%;
+    text-align: center;
+    background-color: white;
+    border-radius: 3px;
+    padding-bottom: 5%;
+    padding-top: 3%;
+}
+
 /*TODO: ADD SIMILIAR GRADIENT BACKGROUNDS TO THE OTHER PAGES*/
 /*TODO: STYLE THE CUSTOM AUDIO SO THAT IT SHOWS THE SAME WAY AS THE OTHER ONE, BUT TO THE LEFT,*/
 /*TODO: ADD CHECK IF THERE ARE CUSTOM SOUNDS AND DISPLAY THE HEADING CUSTOMSOUNDS ONLY THEN*/

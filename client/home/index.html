@@ -5,27 +5,26 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Applause generator</title>
     <link rel="stylesheet" href="../timer/timer.css">
     <link rel="stylesheet" href="./home.css">
     <script src="../helpers/getData.js" defer></script>
     <script src="../helpers/postData.js" defer></script>
     <script src="../helpers/playsSound.js" defer></script>
+    <script src="../helpers/populators.js" defer></script>
+    <script src="../helpers/addLogout.js" defer></script>
     <script src="../timer/timer.js" defer></script>
     <script src="./home.js" defer></script>
 </head>
 
 <body>
-    <table class="session">
-        <tr>
-            <th>
-                <h2 id="welcome-text"></h2>
-            </th>
-            <th>
-                <p id="logout-link"><a href="#" id="redirect-to-login">Logout</a></p>
-            </th>
-        </tr>
-    </table>
+<header>
+    <section class="session">
+        <h2 id="welcome-text"></h2>
+        <p id="logout-link"><a id="logout">Logout</a></p>
+    </section>
+</header>
+   <main>
     <h1 class="command-header">Next command</h1>
     <section class="command-viewer">
         <h2 id="command-text">Applaud</h2>
@@ -37,8 +36,8 @@
 
     <section class="sounds">
         <section>
-        <h2 id="default-sounds">Default sounds available</h2><br />
-        <ul class="soundsList" style="list-style: none;">
+            <h2 id="default-sounds">Default sounds available</h2><br />
+            <ul class="soundsList" style="list-style: none;">
                 <li>
                     <label class="sound-name">Applause</label>
                     <audio src="https://www.free-stock-music.com/music/sound-effects-library-applauding.mp3" controls
@@ -78,7 +77,14 @@
             <h2 id="custom-sounds">Your custom sounds</h2>
             <ul id="sound-clips" style="list-style: none;">
             </ul>
+
         </section>
+
+    </section>
+    <section class="users-in-event">
+        <h2>Send points to other users in this event!</h2>
+        <ul id="user-list" style="list-style: none;">
+        </ul>
     </section>
     <section class="random-reaction">
         <!--play random sound-->
@@ -123,6 +129,7 @@
             <!-- Remaining time label -->
         </span>
     </section>
+</main>
 </body>
 
 </html>

@@ -60,6 +60,8 @@ window.addEventListener('load', (event) => {
             //todo: add user jwt token to cookie
             //
         });
+
+        
     });
 
     chooseEntranceType();

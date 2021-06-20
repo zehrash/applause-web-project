@@ -17,6 +17,7 @@ window.addEventListener('load', event => {
     }
 })
 
+attachLogout();
 const startTimer = () => {
   
     timerInterval = setInterval(() => {
@@ -50,7 +51,6 @@ document.getElementById('send-command').addEventListener('click', event => {
     var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
     var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
     var dateTime = date + ' ' + time;
-    // formData.append('execution', dateTime);//todo: fix date format
     formData.append('eventId', sessionStorage.getItem('eventId'));
 
 })

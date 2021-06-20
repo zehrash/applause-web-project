@@ -1,6 +1,5 @@
 <?php
 
-
 class DB
 {
     private $connection;
@@ -8,15 +7,11 @@ class DB
     function __construct()
     {
 
-        $dbtype = "mysql";
-        $host = "localhost";
-        $dbname = "applause_gen";
-        $username = "root";
-        $password = "";
+        $db_configs = parse_ini_file("database.ini");
 
-        $dsn = "$dbtype:host=$host;dbname=$dbname";
+        $dsn = "mysql:host=".$db_configs['host'].";dbname=".$db_configs['dbname'];
 
-        $this->connection = new PDO($dsn, $username, $password);
+        $this->connection = new PDO($dsn, $db_configs['username'], $db_configs['password']);
     }
 
     function getConnection()
