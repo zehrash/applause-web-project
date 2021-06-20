@@ -91,7 +91,7 @@
         <br />
         <br />
         <h5 class="blinking">Just press your emotion</h5>
-        <div id="happy" class="emoji">
+        <div id="happy" class="emoji" onclick="togglePlayHappy()">
             <div class="head">
                 <div class="eyes">
                     <div class="eye eye-left"></div>
@@ -99,8 +99,9 @@
                 </div>
                 <div class="mouth-happy mouth"></div>
             </div>
+            <audio id="play-happy" src="../assets/happy.mp3"></audio>
         </div>
-        <div id="neutral" class="emoji">
+        <div id="neutral" class="emoji" onclick="togglePlayNeutral()">
             <div class="head">
                 <div class="eyes">
                     <div class="eye eye-left"></div>
@@ -108,8 +109,9 @@
                 </div>
                 <div class="mouth-o mouth"></div>
             </div>
+            <audio id="play-neutral" src="../assets/shock.mp3"></audio>
         </div>
-        <div id="sad" class="emoji">
+        <div id="sad" class="emoji" onclick="togglePlaySad()">
             <div class="head">
                 <div class="eyes">
                     <div class="eye eye-left"></div>
@@ -117,6 +119,7 @@
                 </div>
                 <div class="mouth-sad mouth"></div>
             </div>
+            <audio id="play-sad" src="../assets/sorrow.mp3"></audio>
         </div>
     </section>
     <section class="base-timer">

@@ -1,3 +1,9 @@
+body{
+  background: rgb(237,182,227);
+background: linear-gradient(90deg, rgba(237,182,227,1) 0%, rgba(252,249,255,1) 50%, rgba(237,182,227,1) 100%);
+
+}
+
 .modal {
     display: none;
     position: fixed;
@@ -73,7 +79,7 @@
   }
 
   .create-event-left, .view-events-center, .view-users-right {
-    box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+    box-shadow:0 0 15px 4px rgba(0, 0, 0, 0.06);
     position: absolute;
     width:25%;
     margin-top:5%;
@@ -82,7 +88,16 @@
     text-align: center;
     padding-bottom: 5%;
     padding-top: 3%;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid blue;
+
   }
+
+  #create-text{
+    text-align: left;
+    margin-left: 50px;
+  }
+
   input, textarea, h1 {
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: inherit;
@@ -140,8 +155,12 @@ ul {
   #statistics {
     position: absolute;
     top:70%;
-    left: 8%;
+    left: 40%;
     margin: auto;
+    font-size: 17px;
+  }
+  #statistics:hover{
+    background-color: rgb(105, 120, 204);
   }
 
   #copy-link, #go-to-event {
@@ -170,7 +189,7 @@ section {
 .view-events-center{
   position: absolute;
   top:1%;
-  margin-left: 35%;
+  margin-left: 34%;
   padding-left:3%;
   text-align: left;
 }
@@ -178,7 +197,7 @@ section {
 .view-users-right{
   position: absolute;
   top:1%;
-  margin-left: 65%;
+  margin-left: 66%;
   padding-left:3%;
   text-align: left;
 }

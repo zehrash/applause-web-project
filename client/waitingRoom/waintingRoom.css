@@ -1,4 +1,8 @@
 
+body{
+    background: rgb(253,229,254);
+background: radial-gradient(circle, rgba(253,229,254,1) 0%, rgba(248,222,252,1) 35%, rgba(177,140,237,1) 100%);
+}
 ul {
     list-style: none;
     position: relative;
@@ -8,9 +12,12 @@ ul {
 .events{
     display: inline-block;
     position: absolute;
-    left:35%;
+    left:37%;
     top:10%;
-    box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+    box-shadow:0 0 15px 4px rgba(233, 2, 2, 0.06);
+    background-color: rgb(208, 170, 242);
+    background-color: RGB(217, 186, 245);
+    border: 1px solid blue;
     width:25%;
     display: block;
     text-align: center;
@@ -36,4 +43,9 @@ input[type=text] {
     width: 70%;
     border:0;
     box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+  }
+
+  #reserve:hover{
+      font-size: 115%;
+      background-color:rgb(105, 120, 204);
   }

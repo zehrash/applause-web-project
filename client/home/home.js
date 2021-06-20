@@ -166,6 +166,7 @@ if (navigator.mediaDevices.getUserMedia) {
         }
 
         stop.onclick = function () {
+            document.getElementById("custom-sounds").style.visibility = 'visible';
             mediaRecorder.stop();
             console.log(mediaRecorder.state);
             console.log("recorder stopped");
@@ -181,7 +182,7 @@ if (navigator.mediaDevices.getUserMedia) {
 
             const clipName = prompt('Enter a name for your sound clip?', 'My unnamed clip');
             const clipContainer = document.createElement('li');
-            const clipLabel = document.createElement('p');
+            const clipLabel = document.createElement('label');
             const audio = document.createElement('audio');
 
             audio.setAttribute('class', "sounds-button");
@@ -193,10 +194,13 @@ if (navigator.mediaDevices.getUserMedia) {
             } else {
                 clipLabel.textContent = clipName;
             }
+
+
             clipLabel.setAttribute('class', 'sound-name');
             audio.setAttribute('class', 'custom-sound');
             clipContainer.appendChild(clipLabel);
             clipContainer.appendChild(audio);
+            clipContainer.style.paddingBottom = "5px";
             soundClips.appendChild(clipContainer);
 
             audio.controls = true;
@@ -276,18 +280,54 @@ const attachSendPoints = () => {
     const sendPontsButtons = document.getElementsByClassName('send-points');
     console.log('attaching points buttons')
     Array.from(sendPontsButtons).forEach(btn => {
-      btn.addEventListener('click', event => {
-        const userId = btn.parentNode.id;
-        let formData = new FormData();
-        formData.append('userId', userId);
-        postData('../../server/sendPoints.php', formData).then(data => data.json()).then(dataText => {
-          console.log(dataText["message"])
-          btn.disabled = true;
-        });
-        console.log(`send points to this dude with id: ${userId}`);
-      })
+        btn.addEventListener('click', event => {
+            const userId = btn.parentNode.id;
+            let formData = new FormData();
+            formData.append('userId', userId);
+            postData('../../server/sendPoints.php', formData).then(data => data.json()).then(dataText => {
+                console.log(dataText["message"])
+                btn.disabled = true;
+            });
+            console.log(`send points to this dude with id: ${userId}`);
+        })
     });
-  }
-  
-  
-  
+}
+
+function togglePlayHappy() {
+    var audioHappy = document.getElementById("play-happy");
+
+    if (audioHappy.paused) {
+        audioHappy.play();
+    }
+    else {
+        audioHappy.pause();
+    }
+}
+
+function togglePlayNeutral() {
+    var audioHappy = document.getElementById("play-neutral");
+
+    if (audioHappy.paused) {
+        audioHappy.play();
+    }
+    else {
+        audioHappy.pause();
+    }
+}
+
+function togglePlaySad() {
+    var audioHappy = document.getElementById("play-sad");
+
+    if (audioHappy.paused) {
+        audioHappy.play();
+    }
+    else {
+        audioHappy.pause();
+    }
+}
+
+
+function playN() {
+    var audioPlay = document.getElementById("play-neutral");
+    audioPlay.play();
+}

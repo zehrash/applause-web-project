@@ -5,12 +5,12 @@ updateReservedSeats();
 
 const seats = document.querySelectorAll(".row .seat:not(.sold)");
 
-for (var i = 0; i < seats.length; i++) {
+for (let i = 0; i < seats.length; i++) {
     seats[i].addEventListener('click', function() {
-        for (var j = 0; j < seats.length; j++) {
+        for (let j = 0; j < seats.length; j++) {
             seats[j].style.background = '#444451';
         }
-        this.style.background = '#067006';
+        this.style.background = '#86D9A5';
         seatId = this.attributes['id'].value;
         console.log(seatId);
         return false;
