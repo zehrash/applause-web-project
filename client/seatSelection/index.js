@@ -10,7 +10,7 @@ for (var i = 0; i < seats.length; i++) {
         for (var j = 0; j < seats.length; j++) {
             seats[j].style.background = '#444451';
         }
-        this.style.background = '#067006';
+        this.style.background = '#86D9A5';
         seatId = this.attributes['id'].value;
         //this.classList.toggle("selected");
         console.log(seatId);

@@ -103,7 +103,7 @@ body{
 .recording-buttons{
     position: absolute;
     top:60%;
-    left:30.5%;
+    left:29%;
 
 }
 
@@ -136,7 +136,7 @@ li{
     text-align: left;
 }
 audio{
-    width: 300%;
+   width: 310%;
 }
 .sound-name{
     display: block;
@@ -148,26 +148,35 @@ audio{
 
 #default-sounds {
     position: absolute;
-    left:66%;
+    left:67%;
     top:5%;
     font-size: 20px
 }
 
 #custom-sounds {
     position: absolute;
-    display: none;
-    left:84%;
+    visibility: hidden;
+    left:86%;
     top:5%;
     font-size: 20px
 }
 
 #sound-clips{
-    left:80%;
+    left:84%;
+    width: 65px;
+    font-size: 13px;
+    margin-bottom: 6px;
+    margin-top: 1px;
+    padding-top: 1%;
+    padding-bottom: 10px;
+    text-align: center;
+  
 }
-/*TODO: ADD SIMILIAR GRADIENT BACKGROUNDS TO THE OTHER PAGES*/
-/*TODO: STYLE THE CUSTOM AUDIO SO THAT IT SHOWS THE SAME WAY AS THE OTHER ONE, BUT TO THE LEFT,*/
-/*TODO: ADD CHECK IF THERE ARE CUSTOM SOUNDS AND DISPLAY THE HEADING CUSTOMSOUNDS ONLY THEN*/
-/*TODO: ADD RANDOM SOUND GETTING PLAYED ON THE EMOJIS*/
+
+/*TODO: ADD SIMILIAR GRADIENT BACKGROUNDS TO THE OTHER PAGES X*/
+/*TODO: STYLE THE CUSTOM AUDIO SO THAT IT SHOWS THE SAME WAY AS THE OTHER ONE, BUT TO THE LEFT X,*/
+/*TODO: ADD CHECK IF THERE ARE CUSTOM SOUNDS AND DISPLAY THE HEADING CUSTOMSOUNDS ONLY THEN  X*/
+/*TODO: ADD RANDOM SOUND GETTING PLAYED ON THE EMOJIS X */
 /*todo: 
 --advanced! 
 

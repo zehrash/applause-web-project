@@ -66,7 +66,8 @@ if (navigator.mediaDevices.getUserMedia) {
             record.disabled = true;
         }
 
-        stop.onclick = function () {
+        stop.onclick = function () {            
+            document.getElementById("custom-sounds").style.visibility='visible';
             mediaRecorder.stop();
             console.log(mediaRecorder.state);
             console.log("recorder stopped");
@@ -82,9 +83,9 @@ if (navigator.mediaDevices.getUserMedia) {
 
             const clipName = prompt('Enter a name for your sound clip?', 'My unnamed clip');
             const clipContainer = document.createElement('li');
-            const clipLabel = document.createElement('p');
+            const clipLabel = document.createElement('label');
             const audio = document.createElement('audio');
-
+            
             audio.setAttribute('class', "sounds-button");
             clipContainer.classList.add('clip');
             audio.setAttribute('controls', '');
@@ -94,9 +95,11 @@ if (navigator.mediaDevices.getUserMedia) {
             } else {
                 clipLabel.textContent = clipName;
             }
+    
 
             clipContainer.appendChild(clipLabel);
             clipContainer.appendChild(audio);
+            clipContainer.style.paddingBottom="5px";
             soundClips.appendChild(clipContainer);
 
             audio.controls = true;
@@ -185,4 +188,62 @@ const fetchCommand = () =>{
             console.log(error)
         });
     
+}
+
+/*
+function playH(){
+
+    var audioPlay=document.getElementById("play-happy");
+    var isPlaying=false;
+    togglePlay();
+}
+function togglePlay(){
+    isPlaying? audioPlay.pause(): audioPlay.play();
+};
+
+myAudio.onplaying=function(){
+    isPlaying=true;
+};
+
+myAudio.onplaying=function(){
+    isPlaying=false;
+}; */
+
+function togglePlayHappy(){
+    var audioHappy=document.getElementById("play-happy");
+
+    if(audioHappy.paused){
+        audioHappy.play();
+    }
+    else {
+        audioHappy.pause();
+    }
+}
+
+function togglePlayNeutral(){
+    var audioHappy=document.getElementById("play-neutral");
+
+    if(audioHappy.paused){
+        audioHappy.play();
+    }
+    else {
+        audioHappy.pause();
+    }
+}
+
+function togglePlaySad(){
+    var audioHappy=document.getElementById("play-sad");
+
+    if(audioHappy.paused){
+        audioHappy.play();
+    }
+    else {
+        audioHappy.pause();
+    }
+}
+
+
+function playN(){
+    var audioPlay=document.getElementById("play-neutral");
+    audioPlay.play();
 }

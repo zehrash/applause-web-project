@@ -4,7 +4,8 @@
 }
 
 body {
-    background-color: #f1dbdb;
+    background: rgb(238,174,202);
+background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(251,215,241,1) 31%, rgba(234,235,246,1) 58%, rgba(94,162,242,1) 100%);
     color: rgb(0, 0, 0);
     display: flex;
     flex-direction: column;
@@ -31,7 +32,7 @@ body {
 }
 
 .seat.selected {
-    background-color: #067006;
+    background-color: rgb(134, 217, 165);
 }
 
 .seat.sold {
@@ -90,7 +91,18 @@ body {
     box-shadow: 0 3px 10px rgba(255, 255, 255, 0.7);
 }
 
-.book-btn {
-    left: 150%;
-    margin: left;
+#book-btn {
+    left: 24%;
+    margin: 5px;
+    padding:10px;
+    border:none;
+    background-color: rgb(161, 197, 244);
+    color:#000;
+    font-weight:600;
+    border-radius:5px;
+    width:50%;
+    position: absolute;
+}
+#book-btn:hover{
+    font-size: 110%;
 }
