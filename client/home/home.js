@@ -43,6 +43,13 @@ const startTimer = () => {
             timerInterval = null;
             formData = null;
             fetchCommand();
+           
+            /*const aud = document.getElementById('loadedSound');
+            console.log('playing')
+            console.log(aud);
+            aud.play();
+            aud.id='';*/
+            
         }
     }, 1000);
 }
@@ -52,14 +59,46 @@ startTimer();
 
 
 const closeTimerCycle = () => {
-    console.log('called')
-
     startTimer();
 }
 
 
 setInterval(closeTimerCycle, 10000);
 //main block for doing the audio recording
+
+const audios = document.getElementsByTagName('audio');
+let flag = false;
+
+
+//im sorry.
+const waitForTimerToFinish = (event) => {
+    
+    if(!flag) {
+        event.target.id = 'loadedSound';
+        document.getElementById('loadedSound').pause();
+        console.log('pausing')
+        let interval = setInterval(() =>{
+            console.log(timeLeft);
+            if(timeLeft == 1)
+            {
+                let aud = document.getElementById('loadedSound');
+                aud.play();
+                flag = true;
+                clearInterval(interval);
+                aud.id = '';
+            }
+        }, 1000);
+    }  
+   else {
+        flag = false;
+   }
+};
+
+
+Array.from(audios).forEach(au => {
+    au.addEventListener('play', waitForTimerToFinish);
+})
+
 
 if (navigator.mediaDevices.getUserMedia) {
     console.log('getUserMedia supported.');
@@ -71,7 +110,6 @@ if (navigator.mediaDevices.getUserMedia) {
         const mediaRecorder = new MediaRecorder(stream);
 
         record.onclick = function () {
-            //todo: wait here for timer to runout
             mediaRecorder.start();
             console.log(mediaRecorder.state);
             console.log("recorder started");
