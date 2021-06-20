@@ -46,6 +46,8 @@ window.addEventListener('load', (event) => {
 
 });
 
+attachLogout();
+
 document.getElementById('event-submit').addEventListener('click', (event) => {
   event.preventDefault();
   var formData = new FormData();

@@ -11,6 +11,8 @@ fetch('../../server/userpanel.php', {
         if (response.success) {
             document.getElementById('welcome-text').innerHTML = response.value;
             console.log(response.value);
+            displayCustomSounds();
+            getUsersInEvent();
         }
     })
     .catch(error => {
@@ -18,6 +20,22 @@ fetch('../../server/userpanel.php', {
     });
 
 
+function getUsersInEvent() {
+    fetch('../../server/populateWithUsers.php', {
+        method: 'GET'
+    })
+        .then((response) => {
+            return response.json();
+        })
+        .then(data => {
+            console.log(data)
+            populateUsersInHome(data, 'user-list');
+            attachSendPoints();
+        })
+        .catch(error => {
+            console.log(error.message);
+        });
+}
 const record = document.getElementById('record');
 const stop = document.getElementById('stop');
 const soundClips = document.getElementById('sound-clips');
@@ -28,13 +46,12 @@ let timePassed = 0;
 let timeLeft = TIME_LIMIT;
 let timerInterval = null;
 let formData = null;
-let  fetched = false;
+let fetched = false;
 const startTimer = () => {
 
     timerInterval = setInterval(() => {
         timePassed = timePassed += 1;
         timeLeft = TIME_LIMIT - timePassed;
-
         document.getElementById("base-timer-label").innerHTML = formatTimeLeft(timeLeft);
         if (timeLeft === 0) {
             clearInterval(timerInterval);
@@ -43,13 +60,6 @@ const startTimer = () => {
             timerInterval = null;
             formData = null;
             fetchCommand();
-           
-            /*const aud = document.getElementById('loadedSound');
-            console.log('playing')
-            console.log(aud);
-            aud.play();
-            aud.id='';*/
-            
         }
     }, 1000);
 }
@@ -62,9 +72,46 @@ const closeTimerCycle = () => {
     startTimer();
 }
 
+function displayCustomSounds() {
+    const customSounds = [];
+    fetch('../../server/getCustomAudio.php', {
+        method: 'GET'
+    })
+        .then((response) => {
+            return response.json();
+        })
+        .then(sounds => {
+            console.log(sounds);
+            for (let sound of sounds) {
+                const audio = new Audio(`../../server/AppData/${sound["name"]}`)
+                audio.setAttribute('class', "sounds-button");
+                customSounds.push(audio);
+                audio.setAttribute('class', 'custom-sound');
+                audio.setAttribute('name', sound["name"]);
+                audio.controls = true;
+            }
+        }).then(() => {
+            for (s of customSounds) {
+                const clipContainer = document.createElement('li');
+                const clipLabel = document.createElement('p');
+
+                clipLabel.textContent = s.getAttribute('name');
+                clipContainer.classList.add('clip');
+                clipLabel.setAttribute('class', 'sound-name');
+                clipContainer.appendChild(clipLabel);
+
+                console.log(s);
+
+                clipContainer.appendChild(s);
+                soundClips.appendChild(clipContainer);
+            }
+
+            document.getElementById('custom-sounds').style.display = 'block';
+        });
+}
+
 
 setInterval(closeTimerCycle, 10000);
-//main block for doing the audio recording
 
 const audios = document.getElementsByTagName('audio');
 let flag = false;
@@ -72,15 +119,14 @@ let flag = false;
 
 //im sorry.
 const waitForTimerToFinish = (event) => {
-    
-    if(!flag) {
+
+    if (!flag) {
         event.target.id = 'loadedSound';
         document.getElementById('loadedSound').pause();
         console.log('pausing')
-        let interval = setInterval(() =>{
+        let interval = setInterval(() => {
             console.log(timeLeft);
-            if(timeLeft == 1)
-            {
+            if (timeLeft == 1) {
                 let aud = document.getElementById('loadedSound');
                 aud.play();
                 flag = true;
@@ -88,10 +134,10 @@ const waitForTimerToFinish = (event) => {
                 aud.id = '';
             }
         }, 1000);
-    }  
-   else {
+    }
+    else {
         flag = false;
-   }
+    }
 };
 
 
@@ -119,8 +165,8 @@ if (navigator.mediaDevices.getUserMedia) {
             record.disabled = true;
         }
 
-        stop.onclick = function () {            
-            document.getElementById("custom-sounds").style.visibility='visible';
+        stop.onclick = function () {
+            document.getElementById("custom-sounds").style.visibility = 'visible';
             mediaRecorder.stop();
             console.log(mediaRecorder.state);
             console.log("recorder stopped");
@@ -138,7 +184,7 @@ if (navigator.mediaDevices.getUserMedia) {
             const clipContainer = document.createElement('li');
             const clipLabel = document.createElement('label');
             const audio = document.createElement('audio');
-            
+
             audio.setAttribute('class', "sounds-button");
             clipContainer.classList.add('clip');
             audio.setAttribute('controls', '');
@@ -148,13 +194,13 @@ if (navigator.mediaDevices.getUserMedia) {
             } else {
                 clipLabel.textContent = clipName;
             }
-    
+
 
             clipLabel.setAttribute('class', 'sound-name');
             audio.setAttribute('class', 'custom-sound');
             clipContainer.appendChild(clipLabel);
             clipContainer.appendChild(audio);
-            clipContainer.style.paddingBottom="5px";
+            clipContainer.style.paddingBottom = "5px";
             soundClips.appendChild(clipContainer);
 
             audio.controls = true;
@@ -208,20 +254,7 @@ const handleFiles = (event) => {
     document.getElementById("audio").load();
 }
 
-document.getElementById('redirect-to-login').addEventListener('click', (event) => {
-
-    event.preventDefault();
-
-
-    fetch('../../server/logout.php', {
-        method: 'GET'
-    })
-        .then(response =>
-            response.json())
-        .then(data => console.log(data));
-
-    location.replace("../registration");
-});
+attachLogout();
 
 const fetchCommand = () => {
     fetch('../../server/getCommand.php', {
@@ -240,36 +273,30 @@ const fetchCommand = () => {
                 fetched = true;
             }
         })
-    /*
-     .catch(error => {
-         console.log(error)
-     });*/
-
 }
 
-/*
-function playH(){
 
-    var audioPlay=document.getElementById("play-happy");
-    var isPlaying=false;
-    togglePlay();
+const attachSendPoints = () => {
+    const sendPontsButtons = document.getElementsByClassName('send-points');
+    console.log('attaching points buttons')
+    Array.from(sendPontsButtons).forEach(btn => {
+        btn.addEventListener('click', event => {
+            const userId = btn.parentNode.id;
+            let formData = new FormData();
+            formData.append('userId', userId);
+            postData('../../server/sendPoints.php', formData).then(data => data.json()).then(dataText => {
+                console.log(dataText["message"])
+                btn.disabled = true;
+            });
+            console.log(`send points to this dude with id: ${userId}`);
+        })
+    });
 }
-function togglePlay(){
-    isPlaying? audioPlay.pause(): audioPlay.play();
-};
 
-myAudio.onplaying=function(){
-    isPlaying=true;
-};
+function togglePlayHappy() {
+    var audioHappy = document.getElementById("play-happy");
 
-myAudio.onplaying=function(){
-    isPlaying=false;
-}; */
-
-function togglePlayHappy(){
-    var audioHappy=document.getElementById("play-happy");
-
-    if(audioHappy.paused){
+    if (audioHappy.paused) {
         audioHappy.play();
     }
     else {
@@ -277,10 +304,10 @@ function togglePlayHappy(){
     }
 }
 
-function togglePlayNeutral(){
-    var audioHappy=document.getElementById("play-neutral");
+function togglePlayNeutral() {
+    var audioHappy = document.getElementById("play-neutral");
 
-    if(audioHappy.paused){
+    if (audioHappy.paused) {
         audioHappy.play();
     }
     else {
@@ -288,10 +315,10 @@ function togglePlayNeutral(){
     }
 }
 
-function togglePlaySad(){
-    var audioHappy=document.getElementById("play-sad");
+function togglePlaySad() {
+    var audioHappy = document.getElementById("play-sad");
 
-    if(audioHappy.paused){
+    if (audioHappy.paused) {
         audioHappy.play();
     }
     else {
@@ -300,7 +327,7 @@ function togglePlaySad(){
 }
 
 
-function playN(){
-    var audioPlay=document.getElementById("play-neutral");
+function playN() {
+    var audioPlay = document.getElementById("play-neutral");
     audioPlay.play();
 }

@@ -36,3 +36,5 @@ document.getElementById('reserve').addEventListener('click', event => {
 
     })
 })
+
+attachLogout();
