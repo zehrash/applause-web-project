@@ -125,7 +125,7 @@ function updateUserRole($userId, $newRole)
     try {
         $db = new DB();
         $connection = $db->getConnection();
-        $updatesql =  'UPDATE events
+        $updatesql =  'UPDATE users
         SET role= = :role
         WHERE userId=:userId';
         $updateStatement = $connection->prepare($updatesql);
@@ -142,6 +142,22 @@ function updateUserRole($userId, $newRole)
 }
 
 
+function resetUserRoles()
+{
+    try {
+
+        $db = new DB();
+        $connection = $db->getConnection();
+
+        $updatesql = "UPDATE `users` SET role = 'user' WHERE role = 'host'";
+        $updateStatement = $connection->prepare($updatesql);
+        $updateStatement->execute();
+
+    } catch (PDOException $e) {
+        echo json_encode(["text" => $e->getMessage()]);
+    }
+}
+
 function sendEventToUser($eventId, $userId)
 {
     try {
@@ -156,6 +172,22 @@ function sendEventToUser($eventId, $userId)
         $insertStatement->execute();
     } catch (PDOException $e) {
         echo json_encode(["text" => $e->getMessage()]);
+    }
+}
+
+function sendPointsToUser($userId) {
+    try {
+        $db = new DB();
+        $connection = $db->getConnection();
+
+        $addsql = "UPDATE `users` SET rating = rating+5 WHERE userId = :userId";
+        $insertStatement = $connection->prepare($addsql);
+
+        $insertStatement->bindValue(':userId', $userId);
+        $insertStatement->execute();
+
+    } catch (PDOException $e) {
+        return null;
     }
 }
 

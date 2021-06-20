@@ -1,7 +1,7 @@
-body{
-    background: rgb(163,238,237);
-    background: linear-gradient(90deg, rgba(163,238,237,1) 0%, rgba(251,251,251,1) 59%, rgba(249,213,255,1) 100%);
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+body {
+    background: rgb(163, 238, 237);
+    background: linear-gradient(90deg, rgba(163, 238, 237, 1) 0%, rgba(251, 251, 251, 1) 59%, rgba(249, 213, 255, 1) 100%);
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .emoji {
@@ -75,21 +75,20 @@ body{
     border-radius: var(--mouth-height) var(--mouth-height) 5% 5%;
 }
 
-.command-header{
+.command-header {
     position: absolute;
-    top:9%;
+    top: 9%;
     left: 40%;
     font-size: 40px;
-    
 }
 
-.command-viewer{
-    box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+.command-viewer {
+    box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
     position: absolute;
-    left:25%;
-    width:35%;
-    height:20%;
-    margin-top:5%;
+    left: 25%;
+    width: 35%;
+    height: 20%;
+    margin-top: 5%;
     margin-left: 5%;
     margin-right: 50%;
     text-align: center;
@@ -100,99 +99,115 @@ body{
     font-size: 40px;
 }
 
-.recording-buttons{
+.recording-buttons {
     position: absolute;
-    top:60%;
-    left:30.5%;
-
+    top: 60%;
+    left: 29%;
 }
 
-button{
-    appearance:none;
-    -webkit-appearance:none;
-  
-    padding:10px;
-    border:none;
-    background-color:#3F51B5;
-    color:#fff;
-    font-weight:600;
-    border-radius:5px;
+button {
+    appearance: none;
+    -webkit-appearance: none;
+    padding: 10px;
+    border: none;
+    background-color: #3F51B5;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 5px;
     width: 18rem;
     height: 3rem;
 }
 
-button:hover{
-    background-color:rgb(105, 120, 204);
+button:hover {
+    background-color: rgb(105, 120, 204);
 }
 
-
-ul{
+.soundsList {
     position: absolute;
-    top:10%;
+    top: 10%;
     left: 66%;
 }
 
-li{
+li {
     text-align: left;
 }
-audio{
-    width: 300%;
+
+.sounds-button {
+    width: 310%;
 }
-.sound-name{
+
+.sound-name {
     display: block;
     text-align: center;
     line-height: 150%;
     font-size: .85em;
-
 }
 
 #default-sounds {
     position: absolute;
-    left:66%;
-    top:5%;
+    left: 67%;
+    top: 5%;
     font-size: 20px
 }
 
 #custom-sounds {
     position: absolute;
-    display: none;
-    left:84%;
-    top:5%;
+    visibility: hidden;
+    left: 86%;
+    top: 5%;
     font-size: 20px
 }
 
-#sound-clips{
-    left:80%;
+.send-points {
+    width: 100px;
+    float: right;
+    margin-right: 10px;
 }
-/*TODO: ADD SIMILIAR GRADIENT BACKGROUNDS TO THE OTHER PAGES*/
-/*TODO: STYLE THE CUSTOM AUDIO SO THAT IT SHOWS THE SAME WAY AS THE OTHER ONE, BUT TO THE LEFT,*/
-/*TODO: ADD CHECK IF THERE ARE CUSTOM SOUNDS AND DISPLAY THE HEADING CUSTOMSOUNDS ONLY THEN*/
-/*TODO: ADD RANDOM SOUND GETTING PLAYED ON THE EMOJIS*/
-/*todo: 
---advanced! 
 
-make a query in the js to get all the users in this event, and display them in a list form to the left. Display them with a button send points. 
-(for reference, see admin panel, send invite link.)
-1. get users and display them
-2. add the button send points
-3. bind the button to a fetch, post data with the points in the js
-4. add an endpoint file in the server base dir
-5. add a query in the Data Access Layer(DAL) that Updates the user rating in the table users in the database
-for reference see saveSeat.php + the corresponding query method that is called
-*/
+.user-el {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
 
-.random-reaction{
+.users-in-event {
+    box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
     position: absolute;
-    top:65%;
-    left:30%;
+    width: 20%;
+    position: absolute;
+    top: 15%;
+    text-align: center;
+    background-color: white;
+    border-radius: 3px;
+    padding-bottom: 5%;
+    padding-top: 3%;
+}
+
+
+#sound-clips {
+    left: 84%;
+    width: 65px;
+    font-size: 13px;
+    margin-bottom: 6px;
+    margin-top: 1px;
+    padding-top: 1%;
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+.random-reaction {
+    position: absolute;
+    top: 65%;
+    left: 30%;
     font-size: 18px;
     text-align: center;
 }
 
 .base-timer {
     position: absolute;
-    top:1%;
-    left:46%;
+    top: 1%;
+    left: 46%;
     height: 100px;
     width: 100px;
 }
@@ -201,7 +216,6 @@ for reference see saveSeat.php + the corresponding query method that is called
     width: 100px;
     height: 100px;
 }
-
 
 .blinking {
     font-size: 20px;
@@ -225,4 +239,3 @@ for reference see saveSeat.php + the corresponding query method that is called
         color: rgb(107, 120, 240);
     }
 }
-

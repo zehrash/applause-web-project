@@ -2,7 +2,7 @@ const linkContainer = document.getElementById('links');
 window.addEventListener('load', event => {
     refreshLinks();
 });
-//todo: do a refresh on the home panel with the event id every 10 seconds, to get any incoming commands, display the refresh remaining time in the timer
+//does a refresh on the home panel with the event id every 10 seconds, to get any incoming commands, display the refresh remaining time in the timer
 //pass comands from the admin, load them in some storage and show them every 10 seconds
 setInterval(refreshLinks, 20000);//just call function every 20 seconds to check for new invites
 function refreshLinks() {
@@ -36,3 +36,5 @@ document.getElementById('reserve').addEventListener('click', event => {
 
     })
 })
+
+attachLogout();

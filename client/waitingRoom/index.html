@@ -7,17 +7,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="../helpers/postData.js" defer></script>
+    <script src="../helpers/addLogout.js" defer></script>
     <script src="./waitingRoom.js" defer></script>
     <link rel="stylesheet" href="./waintingRoom.css">
 </head>
 
 <body>
+    <header>
+        <p id="logout-link"><a id="logout">Logout</a></p>
+    </header>
     <main>
         <section class="events">
-            <h1>List of events ur invited to rn:</h1>
+            <h1>List of events you are invited to rn:</h1>
             <ul id="links">
-                <li>link 1:</li>
-                <li>link 2:</li>
             </ul>
             <h1>Enter event code:</h1>
             <input type="text" id="event-code"><br/><br/>

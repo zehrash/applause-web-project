@@ -2,7 +2,7 @@
 
 
 class User {
-    public $userId;//TODO: add jwt for security
+    public $userId;
     public $username;
     public $age;
     public $gender;

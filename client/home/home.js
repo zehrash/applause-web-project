@@ -1,4 +1,3 @@
-//todo for lusi: get event id from the query string
 fetch('../../server/userpanel.php', {
     method: 'GET'
 })
@@ -12,6 +11,8 @@ fetch('../../server/userpanel.php', {
         if (response.success) {
             document.getElementById('welcome-text').innerHTML = response.value;
             console.log(response.value);
+            displayCustomSounds();
+            getUsersInEvent();
         }
     })
     .catch(error => {
@@ -19,6 +20,22 @@ fetch('../../server/userpanel.php', {
     });
 
 
+function getUsersInEvent() {
+    fetch('../../server/populateWithUsers.php', {
+        method: 'GET'
+    })
+        .then((response) => {
+            return response.json();
+        })
+        .then(data => {
+            console.log(data)
+            populateUsersInHome(data, 'user-list');
+            attachSendPoints();
+        })
+        .catch(error => {
+            console.log(error.message);
+        });
+}
 const record = document.getElementById('record');
 const stop = document.getElementById('stop');
 const soundClips = document.getElementById('sound-clips');
@@ -29,23 +46,105 @@ let timePassed = 0;
 let timeLeft = TIME_LIMIT;
 let timerInterval = null;
 let formData = null;
-function startTimer() {
-  
+let fetched = false;
+const startTimer = () => {
+
     timerInterval = setInterval(() => {
         timePassed = timePassed += 1;
         timeLeft = TIME_LIMIT - timePassed;
-
         document.getElementById("base-timer-label").innerHTML = formatTimeLeft(timeLeft);
-        if(timeLeft === 0){
+        if (timeLeft === 0) {
             clearInterval(timerInterval);
+            timePassed = 0;
+            timeLeft = TIME_LIMIT;
+            timerInterval = null;
+            formData = null;
+            fetchCommand();
         }
     }, 1000);
 }
 
 document.getElementById('base-timer-label').innerHTML = formatTimeLeft(timeLeft);
-
 startTimer();
-//main block for doing the audio recording
+
+
+const closeTimerCycle = () => {
+    startTimer();
+}
+
+function displayCustomSounds() {
+    const customSounds = [];
+    fetch('../../server/getCustomAudio.php', {
+        method: 'GET'
+    })
+        .then((response) => {
+            return response.json();
+        })
+        .then(sounds => {
+            console.log(sounds);
+            for (let sound of sounds) {
+                const audio = new Audio(`../../server/AppData/${sound["name"]}`)
+                audio.setAttribute('class', "sounds-button");
+                customSounds.push(audio);
+                audio.setAttribute('class', 'custom-sound');
+                audio.setAttribute('name', sound["name"]);
+                audio.controls = true;
+            }
+        }).then(() => {
+            for (s of customSounds) {
+                const clipContainer = document.createElement('li');
+                const clipLabel = document.createElement('p');
+
+                clipLabel.textContent = s.getAttribute('name');
+                clipContainer.classList.add('clip');
+                clipLabel.setAttribute('class', 'sound-name');
+                clipContainer.appendChild(clipLabel);
+
+                console.log(s);
+
+                clipContainer.appendChild(s);
+                soundClips.appendChild(clipContainer);
+            }
+
+            document.getElementById('custom-sounds').style.display = 'block';
+        });
+}
+
+
+setInterval(closeTimerCycle, 10000);
+
+const audios = document.getElementsByTagName('audio');
+let flag = false;
+
+
+//im sorry.
+const waitForTimerToFinish = (event) => {
+
+    if (!flag) {
+        event.target.id = 'loadedSound';
+        document.getElementById('loadedSound').pause();
+        console.log('pausing')
+        let interval = setInterval(() => {
+            console.log(timeLeft);
+            if (timeLeft == 1) {
+                let aud = document.getElementById('loadedSound');
+                aud.play();
+                flag = true;
+                clearInterval(interval);
+                aud.id = '';
+            }
+        }, 1000);
+    }
+    else {
+        flag = false;
+    }
+};
+
+
+Array.from(audios).forEach(au => {
+    au.addEventListener('play', waitForTimerToFinish);
+})
+
 
 if (navigator.mediaDevices.getUserMedia) {
     console.log('getUserMedia supported.');
@@ -53,9 +152,9 @@ if (navigator.mediaDevices.getUserMedia) {
     const constraints = { audio: true };
     let chunks = [];
 
-    let onSuccess = function (stream) {
+    let onSuccess = async function (stream) {
         const mediaRecorder = new MediaRecorder(stream);
-      
+
         record.onclick = function () {
             mediaRecorder.start();
             console.log(mediaRecorder.state);
@@ -67,6 +166,7 @@ if (navigator.mediaDevices.getUserMedia) {
         }
 
         stop.onclick = function () {
+            document.getElementById("custom-sounds").style.visibility = 'visible';
             mediaRecorder.stop();
             console.log(mediaRecorder.state);
             console.log("recorder stopped");
@@ -82,7 +182,7 @@ if (navigator.mediaDevices.getUserMedia) {
 
             const clipName = prompt('Enter a name for your sound clip?', 'My unnamed clip');
             const clipContainer = document.createElement('li');
-            const clipLabel = document.createElement('p');
+            const clipLabel = document.createElement('label');
             const audio = document.createElement('audio');
 
             audio.setAttribute('class', "sounds-button");
@@ -95,8 +195,12 @@ if (navigator.mediaDevices.getUserMedia) {
                 clipLabel.textContent = clipName;
             }
 
+
+            clipLabel.setAttribute('class', 'sound-name');
+            audio.setAttribute('class', 'custom-sound');
             clipContainer.appendChild(clipLabel);
             clipContainer.appendChild(audio);
+            clipContainer.style.paddingBottom = "5px";
             soundClips.appendChild(clipContainer);
 
             audio.controls = true;
@@ -105,7 +209,7 @@ if (navigator.mediaDevices.getUserMedia) {
             const audioURL = window.URL.createObjectURL(blob);
             audio.src = audioURL;
             console.log("recorder stopped");
-
+            document.getElementById('custom-sounds').style.display = 'inline-block';
             const formData = new FormData();
             formData.append('userFile', blob, clipName);
 
@@ -150,22 +254,9 @@ const handleFiles = (event) => {
     document.getElementById("audio").load();
 }
 
-document.getElementById('redirect-to-login').addEventListener('click', (event) => {
+attachLogout();
 
-    event.preventDefault();
-
-
-    fetch('../helpers/logout.php', {
-        method: 'GET'
-    })
-    .then(response =>
-        response.json())
-    .then(data => console.log(data));
-
-    location.replace("../registration");
-});
-
-const fetchCommand = () =>{
+const fetchCommand = () => {
     fetch('../../server/getCommand.php', {
         method: 'GET'
     })
@@ -179,10 +270,64 @@ const fetchCommand = () =>{
             if (response.success) {
                 document.getElementById('command-text').innerText = response.value;
                 console.log(response.value);
+                fetched = true;
             }
-        })  
-        .catch(error => {
-            console.log(error)
-        });
-    
+        })
+}
+
+
+const attachSendPoints = () => {
+    const sendPontsButtons = document.getElementsByClassName('send-points');
+    console.log('attaching points buttons')
+    Array.from(sendPontsButtons).forEach(btn => {
+        btn.addEventListener('click', event => {
+            const userId = btn.parentNode.id;
+            let formData = new FormData();
+            formData.append('userId', userId);
+            postData('../../server/sendPoints.php', formData).then(data => data.json()).then(dataText => {
+                console.log(dataText["message"])
+                btn.disabled = true;
+            });
+            console.log(`send points to this dude with id: ${userId}`);
+        })
+    });
+}
+
+function togglePlayHappy() {
+    var audioHappy = document.getElementById("play-happy");
+
+    if (audioHappy.paused) {
+        audioHappy.play();
+    }
+    else {
+        audioHappy.pause();
+    }
+}
+
+function togglePlayNeutral() {
+    var audioHappy = document.getElementById("play-neutral");
+
+    if (audioHappy.paused) {
+        audioHappy.play();
+    }
+    else {
+        audioHappy.pause();
+    }
+}
+
+function togglePlaySad() {
+    var audioHappy = document.getElementById("play-sad");
+
+    if (audioHappy.paused) {
+        audioHappy.play();
+    }
+    else {
+        audioHappy.pause();
+    }
+}
+
+
+function playN() {
+    var audioPlay = document.getElementById("play-neutral");
+    audioPlay.play();
 }

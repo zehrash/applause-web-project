@@ -46,6 +46,8 @@ CREATE TABLE `commands` (
   `eventId` int(11) NOT NULL,
   `text` varchar(100) NOT NULL,
   `execution` datetime NOT NULL,
+  `group` varchar(100) NOT NULL,
+  `row` varchar(100) NOT NULL,
   PRIMARY KEY (`commandId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 

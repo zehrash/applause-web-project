@@ -10,6 +10,8 @@ if ($_SERVER['REQUEST_METHOD'] === "POST" && isset($_POST["age"])) {
     $_SESSION['username'] = $registered->username;
     $_SESSION['age'] = $registered->age;
     setcookie("userId", $registered->userId ,time()+3600);
+
+    resetUserRoles();
     echo json_encode(["message" => "registered successfuly"]);
 } else if ($_SERVER['REQUEST_METHOD'] === "POST") {
     $loggedIn = getUser($_POST["username"], $_POST["password"]);

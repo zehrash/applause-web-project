@@ -1,36 +1,20 @@
 const container = document.querySelector(".container");
 let seatId;
-
+attachLogout();
 updateReservedSeats();
 
 const seats = document.querySelectorAll(".row .seat:not(.sold)");
 
-for (var i = 0; i < seats.length; i++) {
+for (let i = 0; i < seats.length; i++) {
     seats[i].addEventListener('click', function() {
-        for (var j = 0; j < seats.length; j++) {
+        for (let j = 0; j < seats.length; j++) {
             seats[j].style.background = '#444451';
         }
-        this.style.background = '#067006';
+        this.style.background = '#86D9A5';
         seatId = this.attributes['id'].value;
-        //this.classList.toggle("selected");
         console.log(seatId);
         return false;
     });
-}
-
-populateUI();
-
-// Get data from localstorage and populate UI
-function populateUI() {
-    const selectedSeats = JSON.parse(localStorage.getItem("selectedSeats"));
-
-    if (selectedSeats !== null && selectedSeats.length > 0) {
-        seats.forEach((seat, index) => {
-            if (selectedSeats.indexOf(index) > -1) {
-                seat.classList.add("selected");
-            }
-        });
-    }
 }
 
 function updateReservedSeats() {
@@ -47,7 +31,6 @@ function updateReservedSeats() {
         })
         .then(response => {
             if (response.success) {
-
                 let savedSeats = response.value;
 
                 for (let i in savedSeats) {
@@ -82,5 +65,4 @@ document.getElementById('book-btn').addEventListener('click', (event) => {
     }).catch(error => console.log(JSON.stringify(error)));
 
     location.replace(`../home?eventId=${sessionStorage.eventId}`);
-
 });

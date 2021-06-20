@@ -1,3 +1,8 @@
+body {
+    background: rgb(163, 238, 237);
+    background: linear-gradient(-90deg, rgba(163, 238, 237, 1) 0%, rgba(251, 251, 251, 1) 59%, rgba(249, 213, 255, 1) 100%);
+}
+
 button {
     appearance: none;
     -webkit-appearance: none;
@@ -12,6 +17,7 @@ button {
 
 button:hover {
     background-color: rgb(105, 120, 204);
+    font-size: 115%;
 }
 
 textarea {
@@ -35,4 +41,6 @@ textarea {
     text-align: center;
     padding-bottom: 5%;
     padding-top: 3%;
+    background-color: rgb(217, 186, 245);
+    border: 1px solid blue;
 }
