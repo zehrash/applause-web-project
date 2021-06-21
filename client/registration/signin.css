@@ -1,19 +1,18 @@
 body {
-    background: url(../assets/k.jpg) no-repeat;
-	background-attachment: fixed; 
-	background-size: cover;
-	align-items: center;
-	justify-content: center;
-	height: 100vh;
-	font-family:Times New Roman;
+    background: url(../assets/gradient-1291455.jpg) no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    font-family: Times New Roman;
 }
 
-section{
+section {
     display: block;
     margin-left: auto;
     margin-right: auto;
     text-align: center;
-   
 }
 
 #form-container {
@@ -30,7 +29,8 @@ form {
     height: 100%;
 }
 
-input, select {
+input,
+select {
     text-align: left;
     position: relative;
     display: block;
@@ -38,7 +38,7 @@ input, select {
     height: 38px;
     margin-top: 13px;
     border: 2px solid;
-    border-color: #9ea1a1;
+    border-color: #8d97f1;
     font-size: 12pt;
 }
 
@@ -50,17 +50,17 @@ select {
     height: 40px;
     margin-top: 13px;
     border: 2px solid;
-    border-color: #c3cdc0;
+    border-color: #8d97f1;
 }
 
 select:focus {
-    outline: 1px solid #79a06b;
-    border: 1px solid #79a06b;
+    outline: 1px solid #8d97f1;
+    border: 1px solid #8d97f1;
 }
 
 input:focus {
-    outline: 1px solid #79a06b;
-    border: 1px solid #79a06b;
+    outline: 1px solid #8d97f1;
+    border: 1px solid #8d97f1;
 }
 
 .error {
@@ -76,26 +76,25 @@ input:focus {
     border-color: rgb(255, 128, 128);
 }
 
-#register-btn, #login-btn {
-   /* background: linear-gradient(-72deg, rgb(0, 154, 231) 30%, rgb(255, 126, 224) 70%); */
-   box-shadow:inset 0px 1px 0px 0px #fbafe3;
-   background:linear-gradient(to bottom, #ff5bb0 5%, #ef027d 100%);
-   background-color:#ff5bb0;
-   border-radius:6px;
-   border:1px solid #ee1eb5;
-   display:inline-block;
-   cursor:pointer;
-   color:#ffffff;
-   font-family:Arial;
-   font-size:15px;
-   font-weight:bold;
-   padding:6px 24px;
-   text-decoration:none;
-   text-shadow:0px 1px 0px #c70067;
-
-
+#register-btn,
+#login-btn {
+    /* background: linear-gradient(-72deg, rgb(0, 154, 231) 30%, rgb(255, 126, 224) 70%); */
+    box-shadow: inset 0px 1px 0px 0px #fbafe3;
+    background: linear-gradient(to bottom, #f07db8 5%, #f360ac 100%);
+    background-color: #ff5bb0;
+    border-radius: 6px;
+    border: 1px solid #ee1eb5;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Arial;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 6px 24px;
+    text-decoration: none;
+    text-shadow: 0px 1px 0px #c70067;
     background-color: rgb(255, 100, 156);
-    color: #000000;
+    color: #f1dddd;
     text-align: center;
     position: relative;
     display: block;
@@ -122,21 +121,20 @@ input:focus {
     display: none;
 }
 
-#register-link{
+#register-link {
     display: none;
 }
 
-img:hover{
+img:hover {
     height: 230px;
     width: auto;
 }
 
-a{
+a {
     color: rgb(84, 172, 165);
 }
 
-
-.logo-img{
+.logo-img {
     display: block;
     margin-left: auto;
     margin-right: auto;
