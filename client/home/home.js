@@ -40,7 +40,7 @@ const record = document.getElementById('record');
 const stop = document.getElementById('stop');
 const soundClips = document.getElementById('sound-clips');
 let audioCtx;
-const TIME_LIMIT = 5;
+const TIME_LIMIT = 10;
 
 let timePassed = 0;
 let timeLeft = TIME_LIMIT;
@@ -287,6 +287,8 @@ const attachSendPoints = () => {
             postData('../../server/sendPoints.php', formData).then(data => data.json()).then(dataText => {
                 console.log(dataText["message"])
                 btn.disabled = true;
+                document.getElementById("user-list").innerHTML= "";
+                getUsersInEvent();
             });
             console.log(`send points to this dude with id: ${userId}`);
         })
@@ -294,40 +296,16 @@ const attachSendPoints = () => {
 }
 
 function togglePlayHappy() {
-    var audioHappy = document.getElementById("play-happy");
-
-    if (audioHappy.paused) {
-        audioHappy.play();
-    }
-    else {
-        audioHappy.pause();
-    }
+    const audioHappy = document.getElementById("play-happy");
+    audioHappy.paused ? audioHappy.play() : audioHappy.pause();
 }
 
 function togglePlayNeutral() {
-    var audioHappy = document.getElementById("play-neutral");
-
-    if (audioHappy.paused) {
-        audioHappy.play();
-    }
-    else {
-        audioHappy.pause();
-    }
+    const audioNeutral = document.getElementById("play-neutral");
+    audioNeutral.paused ? audioNeutral.play() : audioNeutral.pause();
 }
 
 function togglePlaySad() {
-    var audioHappy = document.getElementById("play-sad");
-
-    if (audioHappy.paused) {
-        audioHappy.play();
-    }
-    else {
-        audioHappy.pause();
-    }
-}
-
-
-function playN() {
-    var audioPlay = document.getElementById("play-neutral");
-    audioPlay.play();
+    const audioSad = document.getElementById("play-sad");
+    audioSad.paused ? audioSad.play(): audioSad.pause();
 }

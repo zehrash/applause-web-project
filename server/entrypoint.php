@@ -9,6 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST" && isset($_POST["age"])) {
     $_SESSION['userId'] = $registered->userId;
     $_SESSION['username'] = $registered->username;
     $_SESSION['age'] = $registered->age;
+    $_SESSION['rating'] = $registered->rating;
     setcookie("userId", $registered->userId ,time()+3600);
 
     resetUserRoles();
@@ -20,6 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST" && isset($_POST["age"])) {
         $_SESSION['username'] = $loggedIn->username;
         $_SESSION['age'] = $loggedIn->age;
         $_SESSION['role'] = $loggedIn->role;
+        $_SESSION['rating'] = $loggedIn->rating;
         setcookie("userId", $loggedIn->userId ,time()+3600);
         echo json_encode(["message" => "logged in successfuly",
                           'value' => $loggedIn->role]);

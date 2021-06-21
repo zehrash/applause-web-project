@@ -24,6 +24,7 @@ window.addEventListener('load', (event) => {
 document.addEventListener('keyup', (event) => {
     if (event.key == "Alt") {
         isAdmin = true;
+        document.getElementById('admin-registration').style.display = "contents";
     }
 });
 
