@@ -16,10 +16,11 @@
 
 <body>
     <header>
-
+        <img id="logo" src="../assets/logo-applause.png" width="200" height="200">
     </header>
     <main>
-       <!-- <img src="../assets/logo-applause.png" width="200" height=auto class="logo-img">-->
+        <!-- <img src="../assets/logo-applause.png" width="200" height=auto class="logo-img">-->
+        <h1 id="title">Welcome to Applause</h1>
         <section id="form-container">
             <form class="register" id="register-form">
                 <p id="username-validator" class="error"></p>
@@ -31,23 +32,20 @@
                 <select name="gender" id="gender">
                     <option value="f">Жена</option>
                     <option value="m">Мъж</option>
-                    <option value="о">Друго</option>
                 </select>
-                <input type="submit" name="register" id="register-btn" value="Регистрирай ме"> 
+                <input type="submit" name="register" id="register-btn" value="Регистрирай ме">
             </form>
             <form class="login" id="login-form">
                 <p id="username-validator" class="error"></p>
                 <input type="text" id="username-log" placeholder="username" name="username" required>
                 <input type="password" id="password-log" placeholder="password" name="password" required>
-                <input type="submit" name="login" id="login-btn" value="Влез"> 
+                <input type="submit" name="login" id="login-btn" value="Влез">
             </form>
             <p id="login-link">Already have a registration? <a href="#" id="redirect-to-login">Login</a></p>
             <p id="register-link">Dont have an account yet? <a href="#" id="redirect-to-register">Register</a></p>
             <p id="already-exists" class="error"></p>
         </section>
-        <div id="demo">
 
-        </div>
     </main>
     <footer>
 
