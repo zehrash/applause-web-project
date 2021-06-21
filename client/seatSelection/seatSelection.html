@@ -9,99 +9,96 @@
     <script src="../helpers/postData.js" defer></script>
     <script src="../helpers/addLogout.js" defer></script>
     <script src="./index.js" defer></script>
-    <title>Movie Seat Booking</title>
+    <title>Seat Booking</title>
 </head>
 
 <body>
     <header>
         <p id="logout-link"><a id="logout">Logout</a></p>
     </header>
-    <main>
-        <ul class="showcase">
-            <li>
-                <section class="seat"></section>
-                <small>Available</small>
-            </li>
-            <li>
-                <section class="seat selected"></section>
-                <small>Selected</small>
-            </li>
-            <li>
-                <section class="seat sold"></section>
-                <small>Sold</small>
-            </li>
-        </ul>
-        <section class="container">
-            <section class="screen"></section>
+    <ul class="showcase">
+        <li>
+            <section class="seat"></section>
+            <small>Available</small>
+        </li>
+        <li>
+            <section class="seat selected"></section>
+            <small>Selected</small>
+        </li>
+        <li>
+            <section class="seat sold"></section>
+            <small>Sold</small>
+        </li>
+    </ul>
+    <section class="container">
+        <section class="screen"></section>
 
-            <section class="row">
-                <section class="seat" id="A1"></section>
-                <section class="seat" id="A2"></section>
-                <section class="seat" id="A3"></section>
-                <section class="seat" id="A4"></section>
-                <section class="seat" id="A5"></section>
-                <section class="seat" id="A6"></section>
-                <section class="seat" id="A7"></section>
-                <section class="seat" id="A8"></section>
-            </section>
-
-            <section class="row">
-                <section class="seat" id="B1"></section>
-                <section class="seat" id="B2"></section>
-                <section class="seat" id="B3"></section>
-                <section class="seat" id="B4"></section>
-                <section class="seat" id="B5"></section>
-                <section class="seat" id="B6"></section>
-                <section class="seat" id="B7"></section>
-                <section class="seat" id="B8"></section>
-            </section>
-
-            <section class="row">
-                <section class="seat" id="C1"></section>
-                <section class="seat" id="C2"></section>
-                <section class="seat" id="C3"></section>
-                <section class="seat" id="C4"></section>
-                <section class="seat" id="C5"></section>
-                <section class="seat" id="C6"></section>
-                <section class="seat" id="C7"></section>
-                <section class="seat" id="C8"></section>
-            </section>
-            <section class="row">
-                <section class="seat" id="D1"></section>
-                <section class="seat" id="D2"></section>
-                <section class="seat" id="D3"></section>
-                <section class="seat" id="D4"></section>
-                <section class="seat" id="D5"></section>
-                <section class="seat" id="D6"></section>
-                <section class="seat" id="D7"></section>
-                <section class="seat" id="D8"></section>
-            </section>
-            <section class="row">
-                <section class="seat" id="E1"></section>
-                <section class="seat" id="E2"></section>
-                <section class="seat" id="E3"></section>
-                <section class="seat" id="E4"></section>
-                <section class="seat" id="E5"></section>
-                <section class="seat" id="E6"></section>
-                <section class="seat" id="E7"></section>
-                <section class="seat" id="E8"></section>
-            </section>
-
-            <section class="row">
-                <section class="seat" id="D1"></section>
-                <section class="seat" id="D2"></section>
-                <section class="seat" id="D3"></section>
-                <section class="seat" id="D4"></section>
-                <section class="seat" id="D5"></section>
-                <section class="seat" id="D6"></section>
-                <section class="seat" id="D7"></section>
-                <section class="seat" id="D8"></section>
-            </section>
-            <button id="book-btn">BOOK NOW</button>
-
+        <section class="row">
+            <section class="seat" id="A1"></section>
+            <section class="seat" id="A2"></section>
+            <section class="seat" id="A3"></section>
+            <section class="seat" id="A4"></section>
+            <section class="seat" id="A5"></section>
+            <section class="seat" id="A6"></section>
+            <section class="seat" id="A7"></section>
+            <section class="seat" id="A8"></section>
         </section>
 
-    </main>
+        <section class="row">
+            <section class="seat" id="B1"></section>
+            <section class="seat" id="B2"></section>
+            <section class="seat" id="B3"></section>
+            <section class="seat" id="B4"></section>
+            <section class="seat" id="B5"></section>
+            <section class="seat" id="B6"></section>
+            <section class="seat" id="B7"></section>
+            <section class="seat" id="B8"></section>
+        </section>
+
+        <section class="row">
+            <section class="seat" id="C1"></section>
+            <section class="seat" id="C2"></section>
+            <section class="seat" id="C3"></section>
+            <section class="seat" id="C4"></section>
+            <section class="seat" id="C5"></section>
+            <section class="seat" id="C6"></section>
+            <section class="seat" id="C7"></section>
+            <section class="seat" id="C8"></section>
+        </section>
+        <section class="row">
+            <section class="seat" id="D1"></section>
+            <section class="seat" id="D2"></section>
+            <section class="seat" id="D3"></section>
+            <section class="seat" id="D4"></section>
+            <section class="seat" id="D5"></section>
+            <section class="seat" id="D6"></section>
+            <section class="seat" id="D7"></section>
+            <section class="seat" id="D8"></section>
+        </section>
+        <section class="row">
+            <section class="seat" id="E1"></section>
+            <section class="seat" id="E2"></section>
+            <section class="seat" id="E3"></section>
+            <section class="seat" id="E4"></section>
+            <section class="seat" id="E5"></section>
+            <section class="seat" id="E6"></section>
+            <section class="seat" id="E7"></section>
+            <section class="seat" id="E8"></section>
+        </section>
+
+        <section class="row">
+            <section class="seat" id="F1"></section>
+            <section class="seat" id="F2"></section>
+            <section class="seat" id="F3"></section>
+            <section class="seat" id="F4"></section>
+            <section class="seat" id="F5"></section>
+            <section class="seat" id="F6"></section>
+            <section class="seat" id="F7"></section>
+            <section class="seat" id="F8"></section>
+        </section>
+        <button id="book-btn">BOOK NOW</button>
+
+    </section>
 </body>
 
 </html>
