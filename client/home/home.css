@@ -113,6 +113,7 @@ body {
 button {
     appearance: none;
     -webkit-appearance: none;
+    margin-top: 10px;
     padding: 10px;
     border: none;
     background-color: #3F51B5;
@@ -142,10 +143,18 @@ li {
 }
 
 .sound-name {
+    position: relative;
+    margin-left: 170%;
     display: block;
     text-align: center;
     line-height: 150%;
     font-size: .85em;
+}
+
+.custom-sound{
+    position: relative;
+    margin-left: 165%;
+    width: 220px;
 }
 
 #default-sounds {
@@ -181,13 +190,12 @@ li {
     position: absolute;
     width: 20%;
     position: absolute;
-    top: 75%;
+    top: 15%;
     text-align: center;
     background-color: white;
     border-radius: 3px;
     padding-bottom: 5%;
     padding-top: 3%;
-    left: 38%;
 }
 
 #sound-clips {
@@ -204,8 +212,7 @@ li {
 
 .random-reaction {
     position: absolute;
-    margin-top: 150px;
-    top: 95%;
+    top: 65%;
     left: 30%;
     font-size: 18px;
     text-align: center;
@@ -220,6 +227,8 @@ li {
 }
 
 .base-timer__label {
+    position: absolute;
+    left:2%;
     width: 100px;
     height: 100px;
 }
