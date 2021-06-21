@@ -95,15 +95,16 @@ function displayCustomSounds() {
                 const clipContainer = document.createElement('li');
                 const clipLabel = document.createElement('p');
 
+                clipLabel.setAttribute('class', 'sound-name');
                 clipLabel.textContent = s.getAttribute('name');
                 clipContainer.classList.add('clip');
-                clipLabel.setAttribute('class', 'sound-name');
                 clipContainer.appendChild(clipLabel);
 
                 console.log(s);
 
                 clipContainer.appendChild(s);
                 soundClips.appendChild(clipContainer);
+                document.getElementById("custom-sounds").style.visibility = 'visible';
             }
 
             document.getElementById('custom-sounds').style.display = 'block';
@@ -194,14 +195,12 @@ if (navigator.mediaDevices.getUserMedia) {
                 clipLabel.textContent = clipName;
             }
 
-            audio.style.width = "200px";
-            clipLabel.style.paddingBottom = "0px";
+            audio.style.width="200px";
+            clipLabel.style.paddingBottom="0px";
             clipLabel.setAttribute('class', 'sound-name');
             audio.setAttribute('class', 'custom-sound');
             clipContainer.appendChild(clipLabel);
             clipContainer.appendChild(audio);
-            clipContainer.style.paddingBottom = "2px";
-            clipContainer.style.paddingLeft = "165%";
             soundClips.appendChild(clipContainer);
 
             audio.controls = true;
@@ -288,6 +287,8 @@ const attachSendPoints = () => {
             postData('../../server/sendPoints.php', formData).then(data => data.json()).then(dataText => {
                 console.log(dataText["message"])
                 btn.disabled = true;
+                document.getElementById("user-list").innerHTML= "";
+                getUsersInEvent();
             });
             console.log(`send points to this dude with id: ${userId}`);
         })
@@ -295,37 +296,16 @@ const attachSendPoints = () => {
 }
 
 function togglePlayHappy() {
-    var audioHappy = document.getElementById("play-happy");
-
-    if (audioHappy.paused) {
-        audioHappy.play();
-    } else {
-        audioHappy.pause();
-    }
+    const audioHappy = document.getElementById("play-happy");
+    audioHappy.paused ? audioHappy.play() : audioHappy.pause();
 }
 
 function togglePlayNeutral() {
-    var audioHappy = document.getElementById("play-neutral");
-
-    if (audioHappy.paused) {
-        audioHappy.play();
-    } else {
-        audioHappy.pause();
-    }
+    const audioNeutral = document.getElementById("play-neutral");
+    audioNeutral.paused ? audioNeutral.play() : audioNeutral.pause();
 }
 
 function togglePlaySad() {
-    var audioHappy = document.getElementById("play-sad");
-
-    if (audioHappy.paused) {
-        audioHappy.play();
-    } else {
-        audioHappy.pause();
-    }
-}
-
-
-function playN() {
-    var audioPlay = document.getElementById("play-neutral");
-    audioPlay.play();
+    const audioSad = document.getElementById("play-sad");
+    audioSad.paused ? audioSad.play(): audioSad.pause();
 }

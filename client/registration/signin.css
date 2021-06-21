@@ -114,11 +114,6 @@ input:focus {
     display: none;
 }
 
-img:hover {
-    height: 230px;
-    width: auto;
-}
-
 a {
     color: rgb(84, 172, 165);
 }

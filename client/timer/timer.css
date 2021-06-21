@@ -2,10 +2,10 @@
 
 .base-timer {
     position: absolute;
-    top:72%;
-    left:40%;
-    height: 200px;
-    width: 200px;
+    top:78%;
+    left:42%;
+    height: 150x;
+    width: 150px;
 }
 
 /* Removes SVG styling that would hide the time label */
@@ -25,10 +25,11 @@
 .base-timer__label {
     position: absolute;
     /* Size should match the parent container */
-    width: 200px;
-    height: 200px;
+    width: 150x;
+    height: 150px;
     /* Keep the label aligned to the top */
     top: 0;
+    left: 30%;
     /* Create a flexible box that centers content vertically and horizontally */
     display: flex;
     align-items: center;

@@ -15,9 +15,12 @@ function createDb()
 
     $stmt = $db->prepare($query);
 
-    if ($stmt->execute())
-        echo json_encode(["message" =>"Success"]);
-    else
-        echo json_encode(["message" =>"Fail"]);
+    if ($stmt->execute()) {
+        echo json_encode(["message" => "Success"]);
+        $insertquery = file_get_contents("./applause_gen_inserts.sql", FILE_USE_INCLUDE_PATH);
+        $insertstmt = $db->prepare($insertquery);
+        $insertstmt->execute();
+    } else
+        echo json_encode(["message" => "Fail"]);
 }
 createDb();
