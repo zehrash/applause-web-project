@@ -107,3 +107,9 @@ body {
 #book-btn:hover {
     font-size: 110%;
 }
+
+#logout-link {
+    position: absolute;
+    left: 1%;
+    top: 1%;
+}
