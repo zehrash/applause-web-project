@@ -152,17 +152,6 @@ ul {
     background-color:rgb(105, 120, 204);
   } 
 
-  #statistics {
-    position: absolute;
-    top:70%;
-    left: 40%;
-    margin: auto;
-    font-size: 17px;
-  }
-  #statistics:hover{
-    background-color: rgb(105, 120, 204);
-  }
-
   #copy-link, #go-to-event {
     padding:0;
     float: inline-end;

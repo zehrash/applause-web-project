@@ -195,12 +195,14 @@ if (navigator.mediaDevices.getUserMedia) {
                 clipLabel.textContent = clipName;
             }
 
-
+            audio.style.width="200px";
+            clipLabel.style.paddingBottom="0px";
             clipLabel.setAttribute('class', 'sound-name');
             audio.setAttribute('class', 'custom-sound');
             clipContainer.appendChild(clipLabel);
             clipContainer.appendChild(audio);
-            clipContainer.style.paddingBottom = "5px";
+            clipContainer.style.paddingBottom = "2px";
+            clipContainer.style.paddingLeft="165%";
             soundClips.appendChild(clipContainer);
 
             audio.controls = true;
