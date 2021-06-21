@@ -84,7 +84,7 @@ body {
     box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
     position: absolute;
     width: 25%;
-    margin-top: 5%;
+    margin-top: 10%;
     margin-left: 5%;
     margin-right: 50%;
     text-align: center;
@@ -150,18 +150,6 @@ input[type=submit]:hover {
     background-color: rgb(105, 120, 204);
 }
 
-#statistics {
-    position: absolute;
-    top: 70%;
-    left: 40%;
-    margin: auto;
-    font-size: 17px;
-}
-
-#statistics:hover {
-    background-color: rgb(105, 120, 204);
-}
-
 #copy-link,
 #go-to-event {
     padding: 0;
@@ -203,6 +191,14 @@ section {
     text-align: left;
 }
 
+.create-event-left {
+    position: absolute;
+    margin-left: 2%;
+    top: 1%;
+    padding-left: 3%;
+    text-align: left;
+}
+
 .invite,
 .admin {
     appearance: none;
@@ -212,6 +208,8 @@ section {
     width: 5.5rem;
     height: 2rem;
     display: inline-flex;
+    float: right;
+    margin-right: 10px;
 }
 
 .invite:hover {
@@ -227,4 +225,12 @@ section {
     position: relative;
     margin: auto;
     padding-top: 2%;
+}
+
+#title {
+    position: absolute;
+    margin-left: 38%;
+    top: 2%;
+    color: rgb(26, 6, 31);
+    font-size: 50px;
 }

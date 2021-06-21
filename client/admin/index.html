@@ -19,6 +19,7 @@
         <p id="logout-link"><a id="logout">Logout</a></p>
     </header>
     <main>
+        <h1 id="title">Admin panel</h1>
         <section class="create-event-left">
             <h1 id="create-text">Create a new event</h1>
             <form class="create-event">
@@ -38,22 +39,18 @@
             </ul>
         </section>
         <section id="myModal" class="modal">
-            <div class="modal-content">
+            <section class="modal-content">
                 <span class="close">&times;</span>
                 <h3>You created the <span id="created-event-name"></span> event!</h3>
                 <p>Send this link to your watchers to join! </p>
                 <input type="text" id="created-event-link"></p>
-                <div class="tooltip">
+                <p class="tooltip">
                     <span class="tooltiptext" id="copyTooltip">Copy to clipboard</span>
                     <button id="copy-link">Copy text</button><br/><br>
                     <button id="go-to-event">Go to the event</button>
-                </div>
-            </div>
-
+                </p>
+            </section>
         </section>
-        <br />
-        <br />
-        <button id="statistics">view statistics</button>
     </main>
 </body>
 
