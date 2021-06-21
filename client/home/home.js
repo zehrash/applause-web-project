@@ -1,6 +1,6 @@
 fetch('../../server/userpanel.php', {
-    method: 'GET'
-})
+        method: 'GET'
+    })
     .then((response) => {
         if (!response.ok) {
             throw new Error('Error getting user.');
@@ -22,8 +22,8 @@ fetch('../../server/userpanel.php', {
 
 function getUsersInEvent() {
     fetch('../../server/populateWithUsers.php', {
-        method: 'GET'
-    })
+            method: 'GET'
+        })
         .then((response) => {
             return response.json();
         })
@@ -75,8 +75,8 @@ const closeTimerCycle = () => {
 function displayCustomSounds() {
     const customSounds = [];
     fetch('../../server/getCustomAudio.php', {
-        method: 'GET'
-    })
+            method: 'GET'
+        })
         .then((response) => {
             return response.json();
         })
@@ -134,8 +134,7 @@ const waitForTimerToFinish = (event) => {
                 aud.id = '';
             }
         }, 1000);
-    }
-    else {
+    } else {
         flag = false;
     }
 };
@@ -152,10 +151,10 @@ if (navigator.mediaDevices.getUserMedia) {
     const constraints = { audio: true };
     let chunks = [];
 
-    let onSuccess = async function (stream) {
+    let onSuccess = async function(stream) {
         const mediaRecorder = new MediaRecorder(stream);
 
-        record.onclick = function () {
+        record.onclick = function() {
             mediaRecorder.start();
             console.log(mediaRecorder.state);
             console.log("recorder started");
@@ -165,7 +164,7 @@ if (navigator.mediaDevices.getUserMedia) {
             record.disabled = true;
         }
 
-        stop.onclick = function () {
+        stop.onclick = function() {
             document.getElementById("custom-sounds").style.visibility = 'visible';
             mediaRecorder.stop();
             console.log(mediaRecorder.state);
@@ -177,7 +176,7 @@ if (navigator.mediaDevices.getUserMedia) {
             record.disabled = false;
         }
 
-        mediaRecorder.onstop = function (e) {
+        mediaRecorder.onstop = function(e) {
             console.log("data available after MediaRecorder.stop() called.");
 
             const clipName = prompt('Enter a name for your sound clip?', 'My unnamed clip');
@@ -195,12 +194,14 @@ if (navigator.mediaDevices.getUserMedia) {
                 clipLabel.textContent = clipName;
             }
 
-
+            audio.style.width = "200px";
+            clipLabel.style.paddingBottom = "0px";
             clipLabel.setAttribute('class', 'sound-name');
             audio.setAttribute('class', 'custom-sound');
             clipContainer.appendChild(clipLabel);
             clipContainer.appendChild(audio);
-            clipContainer.style.paddingBottom = "5px";
+            clipContainer.style.paddingBottom = "2px";
+            clipContainer.style.paddingLeft = "165%";
             soundClips.appendChild(clipContainer);
 
             audio.controls = true;
@@ -215,7 +216,7 @@ if (navigator.mediaDevices.getUserMedia) {
 
             postData("../../server/saveaudio.php", formData).then(data => data.json()).then(text => console.log(text));
 
-            clipLabel.onclick = function () {
+            clipLabel.onclick = function() {
                 const existingName = clipLabel.textContent;
                 const newClipName = prompt('Enter a new name for your sound clip?');
                 if (newClipName === null) {
@@ -226,12 +227,12 @@ if (navigator.mediaDevices.getUserMedia) {
             }
         }
 
-        mediaRecorder.ondataavailable = function (e) {
+        mediaRecorder.ondataavailable = function(e) {
             chunks.push(e.data);
         }
     }
 
-    let onError = function (err) {
+    let onError = function(err) {
         console.log('The following error occured: ' + err);
     }
 
@@ -258,8 +259,8 @@ attachLogout();
 
 const fetchCommand = () => {
     fetch('../../server/getCommand.php', {
-        method: 'GET'
-    })
+            method: 'GET'
+        })
         .then((response) => {
             if (!response.ok) {
                 throw new Error('Error getting command.');
