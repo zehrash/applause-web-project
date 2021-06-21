@@ -197,7 +197,7 @@ function saveSeat($eventId, $userId, $seatId)
         $db = new DB();
         $connection = $db->getConnection();
 
-        $addsql = "UPDATE `userevents` SET reservedSeatId = :reservedSeatId WHERE eventId=:eventId AND userId = :userId";
+        $addsql ="INSERT INTO `userevents` (eventId, userId, reservedSeatId) VALUES (:eventId, :userId, :reservedSeatId)";
         $insertStatement = $connection->prepare($addsql);
 
         $insertStatement->bindValue(':userId', $userId);

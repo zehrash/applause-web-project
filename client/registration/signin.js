@@ -22,7 +22,7 @@ window.addEventListener('load', (event) => {
 });
 
 document.addEventListener('keyup', (event) => {
-    if (event.altKey) {
+    if (event.key == "Alt") {
         isAdmin = true;
     }
 });

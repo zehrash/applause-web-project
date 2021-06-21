@@ -18,10 +18,11 @@ CREATE TABLE IF NOT EXISTS `groups` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE IF NOT EXISTS `userevents` (
+  `userEventsId` int(11) NOT NULL AUTO_INCREMENT,
   `eventId` int(11) NOT NULL,
   `userId` int(11) NOT NULL,
   `reservedSeatId` varchar(50) NOT NULL,
-  PRIMARY KEY (`eventId`)
+  PRIMARY KEY (`userEventsId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE IF NOT EXISTS `usergroups` (
