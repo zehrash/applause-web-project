@@ -208,7 +208,7 @@ section {
     width: 5.5rem;
     height: 2rem;
     display: inline-flex;
-    float: right;
+   /* float: right;*/
     margin-right: 10px;
 }
 
