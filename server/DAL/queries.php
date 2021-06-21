@@ -35,29 +35,6 @@ function registerUser($username, $age, $gender, $role, $password)
     return getUser($username, $password);
 }
 
-function retrieveUser($username)
-{
-
-    try {
-        $db = new DB();
-        $connection = $db->getConnection();
-        $selectsql = "SELECT * FROM users WHERE username = :username";
-        $selectStatement = $connection->prepare($selectsql);
-
-        $selectStatement->bindValue(':username', $username);
-        $selectStatement->execute();
-        $user = null;
-
-        while ($row = $selectStatement->fetch(PDO::FETCH_ASSOC)) {
-            $user = new User($row["userId"], $row["username"], $row["age"], $row["gender"], $row["role"], $row["rating"], $row["password"]);
-        }
-
-        return $user;
-    } catch (PDOException $e) {
-        return null;
-    }
-}
-
 //retrieve user data
 function getUser($username, $password)
 {
@@ -86,7 +63,8 @@ function getUser($username, $password)
         return null;
     }
 }
-function getAllUsers()
+
+function getAllUsers($userId)
 {
     try {
         $db = new DB();
@@ -98,6 +76,10 @@ function getAllUsers()
         $users = [];
 
         while ($row = $selectStatement->fetch(PDO::FETCH_ASSOC)) {
+            if ($userId == $row["userId"]) {
+                break;
+            }
+
             array_push($users, new User($row["userId"], $row["username"], $row["age"], $row["gender"], $row["role"], $row["rating"], $row["password"]));
         }
 
@@ -152,7 +134,6 @@ function resetUserRoles()
         $updatesql = "UPDATE `users` SET role = 'user' WHERE role = 'host'";
         $updateStatement = $connection->prepare($updatesql);
         $updateStatement->execute();
-
     } catch (PDOException $e) {
         echo json_encode(["text" => $e->getMessage()]);
     }
@@ -175,7 +156,8 @@ function sendEventToUser($eventId, $userId)
     }
 }
 
-function sendPointsToUser($userId) {
+function sendPointsToUser($userId)
+{
     try {
         $db = new DB();
         $connection = $db->getConnection();
@@ -185,7 +167,6 @@ function sendPointsToUser($userId) {
 
         $insertStatement->bindValue(':userId', $userId);
         $insertStatement->execute();
-
     } catch (PDOException $e) {
         return null;
     }
@@ -197,7 +178,7 @@ function saveSeat($eventId, $userId, $seatId)
         $db = new DB();
         $connection = $db->getConnection();
 
-        $addsql ="INSERT INTO `userevents` (eventId, userId, reservedSeatId) VALUES (:eventId, :userId, :reservedSeatId)";
+        $addsql = "INSERT INTO `userevents` (eventId, userId, reservedSeatId) VALUES (:eventId, :userId, :reservedSeatId)";
         $insertStatement = $connection->prepare($addsql);
 
         $insertStatement->bindValue(':userId', $userId);
@@ -231,29 +212,6 @@ function getSavedSeats($eventId)
             return null;
         }
         return $seats;
-    } catch (PDOException $e) {
-        return $e->getMessage();
-    }
-}
-
-function getSavedSeatByUser($eventId, $userId)
-{
-    try {
-        $db = new DB();
-        $connection = $db->getConnection();
-        $selectsql = "SELECT reservedSeatId FROM userevents WHERE eventId = :eventId AND userId= :userId";
-        $selectStatement = $connection->prepare($selectsql);
-
-        $selectStatement->bindValue(':eventId', $eventId);
-        $selectStatement->bindValue(':userID', $userId);
-        $selectStatement->execute();
-
-        $seat = null;
-        while ($row = $selectStatement->fetch(PDO::FETCH_ASSOC)) {
-            $seat =$row['reservedSeatId'];
-        }
-
-        return $seat;
     } catch (PDOException $e) {
         return $e->getMessage();
     }

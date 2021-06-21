@@ -40,7 +40,7 @@ const record = document.getElementById('record');
 const stop = document.getElementById('stop');
 const soundClips = document.getElementById('sound-clips');
 let audioCtx;
-const TIME_LIMIT = 10;
+const TIME_LIMIT = 5;
 
 let timePassed = 0;
 let timeLeft = TIME_LIMIT;
